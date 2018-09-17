@@ -1,0 +1,35 @@
+{
+  "name": "nzk-drawing-tool",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@storybook/cli": "^3.4.10",
+    "fabric": "^2.3.6",
+    "polished": "^2.0.3",
+    "react": "^16.5.1",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.5.1",
+    "react-scripts": "1.1.5",
+    "rebound": "^0.1.0",
+    "styled-components": "^3.4.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s components/UI/assets",
+    "build-storybook": "build-storybook -s components/UI/assets"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/addon-links": "^3.4.10",
+    "@storybook/addons": "^3.4.10",
+    "@storybook/react": "^3.4.10",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react-router-dom": "^4.3.1",
+    "svg-sprite-loader": "^3.9.2",
+    "webpack": "^4.19.0"
+  }
+}
