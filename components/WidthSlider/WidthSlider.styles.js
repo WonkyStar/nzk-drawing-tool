@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const WidthNumber = styled.p`
-  margin: 0 auto;
+  margin: 0 auto 10px;
 `
 
 export const Wrapper = styled.div`
