@@ -175,12 +175,12 @@ export default class RightPanel extends Component {
       <Fragment>
         <div>
           <Button onClick={() => redo()} {...this.getInactiveButtonProps()}>
-            <Icon name="right" {...this.getInactiveIconProps()} />
+            <Icon name="redo" {...this.getInactiveIconProps()} />
           </Button>
         </div>
         <div>
           <Button onClick={() => undo()} {...this.getInactiveButtonProps()}>
-            <Icon name="left" {...this.getInactiveIconProps()} />
+            <Icon name="undo" {...this.getInactiveIconProps()} />
           </Button>
         </div>
         <div>

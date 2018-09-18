@@ -63,7 +63,7 @@ export default class LeftPanel extends Component {
           onClick={() => changeTool(Tools.Pencil)}
           {...this.isSectionActive('pencil') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
         >
-          <Icon name="pencil" {...this.isSectionActive('pencil') ? this.getActiveIconProps() : this.getInactiveIconProps()}/>
+          <Icon name="rainbow" {...this.isSectionActive('pencil') ? this.getActiveIconProps() : this.getInactiveIconProps()}/>
         </Button>
         <Button
           onClick={() => changeTool('reset')}
@@ -75,25 +75,25 @@ export default class LeftPanel extends Component {
           onClick={() => changeTool(Tools.Sticker)}
           {...this.isSectionActive('sticker') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
         >
-          <Icon name="picture" {...this.isSectionActive('sticker') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
+          <Icon name="sticker" {...this.isSectionActive('sticker') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
         </Button>*/}
         <Button
           onClick={() => changeTool(Tools.Eraser)}
           {...this.isSectionActive('eraser') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
         >
-          <Icon name="picture" {...this.isSectionActive('eraser') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
+          <Icon name="eraser" {...this.isSectionActive('eraser') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
         </Button>
         <Button
           onClick={() => changeTool('width')}
           {...this.isSectionActive('width') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
         >
-          <Icon name="logo" {...this.isSectionActive('width') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
+          <Icon name="paintbrush" {...this.isSectionActive('width') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
         </Button>
         <Button
           onClick={() => changeTool('opacity')}
           {...this.isSectionActive('opacity') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
         >
-          <Icon name="torch" {...this.isSectionActive('opacity') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
+          <Icon name="opacity" {...this.isSectionActive('opacity') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
         </Button>
       </Fragment>
     )

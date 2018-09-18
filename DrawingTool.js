@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import {
   Container,
   LeftPanelContainer,
@@ -8,7 +8,6 @@ import {
 import DrawingToolHeader from './components/DrawingToolHeader/DrawingToolHeader'
 import LeftPanel from './components/LeftPanel/LeftPanel'
 import RightPanel from './components/RightPanel/RightPanel'
-import Button from './components/Button/Button'
 import { SketchField, Tools } from './src'
 
 export default class DrawingTool extends Component {
