@@ -51,6 +51,8 @@ export default class RightPanel extends Component {
       return this.renderColors()
     } else if (this.props.selectedSection === 'reset') {
       return this.renderResetSection()
+    } else if (this.props.selectedSection === 'eraser') {
+      return this.renderEraserSlider()
     } else if (this.props.selectedSection === 'width') {
       return this.renderWidthSlider()
     } else if (this.props.selectedSection === 'opacity') {
@@ -198,9 +200,14 @@ export default class RightPanel extends Component {
     )
   }
 
+  renderEraserSlider() {
+    const { changeWidth, lineWidth } = this.props
+    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor={base.primary} type="eraser" />
+  }
+
   renderWidthSlider () {
     const { changeWidth, lineWidth, lineColor } = this.props
-    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor={lineColor} />
+    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor={lineColor} type="brush" />
   }
 
   renderOpacitySlider () {

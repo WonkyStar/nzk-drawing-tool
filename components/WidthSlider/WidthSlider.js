@@ -12,13 +12,13 @@ export default class WidthSlider extends Component {
   }
 
   render() {
-    const { height, width, lineWidth, changeWidth, thumbColor } = this.props
+    const { height, width, lineWidth, changeWidth, thumbColor, type } = this.props
     return (
       <Fragment>
         <WidthNumber>{lineWidth}</WidthNumber>
         <Wrapper height={height} width={width}>
           <SliderWrapper containerHeight={height}>
-            <Shape />
+            <Shape type={type} />
             <SliderInput
               type="range"
               min="10"

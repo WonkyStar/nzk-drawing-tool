@@ -17,7 +17,6 @@ export default class DrawingTool extends Component {
     this.state = {
       lineWidth: 30,
       rgbColor: '0, 0, 0',
-      fillColor: '#68CCCA',
       backgroundColor: 'transparent',
       shadowWidth: 0,
       shadowOffset: 0,
@@ -49,7 +48,7 @@ export default class DrawingTool extends Component {
   }
 
   static defaultProps = {
-    type: 'sky'
+    type: 'zoo'
   }
 
   _selectTool = (event, index, value) => {
@@ -129,8 +128,8 @@ export default class DrawingTool extends Component {
     this._sketch.setBackgroundFromDataUrl('')
     this.setState({
       controlledValue: null,
-      backgroundColor: 'transparent',
-      fillWithBackgroundColor: false,
+      backgroundColor: this.props.type === 'sky' ? '#ebebeb' : 'transparent',
+      // fillWithBackgroundColor: false,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
       drawingSnapshot: [],
@@ -255,7 +254,7 @@ export default class DrawingTool extends Component {
   }
 
   changeTool(section) {
-    if (section === 'pencil' || section === 'sticker') {
+    if (section === 'pencil' || section === 'eraser' || section === 'sticker') {
       this.setState({
         tool: section,
         selectedSection: section
@@ -307,12 +306,9 @@ export default class DrawingTool extends Component {
             ref={c => (this._sketch = c)}
             lineColor={this.state.lineColor}
             lineWidth={this.state.lineWidth}
-            fillColor={
-              this.state.fillWithColor ? this.state.fillColor : 'transparent'
-            }
             backgroundColor={
-              this.state.fillWithBackgroundColor
-                ? this.state.backgroundColor
+              this.props.type === 'sky'
+                ? '#ebebeb'
                 : 'transparent'
             }
             height={this.state.sketchHeight}

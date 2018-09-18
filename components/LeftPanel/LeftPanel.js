@@ -71,11 +71,17 @@ export default class LeftPanel extends Component {
           >
           <Icon name="refresh" {...this.isSectionActive('reset') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
         </Button>
-        <Button
+        {/*<Button
           onClick={() => changeTool(Tools.Sticker)}
           {...this.isSectionActive('sticker') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
         >
-          <Icon name="draw" {...this.isSectionActive('sticker') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
+          <Icon name="picture" {...this.isSectionActive('sticker') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
+        </Button>*/}
+        <Button
+          onClick={() => changeTool(Tools.Eraser)}
+          {...this.isSectionActive('eraser') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
+        >
+          <Icon name="picture" {...this.isSectionActive('eraser') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
         </Button>
         <Button
           onClick={() => changeTool('width')}

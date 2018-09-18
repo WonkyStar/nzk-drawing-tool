@@ -59,5 +59,5 @@ export const Shape = styled.div`
   border-radius: 70px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-  border-right: 250px solid yellow;
+  border-right: 250px solid ${props => props.type === 'eraser' ? '#ebebeb' : "yellow"};
 `

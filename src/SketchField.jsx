@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import History from './history'
 import { uuid4 } from './utils'
 import Pencil from './pencil'
+import Eraser from './eraser'
 import Tool from './tools'
 import Sticker from './sticker'
 
@@ -16,7 +17,6 @@ class SketchField extends PureComponent {
   static propTypes = {
     lineColor: PropTypes.string,
     lineWidth: PropTypes.number,
-    fillColor: PropTypes.string,
     backgroundColor: PropTypes.string,
     opacity: PropTypes.number,
     undoSteps: PropTypes.number,
@@ -34,7 +34,6 @@ class SketchField extends PureComponent {
   static defaultProps = {
     lineColor: 'black',
     lineWidth: 10,
-    fillColor: 'transparent',
     backgroundColor: 'transparent',
     opacity: 1.0,
     undoSteps: 25,
@@ -52,6 +51,7 @@ class SketchField extends PureComponent {
   _initTools = fabricCanvas => {
     this._tools = {}
     this._tools[Tool.Pencil] = new Pencil(fabricCanvas)
+    this._tools[Tool.Eraser] = new Eraser(fabricCanvas)
     this._tools[Tool.Sticker] = new Sticker(fabricCanvas)
   }
 
@@ -408,7 +408,7 @@ class SketchField extends PureComponent {
 
 
   componentDidMount = () => {
-    let { tool, value, defaultValue, undoSteps } = this.props
+    let { tool, value, defaultValue, undoSteps, backgroundColor } = this.props
 
     let canvas = (this._fc = new fabric.Canvas(this._canvas, { preserveObjectStacking: true }))
 
@@ -416,6 +416,8 @@ class SketchField extends PureComponent {
     let selectedTool = this._tools[tool]
     selectedTool.configureCanvas(this.props)
     this._selectedTool = selectedTool
+
+    this._backgroundColor(backgroundColor)
 
     // Control resize
     window.addEventListener('resize', this._resize, false)
@@ -464,6 +466,7 @@ class SketchField extends PureComponent {
   }
 
   componentWillReceiveProps = nextProps => {
+    // console.log(nextProps)
     if (this.props.tool !== nextProps.tool) {
       this._selectedTool =
         this._tools[nextProps.tool] || this._tools[Tool.Pencil]
@@ -472,10 +475,7 @@ class SketchField extends PureComponent {
     // Bring the cursor back to default if it is changed by a tool
     this._fc.defaultCursor = 'default'
     this._selectedTool.configureCanvas(nextProps)
-
-    if (this.props.backgroundColor !== nextProps.backgroundColor) {
-      this._backgroundColor(nextProps.backgroundColor)
-    }
+    this._backgroundColor(nextProps.backgroundColor)
 
     if (
       this.props.value !== nextProps.value ||

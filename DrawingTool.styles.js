@@ -21,7 +21,6 @@ export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
   background-size: cover;
-  background-color: pink;
 `
 
 export const LeftPanelContainer = styled.div`

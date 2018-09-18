@@ -6,7 +6,7 @@ class Eraser extends FabricCanvasTool {
   configureCanvas (props) {
     this._canvas.isDrawingMode = true
     this._canvas.freeDrawingBrush.width = props.lineWidth
-    this._canvas.freeDrawingBrush.color = '#E6E7E9'
+    this._canvas.freeDrawingBrush.color = '#ebebeb'
     this._canvas.on('path:created', function (e) {
       e.path.canvas.renderAll()
       // Destination out = erase
