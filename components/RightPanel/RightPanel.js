@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import SpringScrollbar from '../SpringScrollbar/SpringScrollbar'
 import { Scrollbars } from 'react-custom-scrollbars'
 import { Container, Panel } from './RightPanel.styles.js'
 import WidthSlider from '../WidthSlider/WidthSlider'
 import OpacitySlider from '../OpacitySlider/OpacitySlider'
-import Button from '../Button/Button'
+// import Button from '../Button/Button'
 import ColorButton from '../ColorButton/ColorButton'
+import Button from 'components/UI/Button/Button'
+import Icon from 'components/UI/Icon/Icon'
+import { base } from 'components/themes/homeTheme'
 
 export default class RightPanel extends Component {
   constructor (props) {
@@ -25,15 +28,18 @@ export default class RightPanel extends Component {
     this.renderColors = this.renderColors.bind(this)
     this.isColorActive = this.isColorActive.bind(this)
     this.scrollbars = React.createRef()
+    this.getActiveButtonProps = this.getActiveButtonProps.bind(this)
+    this.getInactiveButtonProps = this.getInactiveButtonProps.bind(this)
+    this.getActiveIconProps = this.getActiveIconProps.bind(this)
+    this.getInactiveIconProps = this.getInactiveIconProps.bind(this)
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate (prevProps, prevState) {
     if (!prevState.scrollbarRefAvailable) {
       if (this.scrollbars.current) {
         this.setState({ scrollbarRefAvailable: true })
       }
-    }
-    else {
+    } else {
       if (!this.scrollbars.current) {
         this.setState({ scrollbarRefAvailable: false })
       }
@@ -109,14 +115,21 @@ export default class RightPanel extends Component {
           key={index}
           color={`rgba(${color.rgb}, ${this.props.opacity})`}
           isLocked={color.isLocked}
-          onClick={!color.isLocked ? () => [this.props.changeColor(color.rgb), this.setScrollHeight()] : null}
+          onClick={
+            !color.isLocked
+              ? () => [
+                this.props.changeColor(color.rgb),
+                this.setScrollHeight()
+              ]
+              : null
+          }
           isActive={this.isColorActive(color.rgb)}
         />
       )
     })
   }
 
-  setScrollHeight() {
+  setScrollHeight () {
     const scrollHeight = this.scrollbars.current.getScrollTop()
     this.scrollbars.current.scrollTop(scrollHeight)
     this.setState({
@@ -124,39 +137,70 @@ export default class RightPanel extends Component {
     })
   }
 
-  isColorActive(color) {
+  isColorActive (color) {
     return this.props.rgbColor === color
+  }
+
+  getActiveButtonProps () {
+    return {
+      bgColor: 'white',
+      columnView: true,
+      shadow: true,
+      width: '70px',
+      height: '70px'
+    }
+  }
+
+  getInactiveButtonProps () {
+    return {
+      bgColor: base.primary,
+      columnView: true,
+      shadow: true,
+      width: '50px',
+      height: '50px'
+    }
+  }
+
+  getActiveIconProps () {
+    return {
+      color: base.primary,
+      size: 'x-large'
+    }
+  }
+
+  getInactiveIconProps () {
+    return {
+      color: 'white',
+      size: 'large'
+    }
   }
 
   renderResetSection () {
     const { undo, redo, clear, canUndo, canRedo } = this.props
-    return [
-      <Button
-        key={1}
-        icon={'left'}
-        onClick={() => undo()}
-        isActive={canUndo}
-        disabled={!canUndo}
-      />,
-      <Button
-        key={2}
-        icon={'right'}
-        onClick={() => redo()}
-        isActive={canRedo}
-        disabled={!canRedo}
-      />,
-      <Button key={3} icon={'cross'} onClick={() => clear()} isActive={true} />
-    ]
+    return (
+      <Fragment>
+        <div>
+          <Button onClick={() => redo()} {...this.getInactiveButtonProps()}>
+            <Icon name="right" {...this.getInactiveIconProps()} />
+          </Button>
+        </div>
+        <div>
+          <Button onClick={() => undo()} {...this.getInactiveButtonProps()}>
+            <Icon name="left" {...this.getInactiveIconProps()} />
+          </Button>
+        </div>
+        <div>
+          <Button onClick={() => clear()} {...this.getInactiveButtonProps()}>
+            <Icon name="trash" {...this.getInactiveIconProps()} />
+          </Button>
+        </div>
+      </Fragment>
+    )
   }
 
   renderWidthSlider () {
     const { changeWidth, lineWidth } = this.props
-    return (
-      <WidthSlider
-        changeWidth={changeWidth}
-        lineWidth={lineWidth}
-      />
-    )
+    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} />
   }
 
   renderOpacitySlider () {
@@ -170,7 +214,7 @@ export default class RightPanel extends Component {
     )
   }
 
-  handleColorPanelScroll() {
+  handleColorPanelScroll () {
     return this.scrollbars.current.scrollTop(this.state.colorPanelScrollTop)
   }
 
@@ -182,7 +226,7 @@ export default class RightPanel extends Component {
         {selectedSection === 'pencil' ? (
           <Scrollbars
             ref={this.scrollbars}
-            style={{ height: 'calc(100% - 120px)', width: '100%' }}
+            style={{ height: '350px', width: '100%', borderRadius: '60px' }}
           >
             <Panel>{this.renderRightSection()}</Panel>
             {this.state.scrollbarRefAvailable && this.handleColorPanelScroll()}

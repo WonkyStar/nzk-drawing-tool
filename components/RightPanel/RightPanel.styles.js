@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  width: 120px;
+  width: 90px;
   z-index: 2;
 `
 
@@ -13,10 +13,14 @@ export const Panel = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${props => props.spaceBetween ? 'space-between' : 'center'};
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 70px;
+  height: 350px;
+  padding: 5px 0 20px;
 
   & > div {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 `

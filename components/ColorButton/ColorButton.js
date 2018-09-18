@@ -22,7 +22,7 @@ export default class ColorButton extends Component {
         onClick={onClick}
         isActive={isActive}
       >
-        {isLocked && <Icon name={'padlock'} size={'x-large'} />}
+        {isLocked && <Icon name={'padlock'} size={'large'} color="white" />}
       </ButtonContainer>
     )
   }
