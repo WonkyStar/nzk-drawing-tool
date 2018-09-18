@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Wrapper, SliderWrapper, SliderInput, Shape } from './WidthSlider.styles'
+import React, { Component, Fragment } from 'react'
+import { WidthNumber, Wrapper, SliderWrapper, SliderInput, Shape } from './WidthSlider.styles'
 
 export default class WidthSlider extends Component {
   constructor(props) {
@@ -7,29 +7,31 @@ export default class WidthSlider extends Component {
   }
 
   static defaultProps = {
-    height: 300,
-    width: 30,
-    thumbColor: 'yellow'
+    height: 250,
+    width: 70
   }
 
   render() {
     const { height, width, lineWidth, changeWidth, thumbColor } = this.props
     return (
-      <Wrapper height={height} width={width}>
-        <SliderWrapper containerHeight={height}>
-          <Shape />
-          <SliderInput
-            type="range"
-            min="10"
-            max="40"
-            value={lineWidth}
-            className="slider"
-            id="myRange"
-            onChange={changeWidth}
-            thumbColor={thumbColor}
-          />
-        </SliderWrapper>
-      </Wrapper>
+      <Fragment>
+        <WidthNumber>{lineWidth}</WidthNumber>
+        <Wrapper height={height} width={width}>
+          <SliderWrapper containerHeight={height}>
+            <Shape />
+            <SliderInput
+              type="range"
+              min="10"
+              max="70"
+              value={lineWidth}
+              className="slider"
+              id="myRange"
+              onChange={changeWidth}
+              thumbColor={thumbColor}
+            />
+          </SliderWrapper>
+        </Wrapper>
+      </Fragment>
     )
   }
 }
