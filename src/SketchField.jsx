@@ -1,6 +1,5 @@
 /*eslint no-unused-vars: 0*/
 'use strict'
-
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import History from './history'
@@ -38,7 +37,7 @@ class SketchField extends PureComponent {
     opacity: 1.0,
     undoSteps: 25,
     tool: Tool.Pencil,
-    widthCorrection: 2,
+    widthCorrection: 0,
     heightCorrection: 0,
     forceValue: false
   }
@@ -63,7 +62,6 @@ class SketchField extends PureComponent {
   }
 
   // Disable touch Scrolling on Canvas
-
   disableTouchScroll = () => {
     let canvas = this._fc
     if (canvas.allowTouchScrolling) {
@@ -71,17 +69,14 @@ class SketchField extends PureComponent {
     }
   }
 
-  /**
-   * Add an image as object to the canvas
-   *
+   /* Add an image as object to the canvas
    * @param dataUrl the image url or Data Url
    * @param options object to pass and change some options when loading image, the format of the object is:
-   *
    * {
    *   left: <Number: distance from left of canvas>,
    *   top: <Number: distance from top of canvas>,
    *   scale: <Number: initial scale of image>
-   * }
+   * } 
    */
   addImg = (dataUrl, options = {}) => {
     let canvas = this._fc
@@ -167,30 +162,29 @@ class SketchField extends PureComponent {
     }
   }
 
-  /**
-   * Track the resize of the window and update our state
-   *
+   /* Track the resize of the window and update state
    * @param e the resize event
-   * @private
    */
-  // here on resize need to make the canvas scale proportionately to always be 4:3
   _resize = e => {
     if (e) e.preventDefault()
+    
     let { widthCorrection, heightCorrection } = this.props
-    let canvas = this._fc
     let { offsetWidth, clientHeight } = this._container
+
+    let canvas = this._fc
     let prevWidth = canvas.getWidth()
     let prevHeight = canvas.getHeight()
     let wfactor = ((offsetWidth - widthCorrection) / prevWidth).toFixed(2)
     let hfactor = ((clientHeight - heightCorrection) / prevHeight).toFixed(2)
     canvas.setWidth(offsetWidth - widthCorrection)
     canvas.setHeight(clientHeight - heightCorrection)
+
     if (canvas.backgroundImage) {
-      // Need to scale background images as well
       let bi = canvas.backgroundImage
       bi.width = bi.width * wfactor
       bi.height = bi.height * hfactor
     }
+
     let objects = canvas.getObjects()
     for (let i in objects) {
       let obj = objects[i]
@@ -215,8 +209,7 @@ class SketchField extends PureComponent {
     canvas.calcOffset()
   }
 
-  /**
-   * Sets the background color for this sketch
+   /* Sets the background color for this sketch
    * @param color in rgba or hex format
    */
   _backgroundColor = color => {
@@ -230,8 +223,7 @@ class SketchField extends PureComponent {
     canvas.bringToFront(obj)
   }
 
-  /**
-   * Zoom the drawing by the factor specified
+   /* Zoom the drawing by the factor specified
    *
    * The zoom factor is a percentage with regards the original, for example if factor is set to 2
    * it will double the size whereas if it is set to 0.5 it will half the size
@@ -252,7 +244,6 @@ class SketchField extends PureComponent {
     canvas.calcOffset()
   }
 
-  // Perform an undo operation on canvas, if it cannot undo it will leave the canvas intact
   undo = () => {
     let history = this._history
     let [obj, prevState, currState] = history.getCurrent()
@@ -271,7 +262,6 @@ class SketchField extends PureComponent {
     }
   }
 
-  // Perform a redo operation on canvas, if it cannot redo it will leave the canvas intact
   redo = () => {
     let history = this._history
     if (history.canRedo()) {
@@ -295,32 +285,26 @@ class SketchField extends PureComponent {
     }
   }
 
-  /**
-   * Delegation method to check if we can perform an undo Operation, useful to disable/enable possible buttons
-   *
+   /* Delegation method to check if we can perform an undo Operation, useful to disable/enable possible buttons
    * @returns {*} true if we can undo otherwise false
    */
   canUndo = () => {
     return this._history.canUndo()
   }
 
-  /**
-   * Delegation method to check if we can perform a redo Operation, useful to disable/enable possible buttons
-   *
+   /* Delegation method to check if we can perform a redo Operation, useful to disable/enable possible buttons
    * @returns {*} true if we can redo otherwise false
    */
   canRedo = () => {
     return this._history.canRedo()
   }
 
-  /**
-   * Exports canvas element to a dataurl image. Note that when multiplier is used, cropping is scaled appropriately
+   /* Exports canvas element to a dataurl image. Note that when multiplier is used, cropping is scaled appropriately
    * @returns {String} URL containing a representation of the object in the format specified by options.format
    */
   toDataURL = options => this._fc.toDataURL(options)
 
-  /**
-   * Returns JSON representation of canvas
+   /* Returns JSON representation of canvas
    * @param propertiesToInclude Array <optional> Any properties that you might want to additionally include in the output
    * @returns {string} JSON string
    */
@@ -329,8 +313,7 @@ class SketchField extends PureComponent {
   // Returns object representation of an instance
   toObject = propertiesToInclude => this._fc.toObject(propertiesToInclude)
 
-  /**
-   * Populates canvas with data from the specified JSON.
+   /* Populates canvas with data from the specified JSON.
    * JSON format must conform to the one of fabric.Canvas#toDatalessJSON
    *
    * @param json JSON string or object
@@ -348,8 +331,7 @@ class SketchField extends PureComponent {
     }, 100)
   }
 
-  /**
-   * Clear the content of the canvas, this will also clear history but will return the canvas content as JSON to be
+   /* Clear the content of the canvas, this will also clear history but will return the canvas content as JSON to be
    * used as needed in order to undo the clear if possible
    *
    * @param propertiesToInclude Array <optional> Any properties that you might want to additionally include in the output
@@ -368,13 +350,12 @@ class SketchField extends PureComponent {
     this._history.clear()
     return discarded
   }
-  /**
-   * Sets the background from the dataUrl given
+
+   /* Sets the background from the dataUrl given
    *
    * @param dataUrl the dataUrl to be used as a background
    * @param options
    */
-
   setBackgroundFromDataUrl = (dataUrl, options = {}) => {
     let canvas = this._fc
     if (options.stretched) {
@@ -405,7 +386,6 @@ class SketchField extends PureComponent {
       )
     img.src = dataUrl
   }
-
 
   componentDidMount = () => {
     let { tool, value, defaultValue, undoSteps, backgroundColor } = this.props
@@ -466,7 +446,6 @@ class SketchField extends PureComponent {
   }
 
   componentWillReceiveProps = nextProps => {
-    // console.log(nextProps)
     if (this.props.tool !== nextProps.tool) {
       this._selectedTool =
         this._tools[nextProps.tool] || this._tools[Tool.Pencil]
@@ -519,7 +498,6 @@ class SketchField extends PureComponent {
 
   render = () => {
     let { className, style, width, height } = this.props
-
     let canvasDivStyle = Object.assign(
       {},
       style ? style : {},

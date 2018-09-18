@@ -221,8 +221,8 @@ export default class DrawingTool extends Component {
   updateWindowDimensions() {
     if (this.props.type === 'zoo') {
       this.setState({
-        sketchWidth: window.innerWidth,
-        sketchHeight: window.innerHeight
+        sketchWidth: (window.innerHeight * 0.8) * (4/3),
+        sketchHeight: window.innerHeight * 0.8
       })
     }
     else if (this.props.type === 'sky') {

@@ -12,7 +12,7 @@ export default class DrawingToolHeader extends Component {
     this.renderZooHeader = this.renderZooHeader.bind(this)
   }
 
-  static PropTypes = {
+  static propTypes = {
     headerType: PropTypes.string,
     headerTitle: PropTypes.string,
     onSave: PropTypes.func,
