@@ -18,7 +18,7 @@ export default class WidthSlider extends Component {
         <WidthNumber>{lineWidth}</WidthNumber>
         <Wrapper height={height} width={width}>
           <SliderWrapper containerHeight={height}>
-            <Shape type={type} />
+            <Shape />
             <SliderInput
               type="range"
               min="10"

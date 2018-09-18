@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { base } from 'components/themes/homeTheme'
 
 export const OpacityCircle = styled.div`
   width: 50px;
@@ -27,7 +28,7 @@ export const SliderInput = styled.input`
   width: calc(100% - 15px);
   height: 15px;
   border-radius: 10px;
-  background: lightgrey;
+  background: ${base.primary};
   margin: 0 auto;
 
   &::-webkit-slider-thumb {

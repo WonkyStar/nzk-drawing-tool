@@ -202,12 +202,12 @@ export default class RightPanel extends Component {
 
   renderEraserSlider() {
     const { changeWidth, lineWidth } = this.props
-    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor={base.primary} type="eraser" />
+    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor="#ebebeb" />
   }
 
   renderWidthSlider () {
     const { changeWidth, lineWidth, lineColor } = this.props
-    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor={lineColor} type="brush" />
+    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor={lineColor} />
   }
 
   renderOpacitySlider () {
