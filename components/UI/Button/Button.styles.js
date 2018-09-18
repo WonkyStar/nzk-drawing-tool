@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components'
 import { readableColor, darken, lighten } from 'polished'
 
 // currently importing the theme in directly but we could have a wrapper <ThemeProvider> function elsewhere so that this component receives the theme as props
-import { base } from '../themes/homeTheme'
+import { base } from 'components/themes/homeTheme'
 
-import { fontSize } from '../themes/styles/dimensions'
+import { fontSize } from 'components/themes/styles/dimensions'
 
 const buttonThemes = {
   normal: {},
