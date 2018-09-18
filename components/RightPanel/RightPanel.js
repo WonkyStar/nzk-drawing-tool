@@ -63,52 +63,44 @@ export default class RightPanel extends Component {
   renderColors () {
     let colors = [
       {
-        rgb: '255, 0, 0',
+        rgb: '255, 255, 255',
+        isLocked: false
+      },
+      {
+        rgb: '255, 145, 0',
+        isLocked: false
+      },
+      {
+        rgb: '255, 236, 0',
+        isLocked: false
+      },
+      {
+        rgb: '193, 255, 0',
+        isLocked: false
+      },
+      {
+        rgb: '0, 183, 255',
+        isLocked: false
+      },
+      {
+        rgb: '174, 0, 255',
+        isLocked: false
+      },
+      {
+        rgb: '255, 0, 152',
+        isLocked: false
+      },
+      {
+        rgb: '104, 59, 17',
+        isLocked: false
+      },
+      {
+        rgb: '171, 171, 171',
         isLocked: false
       },
       {
         rgb: '0, 0, 0',
         isLocked: false
-      },
-      {
-        rgb: '251, 166, 56',
-        isLocked: false
-      },
-      {
-        rgb: '73, 36, 100',
-        isLocked: false
-      },
-      {
-        rgb: '255, 255, 0',
-        isLocked: false
-      },
-      {
-        rgb: '255, 175, 200',
-        isLocked: false
-      },
-      {
-        rgb: '5, 25, 200',
-        isLocked: false
-      },
-      {
-        rgb: '136, 184, 29',
-        isLocked: false
-      },
-      {
-        rgb: '148, 70, 223',
-        isLocked: false
-      },
-      {
-        rgb: '8, 70, 23',
-        isLocked: true
-      },
-      {
-        rgb: '218, 170, 93',
-        isLocked: true
-      },
-      {
-        rgb: '40, 200, 223',
-        isLocked: true
       }
     ]
     return colors.map((color, index) => {

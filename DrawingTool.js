@@ -16,7 +16,7 @@ export default class DrawingTool extends Component {
     super(props)
     this.state = {
       lineWidth: 30,
-      rgbColor: '0, 0, 0',
+      rgbColor: '255, 255, 255',
       backgroundColor: 'transparent',
       shadowWidth: 0,
       shadowOffset: 0,
