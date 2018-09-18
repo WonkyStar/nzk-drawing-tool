@@ -13,6 +13,16 @@ export const fonts = {
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  `,
+  nzk: css`
+    font-family: 'NZK', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  `,
+  proxima: css`
+    font-family: 'Proxima Nova', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   `
 }
 

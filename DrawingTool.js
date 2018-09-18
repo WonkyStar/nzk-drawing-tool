@@ -47,7 +47,7 @@ export default class DrawingTool extends Component {
   }
 
   static defaultProps = {
-    type: 'zoo'
+    type: 'sky'
   }
 
   _selectTool = (event, index, value) => {
@@ -291,7 +291,7 @@ export default class DrawingTool extends Component {
     const { type } = this.props
     return (
       <Container>
-        <DrawingToolHeader headerType='sky' onSave={this._save} />
+        <DrawingToolHeader headerType={type} onSave={this._save} />
         <LeftPanelContainer type={type}>
           <LeftPanel 
             changeTool={this.changeTool}

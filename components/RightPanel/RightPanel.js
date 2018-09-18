@@ -8,7 +8,6 @@ import OpacitySlider from '../OpacitySlider/OpacitySlider'
 import ColorButton from '../ColorButton/ColorButton'
 import Button from 'components/UI/Button/Button'
 import Icon from 'components/UI/Icon/Icon'
-import { base } from 'components/themes/homeTheme'
 
 export default class RightPanel extends Component {
   constructor (props) {
@@ -147,7 +146,7 @@ export default class RightPanel extends Component {
 
   getInactiveButtonProps () {
     return {
-      bgColor: base.primary,
+      bgColor: "#55acf1",
       columnView: true,
       shadow: true,
       width: '50px',
@@ -157,7 +156,7 @@ export default class RightPanel extends Component {
 
   getActiveIconProps () {
     return {
-      color: base.primary,
+      color: "#55acf1",
       size: 'x-large'
     }
   }

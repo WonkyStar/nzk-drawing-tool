@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Container, Title, ButtonContainer } from './DrawingToolHeader.styles'
+import { Container, Title, ButtonContainer, QuestionButton } from './DrawingToolHeader.styles'
 import Icon from 'components/UI/Icon/Icon'
 import Button from 'components/UI/Button/Button'
 
@@ -21,7 +21,7 @@ export default class DrawingToolHeader extends Component {
 
   static defaultProps = {
     headerType: 'zoo',
-    headerTitle: 'Draw a magical animal!'
+    headerTitle: 'How does Will get into the Night Zoo?'
   }
 
   renderZooHeader() {
@@ -37,7 +37,7 @@ export default class DrawingToolHeader extends Component {
             <Icon name="left" size="x-large" color="white" />
           </Button>
         </ButtonContainer>
-        <Title>{this.props.headerTitle}</Title>
+        <Title headerType={this.props.headerType}>{this.props.headerTitle}</Title>
         <ButtonContainer>
           <Button
             bgColor="rgba(250,250,250, 0.6)"
@@ -64,7 +64,11 @@ export default class DrawingToolHeader extends Component {
             Back
           </Button>
         </ButtonContainer>
-        <Title>{this.props.headerTitle}</Title>
+        <Title headerType={this.props.headerType}>{this.props.headerTitle}
+        <QuestionButton round size="small">
+          <Icon name="refresh" size="small" />
+        </QuestionButton>
+        </Title>
         <ButtonContainer>
           <Button
             size="large"

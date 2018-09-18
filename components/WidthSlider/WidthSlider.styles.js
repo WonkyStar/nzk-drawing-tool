@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { base } from 'components/themes/homeTheme'
 
 export const WidthNumber = styled.p`
   margin: 0 auto 10px;
@@ -60,5 +59,5 @@ export const Shape = styled.div`
   border-radius: 70px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-  border-right: 250px solid ${base.primary};
+  border-right: 250px solid #55acf1;
 `
