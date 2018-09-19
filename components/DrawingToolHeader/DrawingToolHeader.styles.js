@@ -4,7 +4,7 @@ import Button from 'components/UI/Button/Button'
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props => props.layoutStyle === 'center' ? 'center' : 'space-between'};
   align-items: center;
   padding: 10px;
 `
@@ -27,7 +27,6 @@ const headerProps = props => {
       return css`
         color: ${colors.indigo};
         font-size: 24px;
-        padding-right: 20px;
         ${fonts.proxima};
       `
     default:
@@ -41,7 +40,7 @@ export const Title = styled.div`
   justify-content: center;
   position: relative;
   height: 60px;
-  width: ${props => props.width || '90%'};
+  width: ${props => `${props.width}px` || '90%'};
   line-height: 60px;
   text-align: center;
   ${headerProps};

@@ -42,25 +42,18 @@ export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
   background-size: cover;
-  background-color: hotpink;
 `
 
-export const LeftPanelContainer = styled.div`
+export const PanelContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 10px;
-`
-
-export const RightPanelContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
+  margin: 0 10px;
 `
 
 export const SketchContainer = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: ${props => props.layoutStyle === 'center' ? 'center' : 'space-between'};
   align-items: center;
   width: 100%;
   height: calc(100% - 80px);

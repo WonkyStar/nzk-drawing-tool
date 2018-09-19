@@ -26,7 +26,7 @@ export default class DrawingToolHeader extends Component {
   }
 
   renderIconHeader() {
-    const { headerStyle, headerTitle, onSave, onBack } = this.props
+    const { headerStyle, headerTitle, width, onSave, onBack } = this.props
     return (
       <Fragment>
         <ButtonContainer>
@@ -39,7 +39,9 @@ export default class DrawingToolHeader extends Component {
             <Icon name="left" size="x-large" color={colors.white} />
           </Button>
         </ButtonContainer>
-        <Title headerStyle={headerStyle}>{headerTitle}</Title>
+        <Title headerStyle={headerStyle} width={width}>
+          {headerTitle}
+        </Title>
         <ButtonContainer>
           <Button
             bgColor={colors.translucentWhite}
@@ -55,7 +57,7 @@ export default class DrawingToolHeader extends Component {
   }
 
   renderTextHeader() {
-    const { headerStyle, headerTitle, onSave, onBack } = this.props
+    const { headerStyle, headerTitle, width, onSave, onBack } = this.props
     return (
       <Fragment>
         <ButtonContainer>
@@ -68,7 +70,7 @@ export default class DrawingToolHeader extends Component {
             Back
           </Button>
         </ButtonContainer>
-        <Title headerStyle={headerStyle}>
+        <Title headerStyle={headerStyle} width={width}>
           {headerTitle}
           <QuestionButton round size="small" bgColor={colors.orange} shadow>
             <Icon name="help" size="small" />
@@ -89,9 +91,9 @@ export default class DrawingToolHeader extends Component {
   }
 
   render() {
-    const { headerStyle } = this.props
+    const { headerStyle, layoutStyle } = this.props
     return (
-      <Container>
+      <Container layoutStyle={layoutStyle}>
         {headerStyle === 'iconButtons'
           ? this.renderIconHeader()
           : this.renderTextHeader()}

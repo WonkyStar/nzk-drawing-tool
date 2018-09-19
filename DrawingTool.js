@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
   Container,
-  LeftPanelContainer,
-  RightPanelContainer,
+  PanelContainer,
   SketchContainer,
   CanvasBackground
 } from './DrawingTool.styles'
@@ -98,7 +97,8 @@ export default class DrawingTool extends Component {
     headerStyle: PropTypes.string,
     headerTitle: PropTypes.string,
     onSave: PropTypes.func,
-    onBack: PropTypes.func
+    onBack: PropTypes.func,
+    layoutStyle: PropTypes.string
   }
 
   static defaultProps = {
@@ -110,7 +110,8 @@ export default class DrawingTool extends Component {
     headerStyle: 'textButtons',
     headerTitle: 'How does Will get to the Night Zoo?',
     onSave: () => {}, // should have access to the object properties to know e.g. how many strokes have been made
-    onBack: () => {} // default window.back()
+    onBack: () => {}, // default window.back()
+    layoutStyle: 'center'
   }
 
   _selectTool = (event, index, value) => {
@@ -286,7 +287,7 @@ export default class DrawingTool extends Component {
     let maxWidth = maxHeight * (aspectRatioWidth / aspectRatioHeight)
     // resize according to maxWidth for tall screens e.g. iPad portrait
     if (maxWidth > window.innerWidth - 220) {
-      maxWidth = window.innerWidth - 220
+      maxWidth = window.innerWidth - 240
       maxHeight = maxWidth / aspectRatioWidth * aspectRatioHeight
     }
     this.setState({
@@ -342,17 +343,23 @@ export default class DrawingTool extends Component {
   }
 
   render() {
-    const { headerStyle, headerTitle, canvasBg, colors } = this.props
+    const { headerStyle, headerTitle, canvasBg, colors, layoutStyle } = this.props
     return (
       <Container>
-        <DrawingToolHeader headerStyle={headerStyle} headerTitle={headerTitle} onSave={this._save} />
-        <SketchContainer>
-          <LeftPanelContainer>
+        <DrawingToolHeader 
+          width={this.state.sketchWidth}
+          headerStyle={headerStyle} 
+          headerTitle={headerTitle} 
+          onSave={this._save}
+          layoutStyle={layoutStyle}
+         />
+        <SketchContainer layoutStyle={layoutStyle}>
+          <PanelContainer>
             <LeftPanel
               changeTool={this.changeTool}
               selectedSection={this.state.selectedSection}
             />
-          </LeftPanelContainer>
+          </PanelContainer>
           <CanvasBackground
             canvasBg={canvasBg}
             height={this.state.sketchHeight}
@@ -373,7 +380,7 @@ export default class DrawingTool extends Component {
               spriteNumber={this.state.spriteNumber}
             />
           </CanvasBackground>
-          <RightPanelContainer>
+          <PanelContainer>
             <RightPanel
               selectedSection={this.state.selectedSection}
               undo={this._undo}
@@ -390,7 +397,7 @@ export default class DrawingTool extends Component {
               rgbColor={this.state.rgbColor}
               colors={colors}
             />
-          </RightPanelContainer>
+          </PanelContainer>
         </SketchContainer>
       </Container>
     )
