@@ -5,8 +5,41 @@ import { Tools } from '../../src'
 import { Container, Panel } from '../RightPanel/RightPanel.styles'
 import { colors } from '../../DrawingTool.styles'
 
+const buttons = [
+  {
+    tool: Tools.Pencil,
+    type: 'pencil',
+    icon: 'rainbow'
+  },
+  {
+    tool: 'reset',
+    type: 'reset',
+    icon: 'refresh'
+  },
+  // {
+  //   tool: Tools.Sticker,
+  //   type: 'sticker',
+  //   icon: 'sticker'
+  // },
+  {
+    tool: Tools.Eraser,
+    type: 'eraser',
+    icon: 'eraser'
+  },
+  {
+    tool: 'width',
+    type: 'width',
+    icon: 'paintbrush'
+  },
+  {
+    tool: 'opacity',
+    type: 'opacity',
+    icon: 'opacity'
+  }
+]
+
 export default class LeftPanel extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.isSectionActive = this.isSectionActive.bind(this)
@@ -21,89 +54,66 @@ export default class LeftPanel extends Component {
     }
   }
 
-  getActiveButtonProps() {
-    return ({
+  getActiveButtonProps () {
+    return {
       bgColor: colors.white,
       columnView: true,
       shadow: true,
       width: '70px',
       height: '70px'
-    })
+    }
   }
 
-  getInactiveButtonProps() {
-    return ({
+  getInactiveButtonProps () {
+    return {
       bgColor: colors.blue,
       columnView: true,
       shadow: true,
       width: '50px',
       height: '50px'
-    })
+    }
   }
 
-  getActiveIconProps() {
-    return ({
-      color: colors.blue, 
-      size: "x-large"
-    })
+  getActiveIconProps () {
+    return {
+      color: colors.blue,
+      size: 'x-large'
+    }
   }
 
-  getInactiveIconProps() {
-    return ({
-      color: colors.white, 
-      size: "large"
-    })
+  getInactiveIconProps () {
+    return {
+      color: colors.white,
+      size: 'large'
+    }
   }
 
-  renderLeftSection() {
+  renderLeftSection () {
     const { changeTool } = this.props
-    return (
-      <Fragment>
+    return buttons.map(button => {
+      return (
         <Button
-          onClick={() => changeTool(Tools.Pencil)}
-          {...this.isSectionActive('pencil') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
+          onClick={() => changeTool(button.tool)}
+          {...(this.isSectionActive(button.type)
+            ? this.getActiveButtonProps()
+            : this.getInactiveButtonProps())}
         >
-          <Icon name="rainbow" {...this.isSectionActive('pencil') ? this.getActiveIconProps() : this.getInactiveIconProps()}/>
+          <Icon
+            name={button.icon}
+            {...(this.isSectionActive(button.type)
+              ? this.getActiveIconProps()
+              : this.getInactiveIconProps())}
+          />
         </Button>
-        <Button
-          onClick={() => changeTool('reset')}
-          {...this.isSectionActive('reset') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
-          >
-          <Icon name="refresh" {...this.isSectionActive('reset') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
-        </Button>
-        {/*<Button
-          onClick={() => changeTool(Tools.Sticker)}
-          {...this.isSectionActive('sticker') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
-        >
-          <Icon name="sticker" {...this.isSectionActive('sticker') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
-        </Button>*/}
-        <Button
-          onClick={() => changeTool(Tools.Eraser)}
-          {...this.isSectionActive('eraser') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
-        >
-          <Icon name="eraser" {...this.isSectionActive('eraser') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
-        </Button>
-        <Button
-          onClick={() => changeTool('width')}
-          {...this.isSectionActive('width') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
-        >
-          <Icon name="paintbrush" {...this.isSectionActive('width') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
-        </Button>
-        <Button
-          onClick={() => changeTool('opacity')}
-          {...this.isSectionActive('opacity') ? this.getActiveButtonProps() : this.getInactiveButtonProps()}
-        >
-          <Icon name="opacity" {...this.isSectionActive('opacity') ? this.getActiveIconProps() : this.getInactiveIconProps()} />
-        </Button>
-      </Fragment>
-    )
+      )
+    })
   }
 
-  isSectionActive(section) {
+  isSectionActive (section) {
     return this.props.selectedSection === section
   }
 
-  render() {
+  render () {
     return (
       <Container>
         <Panel spaceBetween>{this.renderLeftSection()}</Panel>
