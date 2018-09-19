@@ -21,7 +21,6 @@ export default class RightPanel extends Component {
     this.handleColorPanelScroll = this.handleColorPanelScroll.bind(this)
     this.renderResetSection = this.renderResetSection.bind(this)
     this.renderWidthSlider = this.renderWidthSlider.bind(this)
-    this.renderWidthSlider = this.renderWidthSlider.bind(this)
     this.renderOpacitySlider = this.renderOpacitySlider.bind(this)
     this.renderColors = this.renderColors.bind(this)
     this.isColorActive = this.isColorActive.bind(this)
@@ -149,13 +148,13 @@ export default class RightPanel extends Component {
   }
 
   renderEraserSlider() {
-    const { changeWidth, lineWidth } = this.props
-    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor="#ebebeb" />
+    const { changeEraserLineWidth, eraserLineWidth } = this.props
+    return <WidthSlider changeWidth={changeEraserLineWidth} lineWidth={eraserLineWidth} thumbColor="#ebebeb" />
   }
 
   renderWidthSlider () {
-    const { changeWidth, lineWidth, lineColor } = this.props
-    return <WidthSlider changeWidth={changeWidth} lineWidth={lineWidth} thumbColor={lineColor} />
+    const { changeLineWidth, lineWidth, lineColor } = this.props
+    return <WidthSlider changeWidth={changeLineWidth} lineWidth={lineWidth} thumbColor={lineColor} />
   }
 
   renderOpacitySlider () {

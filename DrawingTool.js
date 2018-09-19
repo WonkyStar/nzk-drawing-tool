@@ -58,6 +58,7 @@ export default class DrawingTool extends Component {
     super(props)
     this.state = {
       lineWidth: 30,
+      eraserLineWidth: 30,
       rgbColor: '255, 255, 255',
       backgroundColor: 'transparent',
       shadowWidth: 0,
@@ -84,7 +85,8 @@ export default class DrawingTool extends Component {
     this.changeTool = this.changeTool.bind(this)
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.updateSpriteNumber = this.updateSpriteNumber.bind(this)
-    this.changeWidth = this.changeWidth.bind(this)
+    this.changeLineWidth = this.changeLineWidth.bind(this)
+    this.changeEraserLineWidth = this.changeEraserLineWidth.bind(this)
     this.changeColor = this.changeColor.bind(this)
     this.changeOpacity = this.changeOpacity.bind(this)
   }
@@ -327,9 +329,15 @@ export default class DrawingTool extends Component {
     })
   }
 
-  changeWidth(e) {
+  changeLineWidth(e) {
     this.setState({
       lineWidth: Number(e.target.value)
+    })
+  }
+
+  changeEraserLineWidth(e) {
+    this.setState({
+      eraserLineWidth: Number(e.target.value)
     })
   }
 
@@ -371,6 +379,7 @@ export default class DrawingTool extends Component {
               ref={c => (this._sketch = c)}
               lineColor={this.state.lineColor}
               lineWidth={this.state.lineWidth}
+              eraserLineWidth={this.state.eraserLineWidth}
               backgroundColor="transparent"
               height={this.state.sketchHeight}
               width={this.state.sketchWidth}
@@ -388,8 +397,10 @@ export default class DrawingTool extends Component {
               clear={this._clear}
               canUndo={this.state.canUndo}
               canRedo={this.state.canRedo}
-              changeWidth={this.changeWidth}
+              changeLineWidth={this.changeLineWidth}
+              changeEraserLineWidth={this.changeEraserLineWidth}
               lineWidth={this.state.lineWidth}
+              eraserLineWidth={this.state.eraserLineWidth}
               changeOpacity={this.changeOpacity}
               changeColor={this.changeColor}
               opacity={this.state.opacity}

@@ -16,6 +16,7 @@ class SketchField extends PureComponent {
   static propTypes = {
     lineColor: PropTypes.string,
     lineWidth: PropTypes.number,
+    eraserLineWidth: PropTypes.number,
     backgroundColor: PropTypes.string,
     opacity: PropTypes.number,
     undoSteps: PropTypes.number,
@@ -32,7 +33,8 @@ class SketchField extends PureComponent {
 
   static defaultProps = {
     lineColor: 'white',
-    lineWidth: 10,
+    lineWidth: 30,
+    eraserLineWidth: 30,
     backgroundColor: 'transparent',
     opacity: 1.0,
     undoSteps: 25,
@@ -48,6 +50,7 @@ class SketchField extends PureComponent {
   }
 
   _initTools = fabricCanvas => {
+    console.log({fabricCanvas})
     this._tools = {}
     this._tools[Tool.Pencil] = new Pencil(fabricCanvas)
     this._tools[Tool.Eraser] = new Eraser(fabricCanvas)
@@ -162,9 +165,7 @@ class SketchField extends PureComponent {
     }
   }
 
-   /* Track the resize of the window and update state
-   * @param e the resize event
-   */
+   /* Track the resize of the window and update state */
   _resize = e => {
     if (e) e.preventDefault()
     
@@ -209,9 +210,7 @@ class SketchField extends PureComponent {
     canvas.calcOffset()
   }
 
-   /* Sets the background color for this sketch
-   * @param color in rgba or hex format
-   */
+   /* Sets the background color for this sketch */
   _backgroundColor = color => {
     if (!color) return
     let canvas = this._fc
@@ -224,12 +223,8 @@ class SketchField extends PureComponent {
   }
 
    /* Zoom the drawing by the factor specified
-   *
    * The zoom factor is a percentage with regards the original, for example if factor is set to 2
-   * it will double the size whereas if it is set to 0.5 it will half the size
-   *
-   * @param factor the zoom factor
-   */
+   * it will double the size whereas if it is set to 0.5 it will half the size */
   zoom = factor => {
     let canvas = this._fc
     let objects = canvas.getObjects()
@@ -266,7 +261,7 @@ class SketchField extends PureComponent {
     let history = this._history
     if (history.canRedo()) {
       let canvas = this._fc
-      //noinspection Eslint
+      // noinspection Eslint
       let [obj, prevState, currState] = history.redo()
       if (obj.version === 0) {
         this.setState({ action: false }, () => {
@@ -294,24 +289,18 @@ class SketchField extends PureComponent {
   }
 
    /* Exports canvas element to a dataurl image. Note that when multiplier is used, cropping is scaled appropriately
-   * @returns {String} URL containing a representation of the object in the format specified by options.format
-   */
+   * @returns {String} URL containing a representation of the object in the format specified by options.format */
   toDataURL = options => this._fc.toDataURL(options)
 
    /* Returns JSON representation of canvas
-   * @param propertiesToInclude Array <optional> Any properties that you might want to additionally include in the output
-   * @returns {string} JSON string
-   */
+   * @returns {string} JSON string */
   toJSON = propertiesToInclude => this._fc.toJSON(propertiesToInclude)
 
   // Returns object representation of an instance
   toObject = propertiesToInclude => this._fc.toObject(propertiesToInclude)
 
    /* Populates canvas with data from the specified JSON.
-   * JSON format must conform to the one of fabric.Canvas#toDatalessJSON
-   *
-   * @param json JSON string or object
-   */
+   * JSON format must conform to the one of fabric.Canvas#toDatalessJSON */
   fromJSON = json => {
     if (!json) return
     let canvas = this._fc
@@ -327,10 +316,7 @@ class SketchField extends PureComponent {
 
    /* Clear the content of the canvas, this will also clear history but will return the canvas content as JSON to be
    * used as needed in order to undo the clear if possible
-   *
-   * @param propertiesToInclude Array <optional> Any properties that you might want to additionally include in the output
-   * @returns {string} JSON string of the canvas just cleared
-   */
+   * @returns {string} JSON string of the canvas just cleared */
   clear = propertiesToInclude => {
     let discarded = this.toJSON(propertiesToInclude)
     this._fc.clear()
@@ -345,11 +331,7 @@ class SketchField extends PureComponent {
     return discarded
   }
 
-   /* Sets the background from the dataUrl given
-   *
-   * @param dataUrl the dataUrl to be used as a background
-   * @param options
-   */
+   /* Sets the background from the dataUrl given */
   setBackgroundFromDataUrl = (dataUrl, options = {}) => {
     let canvas = this._fc
     if (options.stretched) {
@@ -445,7 +427,6 @@ class SketchField extends PureComponent {
         this._tools[nextProps.tool] || this._tools[Tool.Pencil]
     }
 
-    // Bring the cursor back to default if it is changed by a tool
     this._fc.defaultCursor = 'default'
     this._selectedTool.configureCanvas(nextProps)
     this._backgroundColor(nextProps.backgroundColor)
