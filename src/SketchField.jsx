@@ -31,7 +31,7 @@ class SketchField extends PureComponent {
   }
 
   static defaultProps = {
-    lineColor: 'black',
+    lineColor: 'white',
     lineWidth: 10,
     backgroundColor: 'transparent',
     opacity: 1.0,
@@ -285,16 +285,10 @@ class SketchField extends PureComponent {
     }
   }
 
-   /* Delegation method to check if we can perform an undo Operation, useful to disable/enable possible buttons
-   * @returns {*} true if we can undo otherwise false
-   */
   canUndo = () => {
     return this._history.canUndo()
   }
 
-   /* Delegation method to check if we can perform a redo Operation, useful to disable/enable possible buttons
-   * @returns {*} true if we can redo otherwise false
-   */
   canRedo = () => {
     return this._history.canRedo()
   }
@@ -512,7 +506,7 @@ class SketchField extends PureComponent {
         style={canvasDivStyle}
       >
         <canvas id={uuid4()} ref={c => (this._canvas = c)}>
-          Sorry, Canvas HTML5 element is not supported by your browser :(
+          Sorry, Canvas HTML5 element is not supported by your browser
         </canvas>
       </div>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { ButtonContainer } from './ColorButton.styles'
 import Icon from 'components/UI/Icon/Icon'
+import { colors } from '../../DrawingTool.styles'
 
 export default class ColorButton extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class ColorButton extends Component {
         onClick={onClick}
         isActive={isActive}
       >
-        {isLocked && <Icon name={'padlock'} size={'large'} color="white" />}
+        {isLocked && <Icon name={'padlock'} size={'large'} color={colors.white} />}
       </ButtonContainer>
     )
   }

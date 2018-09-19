@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../DrawingTool.styles'
 
 export const WidthNumber = styled.p`
   margin: 0 auto 10px;
@@ -38,7 +39,7 @@ export const SliderInput = styled.input`
     height: ${props => props.value}px;
     border-radius: 50%;
     background-color: ${props => props.thumbColor};
-    box-shadow: -4px 0 0 rgba(0, 0, 0, 0.5);
+    box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
   }
 
@@ -47,7 +48,7 @@ export const SliderInput = styled.input`
     height: ${props => props.value};
     border-radius: 50%;
     background-color: ${props => props.thumbColor};
-    box-shadow: -4px 0 0 rgba(0, 0, 0, 0.5);
+    box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
   }
 `
@@ -60,5 +61,5 @@ export const Shape = styled.div`
   border-radius: 70px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-  border-right: 250px solid #55acf1;
+  border-right: 250px solid ${colors.blue};
 `

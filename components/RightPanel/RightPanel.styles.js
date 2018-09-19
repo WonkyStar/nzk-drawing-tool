@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../DrawingTool.styles'
 
 export const Container = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ export const Panel = styled.div`
   flex-direction: column;
   justify-content: ${props => props.spaceBetween ? 'space-between' : 'center'};
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: ${colors.translucentWhite};
   border-radius: 70px;
   height: 350px;
   padding: 5px 0 20px;

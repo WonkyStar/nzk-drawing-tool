@@ -26,6 +26,17 @@ export const fonts = {
   `
 }
 
+export const colors = {
+  white: '#ffffff',
+  grey: '#ebebeb',
+  orange: '#F7931E',
+  yellow: '#FCEE21',
+  blue: '#55acf1',
+  indigo: '#29235C',
+  shadow: 'rgba(0, 0, 0, 0.4)',
+  translucentWhite: 'rgba(250,250,250, 0.6)'
+}
+
 export const Container = styled.div`
   margin: auto;
   min-height: 100vh;
@@ -55,9 +66,19 @@ export const SketchContainer = styled.div`
   height: calc(100% - 80px);
 `
 
-export const CanvasBackground = styled.div`
+const canvasBackgroundProps = props => {
   // canvasBg props should be able to be a colour or image
-  background-color: ${props => props.canvasBg || 'transparent'};
+  if (props.canvasBg) {
+    return css`
+      background-color: ${props.canvasBg};
+      border-top: 2px solid ${colors.white};
+      box-shadow: 0 6px 0 ${colors.shadow};
+    `
+  }
+}
+
+export const CanvasBackground = styled.div`
   width: ${props => props.width || null};
   height: ${props => props.height || null};
+  ${canvasBackgroundProps};
 `

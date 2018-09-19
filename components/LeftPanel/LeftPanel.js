@@ -3,6 +3,7 @@ import Button from 'components/UI/Button/Button'
 import Icon from 'components/UI/Icon/Icon'
 import { Tools } from '../../src'
 import { Container, Panel } from '../RightPanel/RightPanel.styles'
+import { colors } from '../../DrawingTool.styles'
 
 export default class LeftPanel extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class LeftPanel extends Component {
 
   getActiveButtonProps() {
     return ({
-      bgColor: "white",
+      bgColor: colors.white,
       columnView: true,
       shadow: true,
       width: '70px',
@@ -32,7 +33,7 @@ export default class LeftPanel extends Component {
 
   getInactiveButtonProps() {
     return ({
-      bgColor: "#55acf1",
+      bgColor: colors.blue,
       columnView: true,
       shadow: true,
       width: '50px',
@@ -42,14 +43,14 @@ export default class LeftPanel extends Component {
 
   getActiveIconProps() {
     return ({
-      color: "#55acf1", 
+      color: colors.blue, 
       size: "x-large"
     })
   }
 
   getInactiveIconProps() {
     return ({
-      color: "white", 
+      color: colors.white, 
       size: "large"
     })
   }

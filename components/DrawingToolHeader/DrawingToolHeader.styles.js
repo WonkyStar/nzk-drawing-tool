@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { fonts } from '../../DrawingTool.styles'
+import { fonts, colors } from '../../DrawingTool.styles'
 import Button from 'components/UI/Button/Button'
 
 export const Container = styled.div`
@@ -14,18 +14,18 @@ export const ButtonContainer = styled.div`
 `
 
 const headerProps = props => {
-  switch (props.headerType) {
-    case 'zoo':
+  switch (props.headerStyle) {
+    case 'iconButtons':
       return css`
         border-radius: 25px;
-        background-color: rgba(250,250,250, 0.6);
-        color: white;
+        background-color: ${colors.translucentWhite};
+        color: ${colors.white};
         font-size: 25px;
         ${fonts.libreBaskerville};
       `
-    case 'sky':
+    case 'textButtons':
       return css`
-        color: #29235C;
+        color: ${colors.indigo};
         font-size: 24px;
         padding-right: 20px;
         ${fonts.proxima};
@@ -41,7 +41,7 @@ export const Title = styled.div`
   justify-content: center;
   position: relative;
   height: 60px;
-  width: 90%;
+  width: ${props => props.width || '90%'};
   line-height: 60px;
   text-align: center;
   ${headerProps};

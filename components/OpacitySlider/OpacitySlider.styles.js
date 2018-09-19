@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../DrawingTool.styles'
 
 export const OpacityCircle = styled.div`
   width: 50px;
@@ -28,7 +29,7 @@ export const SliderInput = styled.input`
   width: calc(100% - 15px);
   height: 15px;
   border-radius: 10px;
-  background: #55acf1;
+  background: ${colors.blue};
   margin: 0 auto;
 
   &::-webkit-slider-thumb {
@@ -38,8 +39,8 @@ export const SliderInput = styled.input`
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background-color: yellow;
-    box-shadow: -4px 0 0 rgba(0, 0, 0, 0.5);
+    background-color: ${colors.yellow};
+    box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
   }
 
@@ -48,8 +49,8 @@ export const SliderInput = styled.input`
     width: 50px;
     z-index: 3;
     border-radius: 50%;
-    background-color: yellow;
-    box-shadow: -4px 0 0 rgba(0, 0, 0, 0.5);
+    background-color: ${colors.yellow};
+    box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
   }
 `

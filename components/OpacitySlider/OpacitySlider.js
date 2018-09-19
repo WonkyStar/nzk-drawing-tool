@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { OpacityCircle, SliderWrapper, SliderInput, Shape } from './OpacitySlider.styles'
 import { Wrapper } from '../WidthSlider/WidthSlider.styles'
+import { colors } from '../../DrawingTool.styles'
 
 export default class OpacitySlider extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class OpacitySlider extends Component {
   static defaultProps = {
     height: 300,
     width: 30,
-    thumbColor: 'yellow'
+    thumbColor: colors.yellow
   }
 
   render() {

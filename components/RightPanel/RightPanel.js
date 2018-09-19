@@ -6,6 +6,7 @@ import OpacitySlider from '../OpacitySlider/OpacitySlider'
 import ColorButton from '../ColorButton/ColorButton'
 import Button from 'components/UI/Button/Button'
 import Icon from 'components/UI/Icon/Icon'
+import { colors } from '../../DrawingTool.styles'
 
 export default class RightPanel extends Component {
   constructor (props) {
@@ -92,7 +93,7 @@ export default class RightPanel extends Component {
 
   getActiveButtonProps () {
     return {
-      bgColor: 'white',
+      bgColor: colors.white,
       columnView: true,
       shadow: true,
       width: '70px',
@@ -102,7 +103,7 @@ export default class RightPanel extends Component {
 
   getInactiveButtonProps () {
     return {
-      bgColor: "#55acf1",
+      bgColor: colors.blue,
       columnView: true,
       shadow: true,
       width: '50px',
@@ -112,14 +113,14 @@ export default class RightPanel extends Component {
 
   getActiveIconProps () {
     return {
-      color: "#55acf1",
+      color: colors.blue,
       size: 'x-large'
     }
   }
 
   getInactiveIconProps () {
     return {
-      color: 'white',
+      color: colors.white,
       size: 'large'
     }
   }

@@ -158,7 +158,7 @@ export default class DrawingTool extends Component {
         style={styles.gridTile}
         actionIcon={
           <IconButton onTouchTap={c => this._removeMe(index)}>
-            <RemoveIcon color="white" />
+            <RemoveIcon color={colors.white} />
           </IconButton>
         }
       >
@@ -281,7 +281,7 @@ export default class DrawingTool extends Component {
   updateWindowDimensions() {
     const { aspectRatioWidth, aspectRatioHeight } = this.props
     // maxHeight is the full height minus the drawing tool header
-    let maxHeight = window.innerHeight - 80
+    let maxHeight = window.innerHeight - 100
     // maxWidth is the maxHeight scaled to the correct aspect ratio
     let maxWidth = maxHeight * (aspectRatioWidth / aspectRatioHeight)
     // resize according to maxWidth for tall screens e.g. iPad portrait
@@ -342,10 +342,10 @@ export default class DrawingTool extends Component {
   }
 
   render() {
-    const { headerStyle, canvasBg, colors } = this.props
+    const { headerStyle, headerTitle, canvasBg, colors } = this.props
     return (
       <Container>
-        <DrawingToolHeader headerStyle={headerStyle} onSave={this._save} />
+        <DrawingToolHeader headerStyle={headerStyle} headerTitle={headerTitle} onSave={this._save} />
         <SketchContainer>
           <LeftPanelContainer>
             <LeftPanel
