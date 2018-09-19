@@ -7,6 +7,7 @@ export const WidthNumber = styled.p`
 export const Wrapper = styled.div`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
+  position: relative;
 `
 
 export const SliderWrapper = styled.div`
@@ -14,7 +15,7 @@ export const SliderWrapper = styled.div`
   transform: rotate(270deg);
   margin-top: 80px;
   position: absolute;
-  left: -100px;
+  left: -110px;
   height: 70px;
 `
 

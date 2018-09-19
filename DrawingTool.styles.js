@@ -31,23 +31,19 @@ export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
   background-size: cover;
+  background-color: hotpink;
 `
 
 export const LeftPanelContainer = styled.div`
   display: flex;
   align-items: center;
-  position: absolute;
-  left: 0;
-  height: 90%;
+  margin-right: 10px;
 `
 
 export const RightPanelContainer = styled.div`
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 80px;
-  right: 0;
-  height: 90%;
+  margin-left: 10px;
 `
 
 export const SketchContainer = styled.div`
@@ -56,5 +52,12 @@ export const SketchContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90vh;
+  height: calc(100% - 80px);
+`
+
+export const CanvasBackground = styled.div`
+  // canvasBg props should be able to be a colour or image
+  background-color: ${props => props.canvasBg || 'transparent'};
+  width: ${props => props.width || null};
+  height: ${props => props.height || null};
 `

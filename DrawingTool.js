@@ -4,7 +4,8 @@ import {
   Container,
   LeftPanelContainer,
   RightPanelContainer,
-  SketchContainer
+  SketchContainer,
+  CanvasBackground
 } from './DrawingTool.styles'
 import DrawingToolHeader from './components/DrawingToolHeader/DrawingToolHeader'
 import LeftPanel from './components/LeftPanel/LeftPanel'
@@ -91,7 +92,7 @@ export default class DrawingTool extends Component {
 
   static propTypes = {
     aspectRatio: PropTypes.string,
-    canvasBg: PropTypes.element,
+    canvasBg: PropTypes.string,
     colors: PropTypes.array,
     stickers: PropTypes.array,
     headerStyle: PropTypes.string,
@@ -103,7 +104,7 @@ export default class DrawingTool extends Component {
   static defaultProps = {
     aspectRatioWidth: 4,
     aspectRatioHeight: 3,
-    canvasBg: null,
+    canvasBg: '#ebebeb',
     colors: colors,
     stickers: [],
     headerStyle: 'textButtons',
@@ -189,7 +190,6 @@ export default class DrawingTool extends Component {
     this._sketch.setBackgroundFromDataUrl('')
     this.setState({
       controlledValue: null,
-      backgroundColor: this.props.canvasBg === 'sky' ? '#ebebeb' : 'transparent',
       // fillWithBackgroundColor: false,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
@@ -234,7 +234,6 @@ export default class DrawingTool extends Component {
     /*eslint-disable no-console*/
     ;(function(console) {
       console.save = function(data, filename) {
-        console.log({data})
         if (!data) {
           console.error('Console.save: No data')
           return
@@ -288,7 +287,7 @@ export default class DrawingTool extends Component {
     // resize according to maxWidth for tall screens e.g. iPad portrait
     if (maxWidth > window.innerWidth - 220) {
       maxWidth = window.innerWidth - 220
-      maxHeight = (maxWidth / aspectRatioWidth) * aspectRatioHeight
+      maxHeight = maxWidth / aspectRatioWidth * aspectRatioHeight
     }
     this.setState({
       sketchWidth: maxWidth,
@@ -299,7 +298,7 @@ export default class DrawingTool extends Component {
   updateSpriteNumber() {
     let sketchObjects = this._sketch.toObject().objects
     sketchObjects.reduce((acc, item) => {
-      if (item.type === "sprite") {
+      if (item.type === 'sprite') {
         acc += 1
         this.setState({ spriteNumber: acc })
       }
@@ -343,54 +342,56 @@ export default class DrawingTool extends Component {
   }
 
   render() {
-    const { headerStyle, colors } = this.props
+    const { headerStyle, canvasBg, colors } = this.props
     return (
       <Container>
         <DrawingToolHeader headerStyle={headerStyle} onSave={this._save} />
-        <LeftPanelContainer>
-          <LeftPanel 
-            changeTool={this.changeTool}
-            selectedSection={this.state.selectedSection}
-          />
-        </LeftPanelContainer>
         <SketchContainer>
-          <SketchField
-            name="sketch"
-            className="canvas-area"
-            ref={c => (this._sketch = c)}
-            lineColor={this.state.lineColor}
-            lineWidth={this.state.lineWidth}
-            backgroundColor={
-              this.props.type === 'sky'
-                ? '#ebebeb'
-                : 'transparent'
-            }
+          <LeftPanelContainer>
+            <LeftPanel
+              changeTool={this.changeTool}
+              selectedSection={this.state.selectedSection}
+            />
+          </LeftPanelContainer>
+          <CanvasBackground
+            canvasBg={canvasBg}
             height={this.state.sketchHeight}
             width={this.state.sketchWidth}
-            forceValue={true}
-            onChange={this._onSketchChange}
-            tool={this.state.tool}
-            spriteNumber={this.state.spriteNumber}
-          />
+          >
+            <SketchField
+              name="sketch"
+              className="canvas-area"
+              ref={c => (this._sketch = c)}
+              lineColor={this.state.lineColor}
+              lineWidth={this.state.lineWidth}
+              backgroundColor="transparent"
+              height={this.state.sketchHeight}
+              width={this.state.sketchWidth}
+              forceValue={true}
+              onChange={this._onSketchChange}
+              tool={this.state.tool}
+              spriteNumber={this.state.spriteNumber}
+            />
+          </CanvasBackground>
+          <RightPanelContainer>
+            <RightPanel
+              selectedSection={this.state.selectedSection}
+              undo={this._undo}
+              redo={this._redo}
+              clear={this._clear}
+              canUndo={this.state.canUndo}
+              canRedo={this.state.canRedo}
+              changeWidth={this.changeWidth}
+              lineWidth={this.state.lineWidth}
+              changeOpacity={this.changeOpacity}
+              changeColor={this.changeColor}
+              opacity={this.state.opacity}
+              lineColor={this.state.lineColor}
+              rgbColor={this.state.rgbColor}
+              colors={colors}
+            />
+          </RightPanelContainer>
         </SketchContainer>
-        <RightPanelContainer>
-          <RightPanel 
-            selectedSection={this.state.selectedSection} 
-            undo={this._undo}
-            redo={this._redo}
-            clear={this._clear}
-            canUndo={this.state.canUndo}
-            canRedo={this.state.canRedo}
-            changeWidth={this.changeWidth}
-            lineWidth={this.state.lineWidth}
-            changeOpacity={this.changeOpacity}
-            changeColor={this.changeColor}
-            opacity={this.state.opacity}
-            lineColor={this.state.lineColor}
-            rgbColor={this.state.rgbColor}
-            colors={colors}
-          />
-        </RightPanelContainer>
       </Container>
     )
   }

@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import SpringScrollbar from '../SpringScrollbar/SpringScrollbar'
 import { Scrollbars } from 'react-custom-scrollbars'
 import { Container, Panel } from './RightPanel.styles.js'
 import WidthSlider from '../WidthSlider/WidthSlider'
 import OpacitySlider from '../OpacitySlider/OpacitySlider'
-// import Button from '../Button/Button'
 import ColorButton from '../ColorButton/ColorButton'
 import Button from 'components/UI/Button/Button'
 import Icon from 'components/UI/Icon/Icon'
@@ -127,7 +125,7 @@ export default class RightPanel extends Component {
   }
 
   renderResetSection () {
-    const { undo, redo, clear, canUndo, canRedo } = this.props
+    const { undo, redo, clear } = this.props
     return (
       <Fragment>
         <div>
@@ -182,7 +180,7 @@ export default class RightPanel extends Component {
         {selectedSection === 'pencil' ? (
           <Scrollbars
             ref={this.scrollbars}
-            style={{ height: '350px', width: '100%', borderRadius: '60px' }}
+            style={{ height: '375px', width: '100%', borderRadius: '70px' }}
           >
             <Panel>{this.renderRightSection()}</Panel>
             {this.state.scrollbarRefAvailable && this.handleColorPanelScroll()}

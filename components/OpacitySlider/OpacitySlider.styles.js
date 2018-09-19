@@ -13,7 +13,7 @@ export const SliderWrapper = styled.div`
   transform: rotate(270deg);
   margin-top: 100px;
   position: absolute;
-  left: -102px;
+  left: -130px;
   height: 70px;
 `
 
