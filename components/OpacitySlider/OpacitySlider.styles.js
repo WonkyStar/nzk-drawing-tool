@@ -24,6 +24,7 @@ export const SliderInput = styled.input`
   transform: translate(-50%, -50%);
   z-index: 2;
   -webkit-appearance: none;
+  outline: none;
   width: calc(100% - 15px);
   height: 15px;
   border-radius: 10px;

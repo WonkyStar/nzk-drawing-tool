@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   Container,
   LeftPanelContainer,
@@ -10,6 +11,48 @@ import LeftPanel from './components/LeftPanel/LeftPanel'
 import RightPanel from './components/RightPanel/RightPanel'
 import { SketchField, Tools } from './src'
 
+const colors = [
+  {
+    rgb: '255, 255, 255',
+    isLocked: false
+  },
+  {
+    rgb: '255, 145, 0',
+    isLocked: false
+  },
+  {
+    rgb: '255, 236, 0',
+    isLocked: false
+  },
+  {
+    rgb: '193, 255, 0',
+    isLocked: false
+  },
+  {
+    rgb: '0, 183, 255',
+    isLocked: false
+  },
+  {
+    rgb: '174, 0, 255',
+    isLocked: false
+  },
+  {
+    rgb: '255, 0, 152',
+    isLocked: false
+  },
+  {
+    rgb: '104, 59, 17',
+    isLocked: false
+  },
+  {
+    rgb: '171, 171, 171',
+    isLocked: false
+  },
+  {
+    rgb: '0, 0, 0',
+    isLocked: false
+  }
+]
 export default class DrawingTool extends Component {
   constructor(props) {
     super(props)
@@ -46,8 +89,27 @@ export default class DrawingTool extends Component {
     this.changeOpacity = this.changeOpacity.bind(this)
   }
 
+  static propTypes = {
+    aspectRatio: PropTypes.string,
+    canvasBg: PropTypes.element,
+    colors: PropTypes.array,
+    stickers: PropTypes.array,
+    headerStyle: PropTypes.string,
+    headerTitle: PropTypes.string,
+    onSave: PropTypes.func,
+    onBack: PropTypes.func
+  }
+
   static defaultProps = {
-    type: 'sky'
+    aspectRatioWidth: 4,
+    aspectRatioHeight: 3,
+    canvasBg: null,
+    colors: colors,
+    stickers: [],
+    headerStyle: 'textButtons',
+    headerTitle: 'How does Will get to the Night Zoo?',
+    onSave: () => {}, // should have access to the object properties to know e.g. how many strokes have been made
+    onBack: () => {} // default window.back()
   }
 
   _selectTool = (event, index, value) => {
@@ -127,7 +189,7 @@ export default class DrawingTool extends Component {
     this._sketch.setBackgroundFromDataUrl('')
     this.setState({
       controlledValue: null,
-      backgroundColor: this.props.type === 'sky' ? '#ebebeb' : 'transparent',
+      backgroundColor: this.props.canvasBg === 'sky' ? '#ebebeb' : 'transparent',
       // fillWithBackgroundColor: false,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
@@ -218,27 +280,20 @@ export default class DrawingTool extends Component {
   }
 
   updateWindowDimensions() {
-    if (this.props.type === 'zoo') {
-      this.setState({
-        sketchWidth: (window.innerHeight * 0.8) * (4/3),
-        sketchHeight: window.innerHeight * 0.8
-      })
+    const { aspectRatioWidth, aspectRatioHeight } = this.props
+    // maxHeight is the full height minus the drawing tool header
+    let maxHeight = window.innerHeight - 80
+    // maxWidth is the maxHeight scaled to the correct aspect ratio
+    let maxWidth = maxHeight * (aspectRatioWidth / aspectRatioHeight)
+    // resize according to maxWidth for tall screens e.g. iPad portrait
+    if (maxWidth > window.innerWidth - 220) {
+      maxWidth = window.innerWidth - 220
+      maxHeight = (maxWidth / aspectRatioWidth) * aspectRatioHeight
     }
-    else if (this.props.type === 'sky') {
-      // if this is called on resize then nothing needs to be set again
-      if (window.innerWidth > 768) {
-        this.setState({
-          sketchWidth: 600,
-          sketchHeight: 450
-        })
-      }
-      else {
-        this.setState({
-          sketchWidth: 300,
-          sketchHeight: 225
-        })
-      }
-    }
+    this.setState({
+      sketchWidth: maxWidth,
+      sketchHeight: maxHeight
+    })
   }
 
   updateSpriteNumber() {
@@ -288,11 +343,11 @@ export default class DrawingTool extends Component {
   }
 
   render() {
-    const { type } = this.props
+    const { headerStyle, colors } = this.props
     return (
       <Container>
-        <DrawingToolHeader headerType={type} onSave={this._save} />
-        <LeftPanelContainer type={type}>
+        <DrawingToolHeader headerStyle={headerStyle} onSave={this._save} />
+        <LeftPanelContainer>
           <LeftPanel 
             changeTool={this.changeTool}
             selectedSection={this.state.selectedSection}
@@ -318,7 +373,7 @@ export default class DrawingTool extends Component {
             spriteNumber={this.state.spriteNumber}
           />
         </SketchContainer>
-        <RightPanelContainer type={type}>
+        <RightPanelContainer>
           <RightPanel 
             selectedSection={this.state.selectedSection} 
             undo={this._undo}
@@ -333,6 +388,7 @@ export default class DrawingTool extends Component {
             opacity={this.state.opacity}
             lineColor={this.state.lineColor}
             rgbColor={this.state.rgbColor}
+            colors={colors}
           />
         </RightPanelContainer>
       </Container>

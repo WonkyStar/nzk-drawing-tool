@@ -60,49 +60,7 @@ export default class RightPanel extends Component {
   }
 
   renderColors () {
-    let colors = [
-      {
-        rgb: '255, 255, 255',
-        isLocked: false
-      },
-      {
-        rgb: '255, 145, 0',
-        isLocked: false
-      },
-      {
-        rgb: '255, 236, 0',
-        isLocked: false
-      },
-      {
-        rgb: '193, 255, 0',
-        isLocked: false
-      },
-      {
-        rgb: '0, 183, 255',
-        isLocked: false
-      },
-      {
-        rgb: '174, 0, 255',
-        isLocked: false
-      },
-      {
-        rgb: '255, 0, 152',
-        isLocked: false
-      },
-      {
-        rgb: '104, 59, 17',
-        isLocked: false
-      },
-      {
-        rgb: '171, 171, 171',
-        isLocked: false
-      },
-      {
-        rgb: '0, 0, 0',
-        isLocked: false
-      }
-    ]
-    return colors.map((color, index) => {
+    return this.props.colors.map((color, index) => {
       return (
         <ColorButton
           key={index}

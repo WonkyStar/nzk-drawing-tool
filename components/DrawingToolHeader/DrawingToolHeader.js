@@ -8,23 +8,19 @@ export default class DrawingToolHeader extends Component {
   constructor(props) {
     super(props)
 
-    this.renderSkyHeader = this.renderSkyHeader.bind(this)
-    this.renderZooHeader = this.renderZooHeader.bind(this)
+    this.renderTextHeader = this.renderTextHeader.bind(this)
+    this.renderIconHeader = this.renderIconHeader.bind(this)
   }
 
   static propTypes = {
-    headerType: PropTypes.string,
+    headerStyle: PropTypes.string,
     headerTitle: PropTypes.string,
     onSave: PropTypes.func,
     onBack: PropTypes.func
   }
 
-  static defaultProps = {
-    headerType: 'zoo',
-    headerTitle: 'How does Will get into the Night Zoo?'
-  }
-
-  renderZooHeader() {
+  renderIconHeader() {
+    const { headerStyle, headerTitle, onSave, onBack } = this.props
     return (
       <Fragment>
         <ButtonContainer>
@@ -37,7 +33,7 @@ export default class DrawingToolHeader extends Component {
             <Icon name="left" size="x-large" color="white" />
           </Button>
         </ButtonContainer>
-        <Title headerType={this.props.headerType}>{this.props.headerTitle}</Title>
+        <Title headerStyle={headerStyle}>{headerTitle}</Title>
         <ButtonContainer>
           <Button
             bgColor="rgba(250,250,250, 0.6)"
@@ -52,28 +48,29 @@ export default class DrawingToolHeader extends Component {
     )
   }
 
-  renderSkyHeader() {
+  renderTextHeader() {
+    const { headerStyle, headerTitle, onSave, onBack } = this.props
     return (
       <Fragment>
         <ButtonContainer>
           <Button
             size="large"
             color="white"
-            onClick={() => this.props.onBack()}
+            onClick={() => onBack()}
           >
             Back
           </Button>
         </ButtonContainer>
-        <Title headerType={this.props.headerType}>{this.props.headerTitle}
+        <Title headerStyle={headerStyle}>{headerTitle}
         <QuestionButton round size="small">
-          <Icon name="refresh" size="small" />
+          <Icon name="help" size="small" />
         </QuestionButton>
         </Title>
         <ButtonContainer>
           <Button
             size="large"
             color="white"
-            onClick={() => this.props.onSave()}
+            onClick={() => onSave()}
           >
             Save
           </Button>
@@ -83,10 +80,10 @@ export default class DrawingToolHeader extends Component {
   }
 
   render() {
-    const { headerType } = this.props
+    const { headerStyle } = this.props
     return (
       <Container>
-        {headerType === 'zoo' ? this.renderZooHeader() : this.renderSkyHeader()}
+        {headerStyle === 'iconButtons' ? this.renderIconHeader() : this.renderTextHeader()}
       </Container>
     )
   }
