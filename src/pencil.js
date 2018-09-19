@@ -14,6 +14,10 @@ class Pencil extends FabricCanvasTool {
       e.path.setOptions({ class: 'drawing' })
     })
   }
+
+  doMouseUp (event) {
+    this._canvas.renderAll()
+  }
 }
 
 export default Pencil

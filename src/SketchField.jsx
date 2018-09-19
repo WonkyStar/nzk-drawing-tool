@@ -50,7 +50,6 @@ class SketchField extends PureComponent {
   }
 
   _initTools = fabricCanvas => {
-    console.log({fabricCanvas})
     this._tools = {}
     this._tools[Tool.Pencil] = new Pencil(fabricCanvas)
     this._tools[Tool.Eraser] = new Eraser(fabricCanvas)
