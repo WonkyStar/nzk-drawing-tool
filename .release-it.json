@@ -1,3 +1,4 @@
 {
-  "requireUpstream": false
+  "requireUpstream": false,
+  "requireCleanWorkingDir": false
 }
