@@ -61,15 +61,10 @@ export default class DrawingTool extends Component {
       eraserLineWidth: 30,
       rgbColor: '255, 255, 255',
       backgroundColor: 'transparent',
-      shadowWidth: 0,
-      shadowOffset: 0,
       tool: Tools.Pencil,
-      fillWithColor: false,
-      fillWithBackgroundColor: false,
       drawings: [],
       canUndo: false,
       canRedo: false,
-      controlledSize: false,
       sketchWidth: null,
       sketchHeight: null,
       stretched: true,
@@ -111,9 +106,9 @@ export default class DrawingTool extends Component {
     stickers: [],
     headerStyle: 'textButtons',
     headerTitle: 'How does Will get to the Night Zoo?',
-    onSave: () => {}, // should have access to the object properties to know e.g. how many strokes have been made
+    onSave: () => {},
     onBack: () => window.history.back(),
-    layoutStyle: 'center'
+    layoutStyle: 'spaceBetween'
   }
 
   _selectTool = (event, index, value) => {
@@ -123,51 +118,18 @@ export default class DrawingTool extends Component {
   }
 
   _save = () => {
-    const imagePNG = this._sketch.toDataURL()
-    // mutation to upload imagePNG and send to server
-    this.setState({ drawingSnapshot: imagePNG })
-
     const imageJSON = this._sketch.toJSON()
-    console.log(imageJSON)
-
-    // const imageObject = this._sketch.toObject()
-    // console.log(imageObject)
-  }
-
-  _download = () => {
-    /*eslint-disable no-console*/
-    console.save(this._sketch.toDataURL(), 'toDataURL.txt')
-    console.save(JSON.stringify(this._sketch.toJSON()), 'toDataJSON.txt')
-    /*eslint-enable no-console*/
-
-    let { imgDown } = this.refs
-    let event = new Event('click', {})
-
-    imgDown.href = this._sketch.toDataURL()
-    imgDown.download = 'toPNG.png'
-    imgDown.dispatchEvent(event)
-  }
-
-  _renderTile = (drawing, index) => {
-    return (
-      <GridTile
-        key={index}
-        title="Canvas Image"
-        actionPosition="left"
-        titlePosition="top"
-        titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-        cols={1}
-        rows={1}
-        style={styles.gridTile}
-        actionIcon={
-          <IconButton onTouchTap={c => this._removeMe(index)}>
-            <RemoveIcon color={colors.white} />
-          </IconButton>
-        }
-      >
-        <img src={drawing} />
-      </GridTile>
-    )
+    // imageJSON now contains an 'objects' key which is an array of strokes
+    if (imageJSON.objects.length >= 5) {
+      const imagePNG = this._sketch.toDataURL()
+      // imagePNG is a long image string (including static sticker snapshots if stickers have been used)
+      // mutation to upload imagePNG and send to server
+      this.setState({ drawingSnapshot: imagePNG })
+    }
+    else {
+      // open popup asking to add more detail to the drawing before saving
+      console.error("Drawing needs more detail before saving!")
+    }
   }
 
   _undo = () => {
@@ -193,7 +155,6 @@ export default class DrawingTool extends Component {
     this._sketch.setBackgroundFromDataUrl('')
     this.setState({
       controlledValue: null,
-      // fillWithBackgroundColor: false,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
       drawingSnapshot: [],

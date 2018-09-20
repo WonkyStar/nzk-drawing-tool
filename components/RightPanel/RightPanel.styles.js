@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../DrawingTool.styles'
+import { colors, tabletMaxWidth } from '../../DrawingTool.styles'
 
 export const Container = styled.div`
   display: flex;
@@ -23,5 +23,9 @@ export const Panel = styled.div`
 
   & > div {
     margin-top: 20px;
+  }
+
+  @media(max-width: ${tabletMaxWidth}px) {
+    height: 300px;
   }
 `

@@ -5,7 +5,6 @@ import DrawingTool from '../DrawingTool'
 import OpacitySlider from '../components/OpacitySlider/OpacitySlider'
 import WidthSlider from '../components/WidthSlider/WidthSlider'
 import Button from '../components/Button/Button'
-import ColorButton from '../components/ColorButton/ColorButton'
 
   storiesOf("DrawingTool", module)
   .add("Default", () => (
@@ -25,9 +24,4 @@ import ColorButton from '../components/ColorButton/ColorButton'
   storiesOf("DrawingTool", module)
   .add("Button", () => (
     <Button>Save</Button>
-  ))
-
-  storiesOf("DrawingTool", module)
-  .add("Color Button", () => (
-    <ColorButton color={'#FBA638'}/>
   ))

@@ -3,7 +3,6 @@ import { Scrollbars } from 'react-custom-scrollbars'
 import { Container, Panel } from './RightPanel.styles.js'
 import WidthSlider from '../WidthSlider/WidthSlider'
 import OpacitySlider from '../OpacitySlider/OpacitySlider'
-import ColorButton from '../ColorButton/ColorButton'
 import Button from 'components/Button/Button'
 import Icon from 'components/Icon/Icon'
 import { colors } from '../../DrawingTool.styles'
@@ -58,10 +57,13 @@ export default class RightPanel extends Component {
   renderColors () {
     return this.props.colors.map((color, index) => {
       return (
-        <ColorButton
+        <Button
           key={index}
-          color={`rgba(${color.rgb}, ${this.props.opacity})`}
-          isLocked={color.isLocked}
+          columnView
+          shadow
+          width={this.isColorActive(color.rgb) ? '70px' : '50px'}
+          height={this.isColorActive(color.rgb) ? '70px' : '50px'}
+          bgColor={`rgba(${color.rgb}, ${this.props.opacity})`}
           onClick={
             !color.isLocked
               ? () => [
@@ -70,8 +72,11 @@ export default class RightPanel extends Component {
               ]
               : null
           }
-          isActive={this.isColorActive(color.rgb)}
-        />
+        >
+          {color.isLocked && (
+            <Icon name={'padlock'} size={'large'} color={colors.white} />
+          )}
+        </Button>
       )
     })
   }
@@ -104,7 +109,7 @@ export default class RightPanel extends Component {
       size: 'large'
     }
   }
-  
+
   renderResetSection () {
     const { undo, redo, clear } = this.props
     const resetButtons = [
@@ -119,12 +124,13 @@ export default class RightPanel extends Component {
       {
         onClick: () => clear(),
         type: 'trash'
-      },
+      }
     ]
     return resetButtons.map(button => {
       return (
         <div>
           <Button
+            key={button.type}
             onClick={button.onClick}
             {...this.getInactiveButtonProps()}
           >
@@ -135,14 +141,26 @@ export default class RightPanel extends Component {
     })
   }
 
-  renderEraserSlider() {
+  renderEraserSlider () {
     const { changeEraserLineWidth, eraserLineWidth } = this.props
-    return <WidthSlider changeWidth={changeEraserLineWidth} lineWidth={eraserLineWidth} thumbColor={colors.grey} />
+    return (
+      <WidthSlider
+        changeWidth={changeEraserLineWidth}
+        lineWidth={eraserLineWidth}
+        thumbColor={colors.grey}
+      />
+    )
   }
 
   renderWidthSlider () {
     const { changeLineWidth, lineWidth, lineColor } = this.props
-    return <WidthSlider changeWidth={changeLineWidth} lineWidth={lineWidth} thumbColor={lineColor} />
+    return (
+      <WidthSlider
+        changeWidth={changeLineWidth}
+        lineWidth={lineWidth}
+        thumbColor={lineColor}
+      />
+    )
   }
 
   renderOpacitySlider () {

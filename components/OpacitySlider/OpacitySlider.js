@@ -9,7 +9,7 @@ export default class OpacitySlider extends Component {
   }
 
   static defaultProps = {
-    height: 300,
+    height: 255,
     width: 30,
     thumbColor: colors.yellow
   }

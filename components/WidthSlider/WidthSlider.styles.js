@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import { colors } from '../../DrawingTool.styles'
+import { fonts, colors } from '../../DrawingTool.styles'
 
 export const WidthNumber = styled.p`
+  ${fonts.proxima};
+  color: ${colors.indigo};
   margin: 0 auto 10px;
 `
 

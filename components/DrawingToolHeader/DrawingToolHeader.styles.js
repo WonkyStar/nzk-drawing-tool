@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { fonts, colors } from '../../DrawingTool.styles'
+import { fonts, colors, tabletMaxWidth } from '../../DrawingTool.styles'
 import Button from 'components/Button/Button'
 
 export const Container = styled.div`
@@ -7,6 +7,11 @@ export const Container = styled.div`
   justify-content: ${props => props.layoutStyle === 'center' ? 'center' : 'space-between'};
   align-items: center;
   padding: 10px;
+  height: 60px;
+
+  @media(max-width: ${tabletMaxWidth}px) {
+    height: 40px;
+  }
 `
 
 export const ButtonContainer = styled.div`
@@ -22,12 +27,20 @@ const headerProps = props => {
         color: ${colors.white};
         font-size: 25px;
         ${fonts.libreBaskerville};
+
+        @media(max-width: ${tabletMaxWidth}px) {
+          font-size: 18px;
+        }
       `
     case 'textButtons':
       return css`
         color: ${colors.indigo};
         font-size: 24px;
         ${fonts.proxima};
+
+        @media(max-width: ${tabletMaxWidth}px) {
+          font-size: 18px;
+        }
       `
     default:
       return
@@ -39,9 +52,7 @@ export const Title = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 60px;
   width: ${props => `${props.width}px` || '90%'};
-  line-height: 60px;
   text-align: center;
   ${headerProps};
 `

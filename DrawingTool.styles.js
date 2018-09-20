@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components'
 
+export const phoneMaxWidth = 550
+export const tabletMaxWidth = 1023
+
 export const fonts = {
   libreBaskerville: css`
     font-family: 'Libre Baskerville', Baskerville, 'Baskerville Old Face',

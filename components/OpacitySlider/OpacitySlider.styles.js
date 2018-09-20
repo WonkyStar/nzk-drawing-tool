@@ -12,9 +12,9 @@ export const OpacityCircle = styled.div`
 export const SliderWrapper = styled.div`
   width: ${props => props.containerHeight}px;
   transform: rotate(270deg);
-  margin-top: 100px;
+  margin-top: 80px;
   position: absolute;
-  left: -130px;
+  left: -110px;
   height: 70px;
 `
 
