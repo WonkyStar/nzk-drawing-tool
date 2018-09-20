@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ButtonContainer } from './ColorButton.styles'
-import Icon from 'components/UI/Icon/Icon'
+import Icon from 'components/Icon/Icon'
 import { colors } from '../../DrawingTool.styles'
 
 export default class ColorButton extends Component {

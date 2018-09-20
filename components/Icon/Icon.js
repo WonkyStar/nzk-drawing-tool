@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 var files = require.context(
-  '!svg-sprite-loader!../assets/icons',
+  '!svg-sprite-loader!../../assets/icons',
   false,
   /\.svg$/
 )

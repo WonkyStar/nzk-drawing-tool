@@ -28,7 +28,7 @@ export default class Button extends Component {
     ]),
     width: PropTypes.string,
     height: PropTypes.string,
-    borderRadius: PropTypes.string, // should have oneOf values here?
+    borderRadius: PropTypes.string,
     element: PropTypes.string,
     children: PropTypes.any,
     pressedDisabled: PropTypes.bool

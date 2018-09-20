@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
 import { fonts, colors } from '../../DrawingTool.styles'
-import Button from 'components/UI/Button/Button'
+import Button from 'components/Button/Button'
 
 export const Container = styled.div`
   display: flex;

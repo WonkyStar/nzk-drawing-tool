@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import Button from 'components/UI/Button/Button'
-import Icon from 'components/UI/Icon/Icon'
+import Button from 'components/Button/Button'
+import Icon from 'components/Icon/Icon'
 import { Tools } from '../../src'
 import { Container, Panel } from '../RightPanel/RightPanel.styles'
 import { colors } from '../../DrawingTool.styles'

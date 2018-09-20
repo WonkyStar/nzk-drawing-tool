@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
 import { Container, Panel } from './RightPanel.styles.js'
 import WidthSlider from '../WidthSlider/WidthSlider'
 import OpacitySlider from '../OpacitySlider/OpacitySlider'
 import ColorButton from '../ColorButton/ColorButton'
-import Button from 'components/UI/Button/Button'
-import Icon from 'components/UI/Icon/Icon'
+import Button from 'components/Button/Button'
+import Icon from 'components/Icon/Icon'
 import { colors } from '../../DrawingTool.styles'
 
 export default class RightPanel extends Component {

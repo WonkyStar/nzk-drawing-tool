@@ -7,8 +7,8 @@ import {
   QuestionButton
 } from './DrawingToolHeader.styles'
 import { colors } from '../../DrawingTool.styles'
-import Icon from 'components/UI/Icon/Icon'
-import Button from 'components/UI/Button/Button'
+import Icon from 'components/Icon/Icon'
+import Button from 'components/Button/Button'
 
 export default class DrawingToolHeader extends Component {
   constructor(props) {

@@ -26,6 +26,31 @@ export const fonts = {
   `
 }
 
+export const fontInputs = {
+  nano: 10,
+  micro: 12,
+  milli: 14,
+  normal: 18,
+  kilo: 24,
+  mega: 28,
+  giga: 30,
+  tera: 40
+}
+
+const getFontSize = fontInputs => {
+  return Object.keys(fontInputs).reduce(
+    (acc, fontSize) => ({
+      ...acc,
+      [fontSize]: css`
+        ${fontInputs[fontSize]}px
+      `
+    }),
+    {}
+  )
+}
+
+export const fontSize = getFontSize(fontInputs)
+
 export const colors = {
   white: '#ffffff',
   grey: '#ebebeb',

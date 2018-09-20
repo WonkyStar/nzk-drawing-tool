@@ -1,20 +1,9 @@
 import styled, { css } from 'styled-components'
 import { readableColor, darken, lighten } from 'polished'
+import { fontSize } from '../../DrawingTool.styles'
 
-import { base } from 'components/themes/homeTheme'
-
-import { fontSize } from 'components/themes/styles/dimensions'
-
-const buttonThemes = {
-  normal: {},
-  round: {
-    small: {
-      size: '21px'
-    }
-  }
-}
 const bgColorStyle = props => css`
-  background-color: ${props.bgColor || base.primary};
+  background-color: ${props.bgColor || '#55acf1'};
 `
 
 const colorStyle = props => {
@@ -22,7 +11,7 @@ const colorStyle = props => {
     color: ${props.color ||
       (props.bgColor
         ? readableColor(darken(0.1, props.bgColor))
-        : readableColor(darken(0.3, base.primary)))};
+        : readableColor(darken(0.3, '#55acf1')))};
   `
 }
 
@@ -67,8 +56,8 @@ const bgImageStyle = props => {
   `
   const isGradient = props.gradient || !!props.bgColorTo
   const gradient = `background-image: linear-gradient(to right, ${props.bgColor ||
-    base.primary}, ${props.bgColorTo ||
-    lighten(0.2, props.bgColor || base.primary)})`
+    '#55acf1'}, ${props.bgColorTo ||
+    lighten(0.2, props.bgColor || '#55acf1')})`
 
   return css`
     ${isImage ? image : isGradient ? gradient : 'background-image: none'};
@@ -135,7 +124,6 @@ const activeStyle = props =>
 
 const roundStyle = props => {
   if (props.round) {
-    // assuming size always exists as a prop or has a default
     switch (props.size) {
       case 'small':
         return css`
@@ -176,7 +164,6 @@ const roundStyle = props => {
 }
 
 const sizeStyle = props => {
-  // assuming size always exists as a prop or has a default
   switch (props.size) {
     case 'small':
       return css`
@@ -215,7 +202,6 @@ const sizeStyle = props => {
   `
 }
 
-// no regular size style?
 const fontSizeStyle = props => {
   if (props.fontSize) {
     return css`
