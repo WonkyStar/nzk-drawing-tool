@@ -21,18 +21,6 @@ export const pointerPosition = event => {
 }
 
 /**
- * Calculate the distance of two x,y points
- * @param point1 an object with x,y attributes representing the start point
- * @param point2 an object with x,y attributes representing the end point
- * @returns {number}
- */
-export const linearDistance = (point1, point2) => {
-  let xs = point2.x - point1.x
-  let ys = point2.y - point1.y
-  return Math.sqrt(xs * xs + ys * ys)
-}
-
-/**
  * Return a random uuid of the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
  * @returns {string}
  */

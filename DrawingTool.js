@@ -112,7 +112,7 @@ export default class DrawingTool extends Component {
     headerStyle: 'textButtons',
     headerTitle: 'How does Will get to the Night Zoo?',
     onSave: () => {}, // should have access to the object properties to know e.g. how many strokes have been made
-    onBack: () => {}, // default window.back()
+    onBack: () => window.history.back(),
     layoutStyle: 'center'
   }
 
@@ -351,7 +351,7 @@ export default class DrawingTool extends Component {
   }
 
   render() {
-    const { headerStyle, headerTitle, canvasBg, colors, layoutStyle } = this.props
+    const { headerStyle, headerTitle, canvasBg, colors, layoutStyle, onBack } = this.props
     return (
       <Container>
         <DrawingToolHeader 
@@ -359,6 +359,7 @@ export default class DrawingTool extends Component {
           headerStyle={headerStyle} 
           headerTitle={headerTitle} 
           onSave={this._save}
+          onBack={onBack}
           layoutStyle={layoutStyle}
          />
         <SketchContainer layoutStyle={layoutStyle}>
