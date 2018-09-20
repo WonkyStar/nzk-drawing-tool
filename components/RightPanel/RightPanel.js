@@ -25,9 +25,7 @@ export default class RightPanel extends Component {
     this.renderColors = this.renderColors.bind(this)
     this.isColorActive = this.isColorActive.bind(this)
     this.scrollbars = React.createRef()
-    this.getActiveButtonProps = this.getActiveButtonProps.bind(this)
     this.getInactiveButtonProps = this.getInactiveButtonProps.bind(this)
-    this.getActiveIconProps = this.getActiveIconProps.bind(this)
     this.getInactiveIconProps = this.getInactiveIconProps.bind(this)
   }
 
@@ -90,16 +88,6 @@ export default class RightPanel extends Component {
     return this.props.rgbColor === color
   }
 
-  getActiveButtonProps () {
-    return {
-      bgColor: colors.white,
-      columnView: true,
-      shadow: true,
-      width: '70px',
-      height: '70px'
-    }
-  }
-
   getInactiveButtonProps () {
     return {
       bgColor: colors.blue,
@@ -110,46 +98,46 @@ export default class RightPanel extends Component {
     }
   }
 
-  getActiveIconProps () {
-    return {
-      color: colors.blue,
-      size: 'x-large'
-    }
-  }
-
   getInactiveIconProps () {
     return {
       color: colors.white,
       size: 'large'
     }
   }
-
+  
   renderResetSection () {
     const { undo, redo, clear } = this.props
-    return (
-      <Fragment>
+    const resetButtons = [
+      {
+        onClick: () => redo(),
+        type: 'redo'
+      },
+      {
+        onClick: () => undo(),
+        type: 'undo'
+      },
+      {
+        onClick: () => clear(),
+        type: 'trash'
+      },
+    ]
+    return resetButtons.map(button => {
+      return (
         <div>
-          <Button onClick={() => redo()} {...this.getInactiveButtonProps()}>
-            <Icon name="redo" {...this.getInactiveIconProps()} />
+          <Button
+            onClick={button.onClick}
+            {...this.getInactiveButtonProps()}
+          >
+            <Icon name={button.type} {...this.getInactiveIconProps()} />
           </Button>
         </div>
-        <div>
-          <Button onClick={() => undo()} {...this.getInactiveButtonProps()}>
-            <Icon name="undo" {...this.getInactiveIconProps()} />
-          </Button>
-        </div>
-        <div>
-          <Button onClick={() => clear()} {...this.getInactiveButtonProps()}>
-            <Icon name="trash" {...this.getInactiveIconProps()} />
-          </Button>
-        </div>
-      </Fragment>
-    )
+      )
+    })
   }
 
   renderEraserSlider() {
     const { changeEraserLineWidth, eraserLineWidth } = this.props
-    return <WidthSlider changeWidth={changeEraserLineWidth} lineWidth={eraserLineWidth} thumbColor="#ebebeb" />
+    return <WidthSlider changeWidth={changeEraserLineWidth} lineWidth={eraserLineWidth} thumbColor={colors.grey} />
   }
 
   renderWidthSlider () {
@@ -174,7 +162,6 @@ export default class RightPanel extends Component {
 
   render () {
     const { selectedSection } = this.props
-
     return (
       <Container>
         {selectedSection === 'pencil' ? (
