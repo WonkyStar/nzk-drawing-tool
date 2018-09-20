@@ -16,6 +16,8 @@ export default class DrawingToolHeader extends Component {
 
     this.renderTextHeader = this.renderTextHeader.bind(this)
     this.renderIconHeader = this.renderIconHeader.bind(this)
+    this.getIconHeaderButtonProps = this.getIconHeaderButtonProps.bind(this)
+    this.getTextHeaderButtonProps = this.getTextHeaderButtonProps.bind(this)
   }
 
   static propTypes = {
@@ -25,16 +27,22 @@ export default class DrawingToolHeader extends Component {
     onBack: PropTypes.func
   }
 
+  getIconHeaderButtonProps() {
+    return {
+      bgColor: colors.translucentWhite,
+      size: 'x-large',
+      round: true
+    }
+  }
+
   renderIconHeader() {
     const { headerStyle, headerTitle, width, onSave, onBack } = this.props
     return (
       <Fragment>
         <ButtonContainer>
           <Button
-            bgColor={colors.translucentWhite}
-            size="x-large"
-            round
             onClick={() => {}}
+            {...this.getIconHeaderButtonProps()}
           >
             <Icon name="left" size="x-large" color={colors.white} />
           </Button>
@@ -44,10 +52,8 @@ export default class DrawingToolHeader extends Component {
         </Title>
         <ButtonContainer>
           <Button
-            bgColor={colors.translucentWhite}
-            size="x-large"
-            round
             onClick={() => {}}
+            {...this.getIconHeaderButtonProps()}
           >
             <Icon name="right" size="x-large" color={colors.white} />
           </Button>
@@ -56,16 +62,22 @@ export default class DrawingToolHeader extends Component {
     )
   }
 
+  getTextHeaderButtonProps() {
+    return {
+      size: 'large',
+      color: colors.white,
+      shadow: true
+    }
+  }
+
   renderTextHeader() {
     const { headerStyle, headerTitle, width, onSave, onBack } = this.props
     return (
       <Fragment>
         <ButtonContainer>
           <Button
-            size="large"
-            color={colors.white}
-            shadow
             onClick={() => onBack()}
+            {...this.getTextHeaderButtonProps()}
           >
             Back
           </Button>
@@ -78,10 +90,8 @@ export default class DrawingToolHeader extends Component {
         </Title>
         <ButtonContainer>
           <Button
-            size="large"
-            color={colors.white}
-            shadow
             onClick={() => onSave()}
+            {...this.getTextHeaderButtonProps()}
           >
             Save
           </Button>
