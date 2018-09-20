@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "NZK";
+  src:url("./nightzookeeper-regular-webfont.eot");
+  src:url("./nightzookeeper-regular-webfont.eot?#iefix") format("embedded-opentype"),
+    url("./nightzookeeper-regular-webfont.woff") format("woff"),
+    url("./nightzookeeper-regular-webfont.ttf") format("truetype"),
+    url("../nightzookeeper-regular-webfont.svg#nzk") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

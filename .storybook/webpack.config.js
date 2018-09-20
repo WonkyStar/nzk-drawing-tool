@@ -11,14 +11,14 @@ module.exports = (baseConfig, env, defaultConfig) => {
   //   new SpriteLoaderPlugin()
   // )    
 
-  // defaultConfig.module.rules.push(
-  //   {
-  //     test: /\.svg$/,
-  //     use: [
-  //       'svg-sprite-loader'
-  //     ]
-  //   }
-  // )
+  defaultConfig.module.rules.push(
+    {
+      test: /\.svg$/,
+      use: [
+        'svg-sprite-loader'
+      ]
+    }
+  )
 
   defaultConfig.resolve = {
     alias: {

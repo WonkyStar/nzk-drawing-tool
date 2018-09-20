@@ -93,6 +93,7 @@ export default class LeftPanel extends Component {
     return buttons.map(button => {
       return (
         <Button
+          key={button.type}
           onClick={() => changeTool(button.tool)}
           {...(this.isSectionActive(button.type)
             ? this.getActiveButtonProps()

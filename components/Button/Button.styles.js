@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { readableColor, darken, lighten } from 'polished'
-import { fontSize } from '../../DrawingTool.styles'
+import { fontSize, fonts } from '../../DrawingTool.styles'
 
 const bgColorStyle = props => css`
   background-color: ${props.bgColor || '#55acf1'};
@@ -244,7 +244,7 @@ export const StyledButton = styled.button.attrs({
   justify-content: ${props =>
     props.hasIconAndText ? 'space-between' : 'center'};
   margin: 0;
-  font-family: 'NZK' !important;
+  ${fonts.nzk};
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: ${fontSize.milli};

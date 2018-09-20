@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react'
 import DrawingTool from '../DrawingTool'
 import OpacitySlider from '../components/OpacitySlider/OpacitySlider'
 import WidthSlider from '../components/WidthSlider/WidthSlider'
+import Button from '../components/Button/Button'
 import ColorButton from '../components/ColorButton/ColorButton'
 
   storiesOf("DrawingTool", module)
@@ -23,7 +24,7 @@ import ColorButton from '../components/ColorButton/ColorButton'
 
   storiesOf("DrawingTool", module)
   .add("Button", () => (
-    <Button icon={'pencil'}/>
+    <Button>Save</Button>
   ))
 
   storiesOf("DrawingTool", module)
