@@ -1,7 +1,6 @@
 {
   "name": "nzk-drawing-tool",
   "version": "0.1.4",
-  "private": true,
   "dependencies": {
     "@storybook/cli": "^3.4.10",
     "fabric": "^2.3.6",
@@ -20,8 +19,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s assets",
     "build-storybook": "build-storybook -s assets",
-    "optimize:svg": "svgo -f assets/icons -o assets/icons -p 2 --multipass --enable removeTitle --enable removeXMLNS --enable removeDimensions --enable removeAttrs",
-    "release": "release-it"
+    "optimize:svg": "svgo -f assets/icons -o assets/icons -p 2 --multipass --enable removeTitle --enable removeXMLNS --enable removeDimensions --enable removeAttrs"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.10",
@@ -31,7 +29,6 @@
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
     "react-router-dom": "^4.3.1",
-    "release-it": "^7.6.1",
     "svg-sprite-loader": "^3.9.2",
     "svgo": "^1.1.1",
     "webpack": "^4.19.0"
