@@ -1,10 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import DrawingTool from '../DrawingTool'
-import OpacitySlider from '../components/OpacitySlider/OpacitySlider'
-import WidthSlider from '../components/WidthSlider/WidthSlider'
-import Button from '../components/Button/Button'
+import DrawingTool from '../src/index'
+import OpacitySlider from '../src/components/OpacitySlider/OpacitySlider'
+import WidthSlider from '../src/components/WidthSlider/WidthSlider'
+import Button from '../src/components/Button/Button'
 
   storiesOf("DrawingTool", module)
   .add("Default", () => (
