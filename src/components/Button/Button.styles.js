@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { readableColor, darken, lighten } from 'polished'
-import { fontSize, fonts } from '../../index.styles'
+import { fontSize, fonts, phoneMaxWidth, tabletMaxWidth } from '../../index.styles'
 
 const bgColorStyle = props => css`
   background-color: ${props.bgColor || '#55acf1'};
@@ -141,17 +141,27 @@ const roundStyle = props => {
         `
       case 'large':
         return css`
-          width: 41px;
-          height: 41px;
+          width: 50px;
+          height: 50px;
           font-size: ${fontSize.giga};
           padding: 0px;
+
+          @media(max-width: ${tabletMaxWidth}px) {
+            width: 35px;
+            height: 35px;
+          }
         `
       case 'x-large':
         return css`
-          width: 64px;
-          height: 64px;
+          width: 70px;
+          height: 70px;
           font-size: ${fontSize.tera};
           padding: 0px;
+
+          @media(max-width: ${tabletMaxWidth}px) {
+            width: 50px;
+            height: 50px;
+          }
         `
       default:
         break
@@ -250,7 +260,7 @@ export const StyledButton = styled.button.attrs({
   font-size: ${fontSize.milli};
   line-height: 1.2em;
   border: none;
-  outline: none; // is this doing anything?
+  outline: none;
   cursor: pointer;
   text-decoration: none;
   user-select: none;

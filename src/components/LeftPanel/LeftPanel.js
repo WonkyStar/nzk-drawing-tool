@@ -59,8 +59,8 @@ export default class LeftPanel extends Component {
       bgColor: colors.white,
       columnView: true,
       shadow: true,
-      width: '70px',
-      height: '70px'
+      round: true,
+      size: 'x-large'
     }
   }
 
@@ -69,8 +69,8 @@ export default class LeftPanel extends Component {
       bgColor: colors.blue,
       columnView: true,
       shadow: true,
-      width: '50px',
-      height: '50px'
+      round: true,
+      size: 'large'
     }
   }
 

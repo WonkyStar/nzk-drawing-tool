@@ -61,8 +61,8 @@ export default class RightPanel extends Component {
           key={index}
           columnView
           shadow
-          width={this.isColorActive(color.rgb) ? '70px' : '50px'}
-          height={this.isColorActive(color.rgb) ? '70px' : '50px'}
+          round
+          size={this.isColorActive(color.rgb) ? 'x-large' : 'large'}
           bgColor={`rgba(${color.rgb}, ${this.props.opacity})`}
           onClick={
             !color.isLocked
@@ -98,8 +98,8 @@ export default class RightPanel extends Component {
       bgColor: colors.blue,
       columnView: true,
       shadow: true,
-      width: '50px',
-      height: '50px'
+      round: true,
+      size: 'large'
     }
   }
 
@@ -188,7 +188,7 @@ export default class RightPanel extends Component {
           <Scrollbars
             ref={this.scrollbars}
             style={{
-              height: '390px',
+              height: '390px', // this should become 310px on phoneMaxWidth
               width: '100%',
               borderRadius: '70px',
               zIndex: '0'

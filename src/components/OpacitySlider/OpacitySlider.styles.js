@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../index.styles'
+import { colors, tabletMaxWidth } from '../../index.styles'
 
 export const OpacityCircle = styled.div`
   width: 50px;
@@ -16,6 +16,11 @@ export const SliderWrapper = styled.div`
   position: absolute;
   left: -68px;
   height: 70px;
+
+  @media(max-width: ${tabletMaxWidth}px) {
+    margin-top: 70px;
+    left: -80px; 
+  }
 `
 
 export const SliderInput = styled.input`
@@ -59,6 +64,10 @@ export const SliderInput = styled.input`
   &:focus::-moz-range-track {
     outline: none;
     background: transparent;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
   }
 
   &::-moz-range-thumb {

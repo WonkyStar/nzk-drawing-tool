@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors, tabletMaxWidth } from '../../index.styles'
+import { colors, phoneMaxWidth, tabletMaxWidth } from '../../index.styles'
 
 export const Container = styled.div`
   display: flex;
@@ -7,10 +7,14 @@ export const Container = styled.div`
   height: 100%;
   width: 90px;
   z-index: 2;
+
+  @media(max-width: ${tabletMaxWidth}px) {
+    width: 65px;
+  }
 `
 
 export const Panel = styled.div`
-  min-height: 350px;
+  height: 350px;
   width: 100%;
   text-align: center;
   border-radius: 70px;
@@ -18,7 +22,7 @@ export const Panel = styled.div`
   background-color: ${colors.translucentWhite};
 
   @media(max-width: ${tabletMaxWidth}px) {
-    min-height: 300px;
+    height: 270px;
   }
 `
 
@@ -30,6 +34,6 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
 
   @media(max-width: ${tabletMaxWidth}px) {
-    height: 300px;
+    height: 270px;
   }
 `

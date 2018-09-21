@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { fonts, colors } from '../../index.styles'
+import { fonts, colors, tabletMaxWidth } from '../../index.styles'
 
 export const WidthNumber = styled.p`
   ${fonts.proxima};
@@ -20,6 +20,11 @@ export const SliderWrapper = styled.div`
   position: absolute;
   left: -100px;
   height: 70px;
+
+  @media(max-width: ${tabletMaxWidth}px) {
+    margin-top: 88px;
+    left: -113px; 
+  }
 `
 
 export const SliderInput = styled.input`
@@ -59,6 +64,10 @@ export const SliderInput = styled.input`
 
   &:focus::-moz-range-track {
     background: transparent;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
   }
 
   &::-moz-range-thumb {
