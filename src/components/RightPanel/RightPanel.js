@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
-import { Container, Panel } from './RightPanel.styles.js'
+import { Container, Panel, ButtonWrapper } from './RightPanel.styles.js'
 import WidthSlider from '../WidthSlider/WidthSlider'
 import OpacitySlider from '../OpacitySlider/OpacitySlider'
 import Button from '../Button/Button'
@@ -126,19 +126,21 @@ export default class RightPanel extends Component {
         type: 'trash'
       }
     ]
-    return resetButtons.map(button => {
-      return (
-        <div>
-          <Button
-            key={button.type}
-            onClick={button.onClick}
-            {...this.getInactiveButtonProps()}
-          >
-            <Icon name={button.type} {...this.getInactiveIconProps()} />
-          </Button>
-        </div>
-      )
-    })
+    return (
+      <ButtonWrapper>
+        {resetButtons.map(button => {
+          return (
+            <Button
+              key={button.type}
+              onClick={button.onClick}
+              {...this.getInactiveButtonProps()}
+            >
+              <Icon name={button.type} {...this.getInactiveIconProps()} />
+            </Button>
+          )
+        })}
+      </ButtonWrapper>
+    )
   }
 
   renderEraserSlider () {
@@ -185,7 +187,12 @@ export default class RightPanel extends Component {
         {selectedSection === 'pencil' ? (
           <Scrollbars
             ref={this.scrollbars}
-            style={{ height: '375px', width: '100%', borderRadius: '70px', zIndex: '0' }}
+            style={{
+              height: '390px',
+              width: '100%',
+              borderRadius: '70px',
+              zIndex: '0'
+            }}
           >
             <Panel>{this.renderRightSection()}</Panel>
             {this.state.scrollbarRefAvailable && this.handleColorPanelScroll()}

@@ -67,7 +67,7 @@ export const colors = {
 
 export const Container = styled.div`
   margin: auto;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   background-size: cover;
 `
@@ -84,7 +84,7 @@ export const SketchContainer = styled.div`
   justify-content: ${props => props.layoutStyle === 'center' ? 'center' : 'space-between'};
   align-items: center;
   width: 100%;
-  height: calc(100% - 80px);
+  height: calc(100% - 100px);
 `
 
 const canvasBackgroundProps = props => {

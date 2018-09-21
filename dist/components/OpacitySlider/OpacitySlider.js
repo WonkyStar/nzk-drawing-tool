@@ -52,7 +52,7 @@ var OpacitySlider = function (_Component) {
           { height: height, width: width },
           _react2.default.createElement(
             _OpacitySlider.SliderWrapper,
-            { containerHeight: height },
+            null,
             _react2.default.createElement(_OpacitySlider.Shape, null),
             _react2.default.createElement(_OpacitySlider.SliderInput, {
               type: 'range',
@@ -75,7 +75,7 @@ var OpacitySlider = function (_Component) {
 }(_react.Component);
 
 OpacitySlider.defaultProps = {
-  height: 255,
+  height: 275,
   width: 30,
   thumbColor: _index.colors.yellow
 };

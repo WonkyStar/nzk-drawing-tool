@@ -4,7 +4,7 @@ import { fonts, colors } from '../../index.styles'
 export const WidthNumber = styled.p`
   ${fonts.proxima};
   color: ${colors.indigo};
-  margin: 0 auto 10px;
+  margin: 10px auto;
 `
 
 export const Wrapper = styled.div`
@@ -16,9 +16,9 @@ export const Wrapper = styled.div`
 export const SliderWrapper = styled.div`
   width: ${props => props.containerHeight}px;
   transform: rotate(270deg);
-  margin-top: 80px;
+  margin-top: 115px;
   position: absolute;
-  left: -110px;
+  left: -100px;
   height: 70px;
 `
 
@@ -33,7 +33,7 @@ export const SliderInput = styled.input`
   background: transparent;
   outline: none;
   margin: 0 auto;
-
+  
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -45,13 +45,53 @@ export const SliderInput = styled.input`
     cursor: pointer;
   }
 
+  &::-webkit-slider-runnable-track {
+    border: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-moz-range-track {
+    background: transparent;
+  }
+
+  &:focus::-moz-range-track {
+    background: transparent;
+  }
+
   &::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
     width: ${props => props.value};
     height: ${props => props.value};
+    border: none;
     border-radius: 50%;
     background-color: ${props => props.thumbColor};
     box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
+  }
+
+  &::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+
+  &::-ms-thumb {
+    width: ${props => props.value};
+    height: ${props => props.value};
+    border: none;
+    border-radius: 50%;
+    background-color: ${props => props.thumbColor};
+    box-shadow: -4px 0 0 ${colors.shadow};
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  &::-ms-fill-lower {
+    background: transparent;
   }
 `
 

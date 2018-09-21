@@ -10,20 +10,24 @@ export const Container = styled.div`
 `
 
 export const Panel = styled.div`
-  min-height: min-content;
+  min-height: 350px;
   width: 100%;
+  text-align: center;
+  border-radius: 70px;
+  padding: 20px 0;
+  background-color: ${colors.translucentWhite};
+
+  @media(max-width: ${tabletMaxWidth}px) {
+    min-height: 300px;
+  }
+`
+
+export const ButtonWrapper = styled.div`
+  height: 350px;
   display: flex;
   flex-direction: column;
-  justify-content: ${props => props.spaceBetween ? 'space-between' : 'center'};
   align-items: center;
-  background-color: ${colors.translucentWhite};
-  border-radius: 70px;
-  height: 350px;
-  padding: 5px 0 20px;
-
-  & > div {
-    margin-top: 20px;
-  }
+  justify-content: center;
 
   @media(max-width: ${tabletMaxWidth}px) {
     height: 300px;

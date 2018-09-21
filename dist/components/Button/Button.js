@@ -12,8 +12,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = require('react-router-dom');
-
 var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -131,21 +129,13 @@ var Button = function (_Component) {
     value: function render() {
       var _props2 = this.props,
           children = _props2.children,
-          linkTo = _props2.linkTo,
-          linkReplace = _props2.linkReplace,
           disabled = _props2.disabled,
           element = _props2.element,
-          props = _objectWithoutProperties(_props2, ['children', 'linkTo', 'linkReplace', 'disabled', 'element']);
+          props = _objectWithoutProperties(_props2, ['children', 'disabled', 'element']);
 
       var button = this.getButton(element, children);
       if (disabled) props.tabIndex = -1;
-
-      // Wrap button with a react dom link if there is a linkTo prop
-      return linkTo ? _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: linkTo, replace: linkReplace },
-        button
-      ) : button;
+      return button;
     }
   }]);
 

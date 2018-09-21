@@ -188,7 +188,7 @@ var StyledButton = exports.StyledButton = _styledComponents2.default.button.attr
 }, function (props) {
   return props.height ? props.height : "";
 }, function (props) {
-  return props.columnView ? 'margin-top: 10px' : 'margin-left: 10px';
+  return props.columnView ? 'margin-top: 20px' : 'margin-left: 10px';
 }, colorStyle);
 
 var StyledButtonLink = exports.StyledButtonLink = StyledButton.withComponent('a');

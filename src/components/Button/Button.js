@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   StyledButton,
@@ -119,8 +118,6 @@ export default class Button extends Component {
   render() {
     const {
       children,
-      linkTo,
-      linkReplace,
       disabled,
       element,
       ...props
@@ -128,14 +125,6 @@ export default class Button extends Component {
 
     const button = this.getButton(element, children)
     if (disabled) props.tabIndex = -1
-
-    // Wrap button with a react dom link if there is a linkTo prop
-    return linkTo ? (
-      <Link to={linkTo} replace={linkReplace}>
-        {button}
-      </Link>
-    ) : (
-      button
-    )
+    return button
   }
 }

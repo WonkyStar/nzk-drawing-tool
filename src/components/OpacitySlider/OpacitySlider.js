@@ -9,7 +9,7 @@ export default class OpacitySlider extends Component {
   }
 
   static defaultProps = {
-    height: 255,
+    height: 275,
     width: 30,
     thumbColor: colors.yellow
   }
@@ -19,7 +19,7 @@ export default class OpacitySlider extends Component {
     return (
       <Fragment>
         <Wrapper height={height} width={width}>
-          <SliderWrapper containerHeight={height}>
+          <SliderWrapper>
             <Shape />
             <SliderInput
               type="range"

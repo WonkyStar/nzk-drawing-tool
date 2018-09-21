@@ -178,20 +178,20 @@ var RightPanel = function (_Component) {
         },
         type: 'trash'
       }];
-      return resetButtons.map(function (button) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
+      return _react2.default.createElement(
+        _RightPanelStyles.ButtonWrapper,
+        null,
+        resetButtons.map(function (button) {
+          return _react2.default.createElement(
             _Button2.default,
             _extends({
               key: button.type,
               onClick: button.onClick
             }, _this3.getInactiveButtonProps()),
             _react2.default.createElement(_Icon2.default, _extends({ name: button.type }, _this3.getInactiveIconProps()))
-          )
-        );
-      });
+          );
+        })
+      );
     }
   }, {
     key: 'renderEraserSlider',
@@ -251,7 +251,12 @@ var RightPanel = function (_Component) {
           _reactCustomScrollbars.Scrollbars,
           {
             ref: this.scrollbars,
-            style: { height: '375px', width: '100%', borderRadius: '70px', zIndex: '0' }
+            style: {
+              height: '390px',
+              width: '100%',
+              borderRadius: '70px',
+              zIndex: '0'
+            }
           },
           _react2.default.createElement(
             _RightPanelStyles.Panel,

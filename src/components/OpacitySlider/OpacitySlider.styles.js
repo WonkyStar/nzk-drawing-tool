@@ -10,11 +10,11 @@ export const OpacityCircle = styled.div`
 `
 
 export const SliderWrapper = styled.div`
-  width: ${props => props.containerHeight}px;
+  width: 230px;
   transform: rotate(270deg);
-  margin-top: 80px;
+  margin-top: 90px;
   position: absolute;
-  left: -110px;
+  left: -68px;
   height: 70px;
 `
 
@@ -44,14 +44,54 @@ export const SliderInput = styled.input`
     cursor: pointer;
   }
 
+  &::-webkit-slider-runnable-track {
+    border: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-moz-range-track {
+    background: transparent;
+  }
+
+  &:focus::-moz-range-track {
+    outline: none;
+    background: transparent;
+  }
+
   &::-moz-range-thumb {
     height: 50px;
     width: 50px;
     z-index: 3;
+    border: none;
     border-radius: 50%;
     background-color: ${colors.yellow};
     box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
+  }
+
+  &::-ms-track {
+    width: calc(100% - 15px);
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+
+  &::-ms-thumb {
+    appearance: none;
+    z-index: 3;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: ${colors.yellow};
+    box-shadow: -4px 0 0 ${colors.shadow};
+    cursor: pointer;
+  }
+
+  &::-ms-fill-lower {
+    background: transparent;
   }
 `
 

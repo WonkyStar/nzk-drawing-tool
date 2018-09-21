@@ -3,10 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Panel = exports.Container = undefined;
+exports.ButtonWrapper = exports.Panel = exports.Container = undefined;
 
 var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n'], ['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n  min-height: min-content;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: ', ';\n  align-items: center;\n  background-color: ', ';\n  border-radius: 70px;\n  height: 350px;\n  padding: 5px 0 20px;\n\n  & > div {\n    margin-top: 20px;\n  }\n\n  @media(max-width: ', 'px) {\n    height: 300px;\n  }\n'], ['\n  min-height: min-content;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: ', ';\n  align-items: center;\n  background-color: ', ';\n  border-radius: 70px;\n  height: 350px;\n  padding: 5px 0 20px;\n\n  & > div {\n    margin-top: 20px;\n  }\n\n  @media(max-width: ', 'px) {\n    height: 300px;\n  }\n']);
+    _templateObject2 = _taggedTemplateLiteral(['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  border-radius: 70px;\n  padding: 20px 0;\n  background-color: ', ';\n\n  @media(max-width: ', 'px) {\n    min-height: 300px;\n  }\n'], ['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  border-radius: 70px;\n  padding: 20px 0;\n  background-color: ', ';\n\n  @media(max-width: ', 'px) {\n    min-height: 300px;\n  }\n']),
+    _templateObject3 = _taggedTemplateLiteral(['\n  height: 350px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  @media(max-width: ', 'px) {\n    height: 300px;\n  }\n'], ['\n  height: 350px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  @media(max-width: ', 'px) {\n    height: 300px;\n  }\n']);
 
 var _styledComponents = require('styled-components');
 
@@ -20,6 +21,6 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var Container = exports.Container = _styledComponents2.default.div(_templateObject);
 
-var Panel = exports.Panel = _styledComponents2.default.div(_templateObject2, function (props) {
-  return props.spaceBetween ? 'space-between' : 'center';
-}, _index.colors.translucentWhite, _index.tabletMaxWidth);
+var Panel = exports.Panel = _styledComponents2.default.div(_templateObject2, _index.colors.translucentWhite, _index.tabletMaxWidth);
+
+var ButtonWrapper = exports.ButtonWrapper = _styledComponents2.default.div(_templateObject3, _index.tabletMaxWidth);

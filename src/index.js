@@ -108,7 +108,7 @@ export default class DrawingTool extends Component {
     headerTitle: 'How does Will get to the Night Zoo?',
     onSave: () => {},
     onBack: () => window.history.back(),
-    layoutStyle: 'spaceBetween'
+    layoutStyle: 'center'
   }
 
   _selectTool = (event, index, value) => {
@@ -303,11 +303,10 @@ export default class DrawingTool extends Component {
   }
 
   changeOpacity(e) {
+    const opacityValue = Number(e.target.value / 10)
     this.setState({
-      opacity: Number(e.target.value / 10)
-    })
-    this.setState({
-      lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
+      opacity: opacityValue,
+      lineColor: `rgba(${this.state.rgbColor}, ${opacityValue})`
     })
   }
 

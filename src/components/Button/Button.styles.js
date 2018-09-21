@@ -277,7 +277,7 @@ export const StyledButton = styled.button.attrs({
   height: ${props => props.height ? props.height : ""};
 
   .StyledButton ~ & {
-    ${props => props.columnView ? 'margin-top: 10px' : 'margin-left: 10px'}
+    ${props => props.columnView ? 'margin-top: 20px' : 'margin-left: 10px'}
   }
 
   &:active {
