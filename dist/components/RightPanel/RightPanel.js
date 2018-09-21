@@ -251,7 +251,7 @@ var RightPanel = function (_Component) {
           _reactCustomScrollbars.Scrollbars,
           {
             ref: this.scrollbars,
-            style: { height: '375px', width: '100%', borderRadius: '70px' }
+            style: { height: '375px', width: '100%', borderRadius: '70px', zIndex: '0' }
           },
           _react2.default.createElement(
             _RightPanelStyles.Panel,
