@@ -302,8 +302,8 @@ export default class DrawingTool extends Component {
     })
   }
 
-  async changeOpacity(e) {
-    await this.setState({
+  changeOpacity(e) {
+    this.setState({
       opacity: Number(e.target.value / 10)
     })
     this.setState({
