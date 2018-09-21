@@ -185,7 +185,7 @@ export default class RightPanel extends Component {
         {selectedSection === 'pencil' ? (
           <Scrollbars
             ref={this.scrollbars}
-            style={{ height: '375px', width: '100%', borderRadius: '70px' }}
+            style={{ height: '375px', width: '100%', borderRadius: '70px', zIndex: '0' }}
           >
             <Panel>{this.renderRightSection()}</Panel>
             {this.state.scrollbarRefAvailable && this.handleColorPanelScroll()}
