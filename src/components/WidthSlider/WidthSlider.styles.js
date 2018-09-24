@@ -84,6 +84,7 @@ export const SliderInput = styled.input`
 
   &::-ms-track {
     background: transparent;
+    border-width: 70px 0;
     border-color: transparent;
     color: transparent;
   }
@@ -96,7 +97,6 @@ export const SliderInput = styled.input`
     background-color: ${props => props.thumbColor};
     box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
-    z-index: 100;
   }
 
   &::-ms-fill-lower {

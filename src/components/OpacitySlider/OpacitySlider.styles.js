@@ -17,9 +17,9 @@ export const SliderWrapper = styled.div`
   left: -68px;
   height: 70px;
 
-  @media(max-width: ${tabletMaxWidth}px) {
+  @media (max-width: ${tabletMaxWidth}px) {
     margin-top: 70px;
-    left: -80px; 
+    left: -80px;
   }
 `
 
@@ -30,17 +30,16 @@ export const SliderInput = styled.input`
   transform: translate(-50%, -50%);
   z-index: 2;
   -webkit-appearance: none;
+  appearance: none;
   outline: none;
   width: calc(100% - 15px);
-  height: 15px;
   border-radius: 10px;
-  background: ${colors.blue};
+  background: transparent;
   margin: 0 auto;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    z-index: 3;
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -73,7 +72,6 @@ export const SliderInput = styled.input`
   &::-moz-range-thumb {
     height: 50px;
     width: 50px;
-    z-index: 3;
     border: none;
     border-radius: 50%;
     background-color: ${colors.yellow};
@@ -82,17 +80,17 @@ export const SliderInput = styled.input`
   }
 
   &::-ms-track {
-    width: calc(100% - 15px);
     background: transparent;
+    border-width: 22px;
     border-color: transparent;
     color: transparent;
   }
 
   &::-ms-thumb {
     appearance: none;
-    z-index: 3;
     height: 50px;
     width: 50px;
+    border: none;
     border-radius: 50%;
     background-color: ${colors.yellow};
     box-shadow: -4px 0 0 ${colors.shadow};
@@ -106,6 +104,9 @@ export const SliderInput = styled.input`
 
 export const Shape = styled.div`
   position: absolute;
-  width: 300px;
+  bottom: 30px;
+  width: calc(100% - 15px);
   height: 15px;
+  border-radius: 10px;
+  background-color: ${colors.blue};
 `
