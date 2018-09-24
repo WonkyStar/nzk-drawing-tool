@@ -14,7 +14,7 @@ export const Container = styled.div`
 `
 
 export const Panel = styled.div`
-  height: 350px;
+  min-height: 350px;
   width: 100%;
   text-align: center;
   border-radius: 70px;
@@ -22,7 +22,7 @@ export const Panel = styled.div`
   background-color: ${colors.translucentWhite};
 
   @media(max-width: ${tabletMaxWidth}px) {
-    height: 270px;
+    min-height: 270px;
   }
 `
 
