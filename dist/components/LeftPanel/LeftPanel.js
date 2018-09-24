@@ -90,8 +90,8 @@ var LeftPanel = function (_Component) {
         bgColor: _index.colors.white,
         columnView: true,
         shadow: true,
-        width: '70px',
-        height: '70px'
+        round: true,
+        size: 'x-large'
       };
     }
   }, {
@@ -101,8 +101,8 @@ var LeftPanel = function (_Component) {
         bgColor: _index.colors.blue,
         columnView: true,
         shadow: true,
-        width: '50px',
-        height: '50px'
+        round: true,
+        size: 'large'
       };
     }
   }, {

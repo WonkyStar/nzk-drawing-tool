@@ -108,8 +108,8 @@ var RightPanel = function (_Component) {
             key: index,
             columnView: true,
             shadow: true,
-            width: _this2.isColorActive(color.rgb) ? '70px' : '50px',
-            height: _this2.isColorActive(color.rgb) ? '70px' : '50px',
+            round: true,
+            size: _this2.isColorActive(color.rgb) ? 'x-large' : 'large',
             bgColor: 'rgba(' + color.rgb + ', ' + _this2.props.opacity + ')',
             onClick: !color.isLocked ? function () {
               return [_this2.props.changeColor(color.rgb), _this2.setScrollHeight()];
@@ -140,8 +140,8 @@ var RightPanel = function (_Component) {
         bgColor: _index.colors.blue,
         columnView: true,
         shadow: true,
-        width: '50px',
-        height: '50px'
+        round: true,
+        size: 'large'
       };
     }
   }, {
@@ -252,7 +252,7 @@ var RightPanel = function (_Component) {
           {
             ref: this.scrollbars,
             style: {
-              height: '390px',
+              height: '390px', // this should become 310px on phoneMaxWidth
               width: '100%',
               borderRadius: '70px',
               zIndex: '0'

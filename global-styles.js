@@ -48,15 +48,4 @@ injectGlobal`
     font-weight: normal;
     font-style: normal;
   }
-
-   @font-face {
-    font-family: "NZK Icons";
-    src:url("assets/fonts/NZK_Icons/nzk.eot");
-    src:url("assets/fonts/NZK_Icons/nzk.eot?#iefix") format("embedded-opentype"),
-      url("assets/fonts/NZK_Icons/nzk.woff") format("woff"),
-      url("assets/fonts/NZK_Icons/nzk.ttf") format("truetype"),
-      url("assets/fonts/NZK_Icons/nzk.svg#nzk") format("svg");
-    font-weight: normal;
-    font-style: normal;
-  }
 `

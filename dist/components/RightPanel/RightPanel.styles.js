@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ButtonWrapper = exports.Panel = exports.Container = undefined;
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n'], ['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  border-radius: 70px;\n  padding: 20px 0;\n  background-color: ', ';\n\n  @media(max-width: ', 'px) {\n    min-height: 300px;\n  }\n'], ['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  border-radius: 70px;\n  padding: 20px 0;\n  background-color: ', ';\n\n  @media(max-width: ', 'px) {\n    min-height: 300px;\n  }\n']),
-    _templateObject3 = _taggedTemplateLiteral(['\n  height: 350px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  @media(max-width: ', 'px) {\n    height: 300px;\n  }\n'], ['\n  height: 350px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  @media(max-width: ', 'px) {\n    height: 300px;\n  }\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n\n  @media(max-width: ', 'px) {\n    width: 65px;\n  }\n'], ['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n\n  @media(max-width: ', 'px) {\n    width: 65px;\n  }\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  border-radius: 70px;\n  padding: 20px 0;\n  background-color: ', ';\n\n  @media(max-width: ', 'px) {\n    min-height: 270px;\n  }\n'], ['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  border-radius: 70px;\n  padding: 20px 0;\n  background-color: ', ';\n\n  @media(max-width: ', 'px) {\n    min-height: 270px;\n  }\n']),
+    _templateObject3 = _taggedTemplateLiteral(['\n  height: 350px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  @media(max-width: ', 'px) {\n    height: 270px;\n  }\n'], ['\n  height: 350px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  @media(max-width: ', 'px) {\n    height: 270px;\n  }\n']);
 
 var _styledComponents = require('styled-components');
 
@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Container = exports.Container = _styledComponents2.default.div(_templateObject);
+var Container = exports.Container = _styledComponents2.default.div(_templateObject, _index.tabletMaxWidth);
 
 var Panel = exports.Panel = _styledComponents2.default.div(_templateObject2, _index.colors.translucentWhite, _index.tabletMaxWidth);
 

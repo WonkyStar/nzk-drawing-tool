@@ -88,14 +88,14 @@ var DrawingTool = function (_Component) {
 
     _this._save = function () {
       var imageJSON = _this._sketch.toJSON();
-      // imageJSON now contains an 'objects' key which is an array of strokes
+      // imageJSON contains an 'objects' key which is an array of strokes
       if (imageJSON.objects.length >= 5) {
         var imagePNG = _this._sketch.toDataURL();
-        // imagePNG is a long image string (including static sticker snapshots if stickers have been used)
-        // mutation to upload imagePNG and send to server
+        // imagePNG is a long image string
         _this.setState({ drawingSnapshot: imagePNG });
+        console.log('image saved: ', imagePNG);
+        return imagePNG;
       } else {
-        // open popup asking to add more detail to the drawing before saving
         console.error("Drawing needs more detail before saving!");
       }
     };
