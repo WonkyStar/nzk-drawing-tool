@@ -71,7 +71,7 @@ class SketchField extends PureComponent {
     }
   }
 
-   /* Add an image as object to the canvas
+  /* Add an image as object to the canvas
    * @param dataUrl the image url or Data Url
    * @param options object to pass and change some options when loading image, the format of the object is:
    * {
@@ -164,10 +164,10 @@ class SketchField extends PureComponent {
     }
   }
 
-   /* Track the resize of the window and update state */
+  /* Track the resize of the window and update state */
   _resize = e => {
     if (e) e.preventDefault()
-    
+
     let { widthCorrection, heightCorrection } = this.props
     let { offsetWidth, clientHeight } = this._container
 
@@ -209,7 +209,7 @@ class SketchField extends PureComponent {
     canvas.calcOffset()
   }
 
-   /* Sets the background color for this sketch */
+  /* Sets the background color for this sketch */
   _backgroundColor = color => {
     if (!color) return
     let canvas = this._fc
@@ -221,7 +221,7 @@ class SketchField extends PureComponent {
     canvas.bringToFront(obj)
   }
 
-   /* Zoom the drawing by the factor specified
+  /* Zoom the drawing by the factor specified
    * The zoom factor is a percentage with regards the original, for example if factor is set to 2
    * it will double the size whereas if it is set to 0.5 it will half the size */
   zoom = factor => {
@@ -287,18 +287,18 @@ class SketchField extends PureComponent {
     return this._history.canRedo()
   }
 
-   /* Exports canvas element to a dataurl image. Note that when multiplier is used, cropping is scaled appropriately
+  /* Exports canvas element to a dataurl image. Note that when multiplier is used, cropping is scaled appropriately
    * @returns {String} URL containing a representation of the object in the format specified by options.format */
   toDataURL = options => this._fc.toDataURL(options)
 
-   /* Returns JSON representation of canvas
+  /* Returns JSON representation of canvas
    * @returns {string} JSON string */
   toJSON = propertiesToInclude => this._fc.toJSON(propertiesToInclude)
 
   // Returns object representation of an instance
   toObject = propertiesToInclude => this._fc.toObject(propertiesToInclude)
 
-   /* Populates canvas with data from the specified JSON.
+  /* Populates canvas with data from the specified JSON.
    * JSON format must conform to the one of fabric.Canvas#toDatalessJSON */
   fromJSON = json => {
     if (!json) return
@@ -313,9 +313,8 @@ class SketchField extends PureComponent {
     }, 100)
   }
 
-   /* Clear the content of the canvas, this will also clear history but will return the canvas content as JSON to be
-   * used as needed in order to undo the clear if possible
-   * @returns {string} JSON string of the canvas just cleared */
+  /* Clear the content of the canvas, this will also clear history but will return the canvas content as JSON to be
+   * used as needed in order to undo the clear if possible */
   clear = propertiesToInclude => {
     let discarded = this.toJSON(propertiesToInclude)
     this._fc.clear()
@@ -330,42 +329,27 @@ class SketchField extends PureComponent {
     return discarded
   }
 
-   /* Sets the background from the dataUrl given */
-  setBackgroundFromDataUrl = (dataUrl, options = {}) => {
+  /* Sets the background from the imageUrl given */
+  setBackground = imageUrl => {
     let canvas = this._fc
-    if (options.stretched) {
-      delete options.stretched
-      Object.assign(options, {
+    fabric.Image.fromURL(imageUrl, img => {
+      img.set({
         width: canvas.width,
-        height: canvas.height
+        height: canvas.height,
+        originX: 'left',
+        originY: 'top',
+        crossOrigin: 'anonymous'
       })
-    }
-    if (options.stretchedX) {
-      delete options.stretchedX
-      Object.assign(options, {
-        width: canvas.width
-      })
-    }
-    if (options.stretchedY) {
-      delete options.stretchedY
-      Object.assign(options, {
-        height: canvas.height
-      })
-    }
-    let img = new Image()
-    img.onload = () =>
-      canvas.setBackgroundImage(
-        new fabric.Image(img),
-        () => canvas.renderAll(),
-        options
-      )
-    img.src = dataUrl
+      canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas))
+    })
   }
 
   componentDidMount = () => {
     let { tool, value, defaultValue, undoSteps, backgroundColor } = this.props
 
-    let canvas = (this._fc = new fabric.Canvas(this._canvas, { preserveObjectStacking: true }))
+    let canvas = (this._fc = new fabric.Canvas(this._canvas, {
+      preserveObjectStacking: true
+    }))
 
     this._initTools(canvas)
     let selectedTool = this._tools[tool]
@@ -405,8 +389,7 @@ class SketchField extends PureComponent {
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.spriteNumber === 4) {
       this._fc.off('mouse:down', this._onMouseDown)
-    }
-    else {
+    } else {
       // WIP: need to set the mouse:down event back on
       // the below is currently incrementing the sprite count wildly
       // this._fc.on('mouse:down', this._onMouseDown)

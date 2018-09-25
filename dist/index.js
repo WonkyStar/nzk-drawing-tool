@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -120,7 +118,6 @@ var DrawingTool = function (_Component) {
 
     _this._clear = function () {
       _this._sketch.clear();
-      _this._sketch.setBackgroundFromDataUrl('');
       _this.setState({
         controlledValue: null,
         canUndo: _this._sketch.canUndo(),
@@ -139,54 +136,11 @@ var DrawingTool = function (_Component) {
       }
     };
 
-    _this._onBackgroundImageDrop = function (accepted /*, rejected*/) {
-      if (accepted && accepted.length > 0) {
-        var sketch = _this._sketch;
-        var reader = new FileReader();
-        var _this$state = _this.state,
-            stretched = _this$state.stretched,
-            stretchedX = _this$state.stretchedX,
-            stretchedY = _this$state.stretchedY,
-            originX = _this$state.originX,
-            originY = _this$state.originY;
-
-        reader.addEventListener('load', function () {
-          return sketch.setBackgroundFromDataUrl(reader.result, {
-            stretched: stretched,
-            stretchedX: stretchedX,
-            stretchedY: stretchedY,
-            originX: originX,
-            originY: originY
-          });
-        }, false);
-        reader.readAsDataURL(accepted[0]);
-      }
-    };
-
     _this.componentDidMount = function () {
       _this.updateWindowDimensions();
-      window.addEventListener('resize', _this.updateWindowDimensions)
-      /*eslint-disable no-console*/
-      ;(function (console) {
-        console.save = function (data, filename) {
-          if (!data) {
-            console.error('Console.save: No data');
-            return;
-          }
-          if (!filename) filename = 'console.json';
-          if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) === 'object') {
-            data = JSON.stringify(data, undefined, 4);
-          }
-          var blob = new Blob([data], { type: 'text/json' }),
-              e = document.createEvent('MouseEvents'),
-              a = document.createElement('a');
-          a.download = filename;
-          a.href = window.URL.createObjectURL(blob);
-          a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
-          e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-          a.dispatchEvent(e);
-        };
-      })(console);
+      window.addEventListener('resize', _this.updateWindowDimensions);
+
+      _this.props.canvasBg && _this.setBackground();
 
       _this.setState({
         lineColor: 'rgba(' + _this.state.rgbColor + ', ' + _this.state.opacity + ')'
@@ -249,6 +203,11 @@ var DrawingTool = function (_Component) {
         sketchWidth: maxWidth,
         sketchHeight: maxHeight
       });
+    }
+  }, {
+    key: 'setBackground',
+    value: function setBackground() {
+      return this._sketch.setBackground(this.props.canvasBg);
     }
   }, {
     key: 'updateSpriteNumber',
@@ -322,10 +281,11 @@ var DrawingTool = function (_Component) {
           layoutStyle = _props2.layoutStyle,
           onBack = _props2.onBack;
 
+
       return _react2.default.createElement(
         _index.Container,
         null,
-        _react2.default.createElement(_DrawingToolHeader2.default, {
+        headerStyle && _react2.default.createElement(_DrawingToolHeader2.default, {
           width: this.state.sketchWidth,
           headerStyle: headerStyle,
           headerTitle: headerTitle,
@@ -413,7 +373,7 @@ DrawingTool.propTypes = {
 DrawingTool.defaultProps = {
   aspectRatioWidth: 4,
   aspectRatioHeight: 3,
-  canvasBg: '#ebebeb',
+  canvasBg: 'transparent',
   colors: colors,
   stickers: [],
   headerStyle: 'textButtons',

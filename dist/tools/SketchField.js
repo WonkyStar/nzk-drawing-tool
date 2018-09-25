@@ -292,36 +292,18 @@ var SketchField = function (_PureComponent) {
       });
       _this._history.clear();
       return discarded;
-    }, _this.setBackgroundFromDataUrl = function (dataUrl) {
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
+    }, _this.setBackground = function (imageUrl) {
       var canvas = _this._fc;
-      if (options.stretched) {
-        delete options.stretched;
-        Object.assign(options, {
+      fabric.Image.fromURL(imageUrl, function (img) {
+        img.set({
           width: canvas.width,
-          height: canvas.height
+          height: canvas.height,
+          originX: 'left',
+          originY: 'top',
+          crossOrigin: 'anonymous'
         });
-      }
-      if (options.stretchedX) {
-        delete options.stretchedX;
-        Object.assign(options, {
-          width: canvas.width
-        });
-      }
-      if (options.stretchedY) {
-        delete options.stretchedY;
-        Object.assign(options, {
-          height: canvas.height
-        });
-      }
-      var img = new Image();
-      img.onload = function () {
-        return canvas.setBackgroundImage(new fabric.Image(img), function () {
-          return canvas.renderAll();
-        }, options);
-      };
-      img.src = dataUrl;
+        canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+      });
     }, _this.componentDidMount = function () {
       var _this$props2 = _this.props,
           tool = _this$props2.tool,
@@ -331,7 +313,9 @@ var SketchField = function (_PureComponent) {
           backgroundColor = _this$props2.backgroundColor;
 
 
-      var canvas = _this._fc = new fabric.Canvas(_this._canvas, { preserveObjectStacking: true });
+      var canvas = _this._fc = new fabric.Canvas(_this._canvas, {
+        preserveObjectStacking: true
+      });
 
       _this._initTools(canvas);
       var selectedTool = _this._tools[tool];
@@ -452,14 +436,14 @@ var SketchField = function (_PureComponent) {
 
 
   /* Add an image as object to the canvas
-  * @param dataUrl the image url or Data Url
-  * @param options object to pass and change some options when loading image, the format of the object is:
-  * {
-  *   left: <Number: distance from left of canvas>,
-  *   top: <Number: distance from top of canvas>,
-  *   scale: <Number: initial scale of image>
-  * } 
-  */
+   * @param dataUrl the image url or Data Url
+   * @param options object to pass and change some options when loading image, the format of the object is:
+   * {
+   *   left: <Number: distance from left of canvas>,
+   *   top: <Number: distance from top of canvas>,
+   *   scale: <Number: initial scale of image>
+   * } 
+   */
 
 
   // Action when an object is added to the canvas
@@ -493,31 +477,30 @@ var SketchField = function (_PureComponent) {
 
 
   /* Zoom the drawing by the factor specified
-  * The zoom factor is a percentage with regards the original, for example if factor is set to 2
-  * it will double the size whereas if it is set to 0.5 it will half the size */
+   * The zoom factor is a percentage with regards the original, for example if factor is set to 2
+   * it will double the size whereas if it is set to 0.5 it will half the size */
 
 
   /* Exports canvas element to a dataurl image. Note that when multiplier is used, cropping is scaled appropriately
-  * @returns {String} URL containing a representation of the object in the format specified by options.format */
+   * @returns {String} URL containing a representation of the object in the format specified by options.format */
 
 
   /* Returns JSON representation of canvas
-  * @returns {string} JSON string */
+   * @returns {string} JSON string */
 
 
   // Returns object representation of an instance
 
 
   /* Populates canvas with data from the specified JSON.
-  * JSON format must conform to the one of fabric.Canvas#toDatalessJSON */
+   * JSON format must conform to the one of fabric.Canvas#toDatalessJSON */
 
 
   /* Clear the content of the canvas, this will also clear history but will return the canvas content as JSON to be
-  * used as needed in order to undo the clear if possible
-  * @returns {string} JSON string of the canvas just cleared */
+   * used as needed in order to undo the clear if possible */
 
 
-  /* Sets the background from the dataUrl given */
+  /* Sets the background from the imageUrl given */
 
 
   return SketchField;

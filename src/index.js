@@ -101,7 +101,7 @@ export default class DrawingTool extends Component {
   static defaultProps = {
     aspectRatioWidth: 4,
     aspectRatioHeight: 3,
-    canvasBg: '#ebebeb',
+    canvasBg: 'transparent',
     colors: colors,
     stickers: [],
     headerStyle: 'textButtons',
@@ -152,7 +152,6 @@ export default class DrawingTool extends Component {
 
   _clear = () => {
     this._sketch.clear()
-    this._sketch.setBackgroundFromDataUrl('')
     this.setState({
       controlledValue: null,
       canUndo: this._sketch.canUndo(),
@@ -170,78 +169,22 @@ export default class DrawingTool extends Component {
       this.setState({ canUndo: now })
     }
   }
-
-  _onBackgroundImageDrop = (accepted /*, rejected*/) => {
-    if (accepted && accepted.length > 0) {
-      let sketch = this._sketch
-      let reader = new FileReader()
-      let { stretched, stretchedX, stretchedY, originX, originY } = this.state
-      reader.addEventListener(
-        'load',
-        () =>
-          sketch.setBackgroundFromDataUrl(reader.result, {
-            stretched: stretched,
-            stretchedX: stretchedX,
-            stretchedY: stretchedY,
-            originX: originX,
-            originY: originY
-          }),
-        false
-      )
-      reader.readAsDataURL(accepted[0])
-    }
-  }
-
+  
   componentDidMount = () => {
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
-    /*eslint-disable no-console*/
-    ;(function(console) {
-      console.save = function(data, filename) {
-        if (!data) {
-          console.error('Console.save: No data')
-          return
-        }
-        if (!filename) filename = 'console.json'
-        if (typeof data === 'object') {
-          data = JSON.stringify(data, undefined, 4)
-        }
-        var blob = new Blob([data], { type: 'text/json' }),
-          e = document.createEvent('MouseEvents'),
-          a = document.createElement('a')
-        a.download = filename
-        a.href = window.URL.createObjectURL(blob)
-        a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
-        e.initMouseEvent(
-          'click',
-          true,
-          false,
-          window,
-          0,
-          0,
-          0,
-          0,
-          0,
-          false,
-          false,
-          false,
-          false,
-          0,
-          null
-        )
-        a.dispatchEvent(e)
-      }
-    })(console)
+
+    this.props.canvasBg && this.setBackground()
 
     this.setState({
       lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
     })
   }
-
+  
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions)
   }
-
+  
   updateWindowDimensions() {
     const { aspectRatioWidth, aspectRatioHeight } = this.props
     // maxHeight is the full height minus the drawing tool header
@@ -258,7 +201,11 @@ export default class DrawingTool extends Component {
       sketchHeight: maxHeight
     })
   }
-
+  
+  setBackground() {
+    return this._sketch.setBackground(this.props.canvasBg)
+  }
+  
   updateSpriteNumber() {
     let sketchObjects = this._sketch.toObject().objects
     sketchObjects.reduce((acc, item) => {
@@ -269,7 +216,7 @@ export default class DrawingTool extends Component {
       return acc
     }, 0)
   }
-
+  
   changeTool(section) {
     if (section === 'pencil' || section === 'eraser' || section === 'sticker') {
       this.setState({
@@ -312,16 +259,17 @@ export default class DrawingTool extends Component {
 
   render() {
     const { headerStyle, headerTitle, canvasBg, colors, layoutStyle, onBack } = this.props
+
     return (
       <Container>
-        <DrawingToolHeader 
+        {headerStyle && <DrawingToolHeader 
           width={this.state.sketchWidth}
           headerStyle={headerStyle} 
           headerTitle={headerTitle} 
           onSave={this._save}
           onBack={onBack}
           layoutStyle={layoutStyle}
-         />
+         />}
         <SketchContainer layoutStyle={layoutStyle}>
           <PanelContainer>
             <LeftPanel
