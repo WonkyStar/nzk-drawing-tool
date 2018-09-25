@@ -180,10 +180,9 @@ var DrawingTool = function (_Component) {
       });
     }
   }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(prevProps, nextProps) {
-      console.log(prevProps, nextProps);
-      if (prevProps.canvasBg !== nextProps.canvasBg) {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (!prevProps.canvasBg && this.props.canvasBg) {
         this.setBackground();
       }
     }
@@ -216,7 +215,6 @@ var DrawingTool = function (_Component) {
   }, {
     key: 'setBackground',
     value: function setBackground() {
-      console.log('setBackground props', this.props.canvasBg);
       return this._sketch.setBackground(this.props.canvasBg);
     }
   }, {
@@ -291,7 +289,6 @@ var DrawingTool = function (_Component) {
           layoutStyle = _props2.layoutStyle,
           onBack = _props2.onBack;
 
-      console.log('drawing tool props', this.props);
       return _react2.default.createElement(
         _index.Container,
         null,

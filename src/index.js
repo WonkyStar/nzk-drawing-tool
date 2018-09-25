@@ -176,9 +176,8 @@ export default class DrawingTool extends Component {
     })
   }
 
-  componentWillReceiveProps(prevProps, nextProps) {
-    console.log(prevProps, nextProps)
-    if (prevProps.canvasBg !== nextProps.canvasBg) {
+  componentDidUpdate (prevProps) {
+    if (!prevProps.canvasBg && this.props.canvasBg) {
       this.setBackground()
     }
   }
@@ -205,7 +204,6 @@ export default class DrawingTool extends Component {
   }
   
   setBackground() {
-    console.log('setBackground props', this.props.canvasBg)
     return this._sketch.setBackground(this.props.canvasBg)
   }
   
@@ -262,7 +260,6 @@ export default class DrawingTool extends Component {
 
   render() {
     const { headerStyle, headerTitle, canvasBg, colors, layoutStyle, onBack } = this.props
-    console.log('drawing tool props', this.props)
     return (
       <Container>
         {headerStyle && <DrawingToolHeader 
