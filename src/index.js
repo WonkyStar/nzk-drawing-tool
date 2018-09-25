@@ -165,7 +165,7 @@ export default class DrawingTool extends Component {
     }
   }
   
-  componentDidMount = () => {
+  componentDidMount() {
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
 
@@ -174,6 +174,13 @@ export default class DrawingTool extends Component {
     this.setState({
       lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
     })
+  }
+
+  componentWillReceiveProps(prevProps, nextProps) {
+    console.log(prevProps, nextProps)
+    if (prevProps.canvasBg !== nextProps.canvasBg) {
+      this.setBackground()
+    }
   }
   
   componentWillUnmount() {

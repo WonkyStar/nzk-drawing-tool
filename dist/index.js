@@ -136,17 +136,6 @@ var DrawingTool = function (_Component) {
       }
     };
 
-    _this.componentDidMount = function () {
-      _this.updateWindowDimensions();
-      window.addEventListener('resize', _this.updateWindowDimensions);
-
-      _this.props.canvasBg && _this.setBackground();
-
-      _this.setState({
-        lineColor: 'rgba(' + _this.state.rgbColor + ', ' + _this.state.opacity + ')'
-      });
-    };
-
     _this.state = {
       lineWidth: 30,
       eraserLineWidth: 30,
@@ -179,6 +168,26 @@ var DrawingTool = function (_Component) {
   }
 
   _createClass(DrawingTool, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+
+      this.props.canvasBg && this.setBackground();
+
+      this.setState({
+        lineColor: 'rgba(' + this.state.rgbColor + ', ' + this.state.opacity + ')'
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(prevProps, nextProps) {
+      console.log(prevProps, nextProps);
+      if (prevProps.canvasBg !== nextProps.canvasBg) {
+        this.setBackground();
+      }
+    }
+  }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       window.removeEventListener('resize', this.updateWindowDimensions);
