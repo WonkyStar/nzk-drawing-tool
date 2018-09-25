@@ -4,7 +4,7 @@ import {
   Container,
   PanelContainer,
   SketchContainer,
-  CanvasBackground
+  CanvasContainer
 } from './index.styles'
 import DrawingToolHeader from './components/DrawingToolHeader/DrawingToolHeader'
 import LeftPanel from './components/LeftPanel/LeftPanel'
@@ -101,12 +101,7 @@ export default class DrawingTool extends Component {
   static defaultProps = {
     aspectRatioWidth: 4,
     aspectRatioHeight: 3,
-    canvasBg: 'transparent',
     colors: colors,
-    stickers: [],
-    headerStyle: 'textButtons',
-    headerTitle: 'How does Will get to the Night Zoo?',
-    onSave: () => {},
     onBack: () => window.history.back(),
     layoutStyle: 'center'
   }
@@ -203,6 +198,7 @@ export default class DrawingTool extends Component {
   }
   
   setBackground() {
+    console.log('setBackground props', this.props.canvasBg)
     return this._sketch.setBackground(this.props.canvasBg)
   }
   
@@ -259,7 +255,7 @@ export default class DrawingTool extends Component {
 
   render() {
     const { headerStyle, headerTitle, canvasBg, colors, layoutStyle, onBack } = this.props
-
+    console.log('drawing tool props', this.props)
     return (
       <Container>
         {headerStyle && <DrawingToolHeader 
@@ -277,7 +273,7 @@ export default class DrawingTool extends Component {
               selectedSection={this.state.selectedSection}
             />
           </PanelContainer>
-          <CanvasBackground
+          <CanvasContainer
             canvasBg={canvasBg}
             height={this.state.sketchHeight}
             width={this.state.sketchWidth}
@@ -297,7 +293,7 @@ export default class DrawingTool extends Component {
               tool={this.state.tool}
               spriteNumber={this.state.spriteNumber}
             />
-          </CanvasBackground>
+          </CanvasContainer>
           <PanelContainer>
             <RightPanel
               selectedSection={this.state.selectedSection}

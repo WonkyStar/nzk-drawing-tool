@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CanvasBackground = exports.SketchContainer = exports.PanelContainer = exports.Container = exports.colors = exports.fontSize = exports.fontInputs = exports.fonts = exports.tabletMaxWidth = exports.phoneMaxWidth = undefined;
+exports.CanvasContainer = exports.SketchContainer = exports.PanelContainer = exports.Container = exports.colors = exports.fontSize = exports.fontInputs = exports.fonts = exports.tabletMaxWidth = exports.phoneMaxWidth = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -15,7 +15,7 @@ var _templateObject = _taggedTemplateLiteral(['\n    font-family: \'Libre Basker
     _templateObject6 = _taggedTemplateLiteral(['\n  margin: auto;\n  height: 100%;\n  width: 100%;\n  background-size: cover;\n'], ['\n  margin: auto;\n  height: 100%;\n  width: 100%;\n  background-size: cover;\n']),
     _templateObject7 = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  margin: 0 10px;\n'], ['\n  display: flex;\n  align-items: center;\n  margin: 0 10px;\n']),
     _templateObject8 = _taggedTemplateLiteral(['\n  position: relative;\n  display: flex;\n  justify-content: ', ';\n  align-items: center;\n  width: 100%;\n  height: calc(100% - 100px);\n'], ['\n  position: relative;\n  display: flex;\n  justify-content: ', ';\n  align-items: center;\n  width: 100%;\n  height: calc(100% - 100px);\n']),
-    _templateObject9 = _taggedTemplateLiteral(['\n      background-color: ', ';\n      border-top: 2px solid ', ';\n      box-shadow: 0 6px 0 ', ';\n    '], ['\n      background-color: ', ';\n      border-top: 2px solid ', ';\n      box-shadow: 0 6px 0 ', ';\n    ']),
+    _templateObject9 = _taggedTemplateLiteral(['\n      border-top: 2px solid ', ';\n      box-shadow: 0 6px 0 ', ';\n    '], ['\n      border-top: 2px solid ', ';\n      box-shadow: 0 6px 0 ', ';\n    ']),
     _templateObject10 = _taggedTemplateLiteral(['\n  width: ', ';\n  height: ', ';\n  ', ';\n'], ['\n  width: ', ';\n  height: ', ';\n  ', ';\n']);
 
 var _styledComponents = require('styled-components');
@@ -76,15 +76,14 @@ var SketchContainer = exports.SketchContainer = _styledComponents2.default.div(_
   return props.layoutStyle === 'center' ? 'center' : 'space-between';
 });
 
-var canvasBackgroundProps = function canvasBackgroundProps(props) {
-  // canvasBg props should be able to be a colour or image
+var canvasContainerProps = function canvasContainerProps(props) {
   if (props.canvasBg) {
-    return (0, _styledComponents.css)(_templateObject9, props.canvasBg, colors.white, colors.shadow);
+    return (0, _styledComponents.css)(_templateObject9, colors.white, colors.shadow);
   }
 };
 
-var CanvasBackground = exports.CanvasBackground = _styledComponents2.default.div(_templateObject10, function (props) {
+var CanvasContainer = exports.CanvasContainer = _styledComponents2.default.div(_templateObject10, function (props) {
   return props.width || null;
 }, function (props) {
   return props.height || null;
-}, canvasBackgroundProps);
+}, canvasContainerProps);

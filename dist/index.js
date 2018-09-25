@@ -207,6 +207,7 @@ var DrawingTool = function (_Component) {
   }, {
     key: 'setBackground',
     value: function setBackground() {
+      console.log('setBackground props', this.props.canvasBg);
       return this._sketch.setBackground(this.props.canvasBg);
     }
   }, {
@@ -281,7 +282,7 @@ var DrawingTool = function (_Component) {
           layoutStyle = _props2.layoutStyle,
           onBack = _props2.onBack;
 
-
+      console.log('drawing tool props', this.props);
       return _react2.default.createElement(
         _index.Container,
         null,
@@ -305,7 +306,7 @@ var DrawingTool = function (_Component) {
             })
           ),
           _react2.default.createElement(
-            _index.CanvasBackground,
+            _index.CanvasContainer,
             {
               canvasBg: canvasBg,
               height: this.state.sketchHeight,
@@ -373,12 +374,7 @@ DrawingTool.propTypes = {
 DrawingTool.defaultProps = {
   aspectRatioWidth: 4,
   aspectRatioHeight: 3,
-  canvasBg: 'transparent',
   colors: colors,
-  stickers: [],
-  headerStyle: 'textButtons',
-  headerTitle: 'How does Will get to the Night Zoo?',
-  onSave: function onSave() {},
   onBack: function onBack() {
     return window.history.back();
   },

@@ -87,19 +87,17 @@ export const SketchContainer = styled.div`
   height: calc(100% - 100px);
 `
 
-const canvasBackgroundProps = props => {
-  // canvasBg props should be able to be a colour or image
+const canvasContainerProps = props => {
   if (props.canvasBg) {
     return css`
-      background-color: ${props.canvasBg};
       border-top: 2px solid ${colors.white};
       box-shadow: 0 6px 0 ${colors.shadow};
     `
   }
 }
 
-export const CanvasBackground = styled.div`
+export const CanvasContainer = styled.div`
   width: ${props => props.width || null};
   height: ${props => props.height || null};
-  ${canvasBackgroundProps};
+  ${canvasContainerProps};
 `
