@@ -83,8 +83,8 @@ export default class DrawingTool extends Component {
   }
 
   static propTypes = {
-    aspectRatioWidth: PropTypes.string,
-    aspectRatioHeight: PropTypes.string,
+    aspectRatioWidth: PropTypes.number,
+    aspectRatioHeight: PropTypes.number,
     backgroundImage: PropTypes.string,
     drawingToEdit: PropTypes.string,
     colors: PropTypes.array,
@@ -113,9 +113,8 @@ export default class DrawingTool extends Component {
       this.setState({ drawingSnapshot: imagePNG })
       console.log('image saved: ', imagePNG)
       return imagePNG
-    }
-    else {
-      console.error("Drawing needs more detail before saving!")
+    } else {
+      return new Error('Drawing needs 5 lines before you can save!')
     }
   }
 
@@ -145,7 +144,9 @@ export default class DrawingTool extends Component {
       drawingSnapshot: [],
       spriteNumber: 0
     })
-    this.props.backgroundImage && this.setBackground(this.props.backgroundImage)
+    this.props.backgroundImage || this.props.drawingToEdit
+      ? this.setBackground()
+      : null
   }
 
   _onSketchChange = () => {
@@ -156,36 +157,31 @@ export default class DrawingTool extends Component {
       this.setState({ canUndo: now })
     }
   }
-  
+
   componentDidMount() {
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
 
-    if (this.props.drawingToEdit && this.props.backgroundImage) {
-      this.setBackground(this.props.drawingToEdit)
-    }
-    else if (this.props.backgroundImage) {
-      this.setBackground(this.props.backgroundImage)
-    }
+    this.setBackground()
 
     this.setState({
       lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
-    }) 
+    })
   }
 
-  componentDidUpdate (prevProps) {
-    if (!prevProps.backgroundImage && this.props.backgroundImage && !this.props.drawingToEdit) {
-      this.setBackground(this.props.backgroundImage)
-    }
-    else if (!prevProps.drawingToEdit && this.props.drawingToEdit) {
-      this.setBackground(this.props.drawingToEdit)
+  componentDidUpdate(prevProps) {
+    if (
+      (!prevProps.backgroundImage && this.props.backgroundImage) ||
+      (!prevProps.drawingToEdit && this.props.drawingToEdit)
+    ) {
+      this.setBackground()
     }
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions)
   }
-  
+
   updateWindowDimensions() {
     const { aspectRatioWidth, aspectRatioHeight } = this.props
     // maxHeight is the full height minus the drawing tool header
@@ -202,12 +198,19 @@ export default class DrawingTool extends Component {
       sketchHeight: maxHeight,
       windowWidth: window.innerWidth
     })
+    this.setBackground()
   }
-  
-  setBackground(backgroundImage) {
-    return this._sketch.setBackground(backgroundImage)
+
+  setBackground() {
+    const { drawingToEdit, backgroundImage } = this.props
+    if (drawingToEdit && backgroundImage) {
+      return this._sketch.setBackground(drawingToEdit)
+    } else if (backgroundImage) {
+      return this._sketch.setBackground(backgroundImage)
+    }
+    return
   }
-  
+
   updateSpriteNumber() {
     let sketchObjects = this._sketch.toObject().objects
     sketchObjects.reduce((acc, item) => {
@@ -218,7 +221,7 @@ export default class DrawingTool extends Component {
       return acc
     }, 0)
   }
-  
+
   changeTool(section) {
     if (section === 'pencil' || section === 'sticker') {
       this.setState({
@@ -232,8 +235,7 @@ export default class DrawingTool extends Component {
         selectedSection: section,
         isEraser: true
       })
-    }
-      else {
+    } else {
       this.setState({
         selectedSection: section,
         isEraser: false
@@ -269,17 +271,27 @@ export default class DrawingTool extends Component {
   }
 
   render() {
-    const { headerStyle, headerTitle, backgroundImage, drawingToEdit, colors, layoutStyle, onBack } = this.props
+    const {
+      headerStyle,
+      headerTitle,
+      backgroundImage,
+      drawingToEdit,
+      colors,
+      layoutStyle,
+      onBack
+    } = this.props
     return (
       <Container>
-        {headerStyle && <DrawingToolHeader 
-          width={this.state.sketchWidth}
-          headerStyle={headerStyle} 
-          headerTitle={headerTitle} 
-          onSave={this._save}
-          onBack={onBack}
-          layoutStyle={layoutStyle}
-         />}
+        {headerStyle && (
+          <DrawingToolHeader
+            width={this.state.sketchWidth}
+            headerStyle={headerStyle}
+            headerTitle={headerTitle}
+            onSave={this._save}
+            onBack={onBack}
+            layoutStyle={layoutStyle}
+          />
+        )}
         <SketchContainer layoutStyle={layoutStyle}>
           <PanelContainer>
             <LeftPanel

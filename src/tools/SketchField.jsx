@@ -323,8 +323,8 @@ class SketchField extends PureComponent {
     let canvas = this._fc
     fabric.Image.fromURL(imageUrl, img => {
       img.set({
-        width: canvas.width,
-        height: canvas.height,
+        scaleX: canvas.width / img.width,
+        scaleY: canvas.height / img.height,
         originX: 'left',
         originY: 'top',
         crossOrigin: 'anonymous'

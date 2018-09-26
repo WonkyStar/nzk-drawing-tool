@@ -290,8 +290,8 @@ var SketchField = function (_PureComponent) {
       var canvas = _this._fc;
       fabric.Image.fromURL(imageUrl, function (img) {
         img.set({
-          width: canvas.width,
-          height: canvas.height,
+          scaleX: canvas.width / img.width,
+          scaleY: canvas.height / img.height,
           originX: 'left',
           originY: 'top',
           crossOrigin: 'anonymous'

@@ -88,7 +88,7 @@ var DrawingTool = function (_Component) {
         console.log('image saved: ', imagePNG);
         return imagePNG;
       } else {
-        console.error("Drawing needs more detail before saving!");
+        return new Error('Drawing needs 5 lines before you can save!');
       }
     };
 
@@ -118,7 +118,7 @@ var DrawingTool = function (_Component) {
         drawingSnapshot: [],
         spriteNumber: 0
       });
-      _this.props.backgroundImage && _this.setBackground(_this.props.backgroundImage);
+      _this.props.backgroundImage || _this.props.drawingToEdit ? _this.setBackground() : null;
     };
 
     _this._onSketchChange = function () {
@@ -163,11 +163,7 @@ var DrawingTool = function (_Component) {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
 
-      if (this.props.drawingToEdit && this.props.backgroundImage) {
-        this.setBackground(this.props.drawingToEdit);
-      } else if (this.props.backgroundImage) {
-        this.setBackground(this.props.backgroundImage);
-      }
+      this.setBackground();
 
       this.setState({
         lineColor: 'rgba(' + this.state.rgbColor + ', ' + this.state.opacity + ')'
@@ -176,10 +172,8 @@ var DrawingTool = function (_Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
-      if (!prevProps.backgroundImage && this.props.backgroundImage && !this.props.drawingToEdit) {
-        this.setBackground(this.props.backgroundImage);
-      } else if (!prevProps.drawingToEdit && this.props.drawingToEdit) {
-        this.setBackground(this.props.drawingToEdit);
+      if (!prevProps.backgroundImage && this.props.backgroundImage || !prevProps.drawingToEdit && this.props.drawingToEdit) {
+        this.setBackground();
       }
     }
   }, {
@@ -208,11 +202,21 @@ var DrawingTool = function (_Component) {
         sketchHeight: maxHeight,
         windowWidth: window.innerWidth
       });
+      this.setBackground();
     }
   }, {
     key: 'setBackground',
-    value: function setBackground(backgroundImage) {
-      return this._sketch.setBackground(backgroundImage);
+    value: function setBackground() {
+      var _props2 = this.props,
+          drawingToEdit = _props2.drawingToEdit,
+          backgroundImage = _props2.backgroundImage;
+
+      if (drawingToEdit && backgroundImage) {
+        return this._sketch.setBackground(drawingToEdit);
+      } else if (backgroundImage) {
+        return this._sketch.setBackground(backgroundImage);
+      }
+      return;
     }
   }, {
     key: 'updateSpriteNumber',
@@ -286,14 +290,14 @@ var DrawingTool = function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      var _props2 = this.props,
-          headerStyle = _props2.headerStyle,
-          headerTitle = _props2.headerTitle,
-          backgroundImage = _props2.backgroundImage,
-          drawingToEdit = _props2.drawingToEdit,
-          colors = _props2.colors,
-          layoutStyle = _props2.layoutStyle,
-          onBack = _props2.onBack;
+      var _props3 = this.props,
+          headerStyle = _props3.headerStyle,
+          headerTitle = _props3.headerTitle,
+          backgroundImage = _props3.backgroundImage,
+          drawingToEdit = _props3.drawingToEdit,
+          colors = _props3.colors,
+          layoutStyle = _props3.layoutStyle,
+          onBack = _props3.onBack;
 
       return _react2.default.createElement(
         _index.Container,
@@ -373,8 +377,8 @@ var DrawingTool = function (_Component) {
 }(_react.Component);
 
 DrawingTool.propTypes = {
-  aspectRatioWidth: _propTypes2.default.string,
-  aspectRatioHeight: _propTypes2.default.string,
+  aspectRatioWidth: _propTypes2.default.number,
+  aspectRatioHeight: _propTypes2.default.number,
   backgroundImage: _propTypes2.default.string,
   drawingToEdit: _propTypes2.default.string,
   colors: _propTypes2.default.array,
