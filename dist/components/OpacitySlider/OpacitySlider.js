@@ -49,7 +49,7 @@ var OpacitySlider = function (_Component) {
         null,
         _react2.default.createElement(
           _WidthSlider.Wrapper,
-          { height: height, width: width },
+          { height: height, width: width, opacitySlider: true },
           _react2.default.createElement(
             _OpacitySlider.SliderWrapper,
             null,

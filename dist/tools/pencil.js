@@ -10,6 +10,8 @@ var _fabrictool = require('./fabrictool');
 
 var _fabrictool2 = _interopRequireDefault(_fabrictool);
 
+var _index = require('../index.styles');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31,8 +33,13 @@ var Pencil = function (_FabricCanvasTool) {
     key: 'configureCanvas',
     value: function configureCanvas(props) {
       this._canvas.isDrawingMode = true;
-      this._canvas.freeDrawingBrush.width = props.lineWidth;
-      this._canvas.freeDrawingBrush.color = props.lineColor;
+      if (props.isEraser) {
+        this._canvas.freeDrawingBrush.width = props.eraserLineWidth;
+        this._canvas.freeDrawingBrush.color = _index.colors.grey;
+      } else {
+        this._canvas.freeDrawingBrush.width = props.lineWidth;
+        this._canvas.freeDrawingBrush.color = props.lineColor;
+      }
       this._canvas.on('path:created', function (e) {
         // Source over = draw
         e.path.globalCompositeOperation = 'source-over';

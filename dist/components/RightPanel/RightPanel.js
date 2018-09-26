@@ -242,7 +242,9 @@ var RightPanel = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var selectedSection = this.props.selectedSection;
+      var _props5 = this.props,
+          selectedSection = _props5.selectedSection,
+          windowWidth = _props5.windowWidth;
 
       return _react2.default.createElement(
         _RightPanelStyles.Container,
@@ -252,7 +254,7 @@ var RightPanel = function (_Component) {
           {
             ref: this.scrollbars,
             style: {
-              height: '390px', // this should become 310px on phoneMaxWidth
+              height: windowWidth <= _index.tabletMaxWidth ? '310px' : '390px',
               width: '100%',
               borderRadius: '70px',
               zIndex: '0'

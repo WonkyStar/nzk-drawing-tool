@@ -189,12 +189,6 @@ var SketchField = function (_PureComponent) {
       });
       canvas.renderAll();
       canvas.calcOffset();
-    }, _this._backgroundColor = function (color) {
-      if (!color) return;
-      var canvas = _this._fc;
-      canvas.setBackgroundColor(color, function () {
-        return canvas.renderAll();
-      });
     }, _this._bringToFront = function (obj) {
       var canvas = _this._fc;
       canvas.bringToFront(obj);
@@ -309,8 +303,7 @@ var SketchField = function (_PureComponent) {
           tool = _this$props2.tool,
           value = _this$props2.value,
           defaultValue = _this$props2.defaultValue,
-          undoSteps = _this$props2.undoSteps,
-          backgroundColor = _this$props2.backgroundColor;
+          undoSteps = _this$props2.undoSteps;
 
 
       var canvas = _this._fc = new fabric.Canvas(_this._canvas, {
@@ -321,8 +314,6 @@ var SketchField = function (_PureComponent) {
       var selectedTool = _this._tools[tool];
       selectedTool.configureCanvas(_this.props);
       _this._selectedTool = selectedTool;
-
-      _this._backgroundColor(backgroundColor);
 
       // Control resize
       window.addEventListener('resize', _this._resize, false);
@@ -367,7 +358,6 @@ var SketchField = function (_PureComponent) {
 
       _this._fc.defaultCursor = 'default';
       _this._selectedTool.configureCanvas(nextProps);
-      _this._backgroundColor(nextProps.backgroundColor);
 
       if (_this.props.value !== nextProps.value || nextProps.value && nextProps.forceValue) {
         _this.fromJSON(nextProps.value);
@@ -383,9 +373,6 @@ var SketchField = function (_PureComponent) {
       _this._history.keep([obj, prevState, currState]);
     }, _this._onMouseUp = function (e) {
       _this._selectedTool.doMouseUp(e);
-      // Update the final state to new-generated object
-      // Ignore Path object since it would be created after mouseUp
-      // Assumed the last object in canvas.getObjects() in the newest object
       if (_this.props.tool !== _tools2.default.Pencil) {
         var canvas = _this._fc;
         var objects = canvas.getObjects();
@@ -473,12 +460,7 @@ var SketchField = function (_PureComponent) {
   /* Track the resize of the window and update state */
 
 
-  /* Sets the background color for this sketch */
-
-
-  /* Zoom the drawing by the factor specified
-   * The zoom factor is a percentage with regards the original, for example if factor is set to 2
-   * it will double the size whereas if it is set to 0.5 it will half the size */
+  /* Zoom the drawing by the factor specified */
 
 
   /* Exports canvas element to a dataurl image. Note that when multiplier is used, cropping is scaled appropriately
@@ -510,7 +492,6 @@ SketchField.propTypes = {
   lineColor: _propTypes2.default.string,
   lineWidth: _propTypes2.default.number,
   eraserLineWidth: _propTypes2.default.number,
-  backgroundColor: _propTypes2.default.string,
   opacity: _propTypes2.default.number,
   undoSteps: _propTypes2.default.number,
   tool: _propTypes2.default.string,
@@ -527,7 +508,6 @@ SketchField.defaultProps = {
   lineColor: 'white',
   lineWidth: 30,
   eraserLineWidth: 30,
-  backgroundColor: 'transparent',
   opacity: 1.0,
   undoSteps: 25,
   tool: _tools2.default.Pencil,

@@ -78,12 +78,6 @@ var DrawingTool = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (DrawingTool.__proto__ || Object.getPrototypeOf(DrawingTool)).call(this, props));
 
-    _this._selectTool = function (event, index, value) {
-      _this.setState({
-        tool: value
-      });
-    };
-
     _this._save = function () {
       var imageJSON = _this._sketch.toJSON();
       // imageJSON contains an 'objects' key which is an array of strokes
@@ -140,21 +134,17 @@ var DrawingTool = function (_Component) {
       lineWidth: 30,
       eraserLineWidth: 30,
       rgbColor: '255, 255, 255',
-      backgroundColor: 'transparent',
       tool: _index2.Tools.Pencil,
       drawings: [],
       canUndo: false,
       canRedo: false,
       sketchWidth: null,
       sketchHeight: null,
-      stretched: true,
-      stretchedX: false,
-      stretchedY: false,
-      originX: 'left',
-      originY: 'top',
       selectedSection: 'pencil',
       opacity: 1,
-      spriteNumber: 0
+      spriteNumber: 0,
+      isEraser: false,
+      windowWidth: null
     };
 
     _this.changeTool = _this.changeTool.bind(_this);
@@ -215,7 +205,8 @@ var DrawingTool = function (_Component) {
       }
       this.setState({
         sketchWidth: maxWidth,
-        sketchHeight: maxHeight
+        sketchHeight: maxHeight,
+        windowWidth: window.innerWidth
       });
     }
   }, {
@@ -240,14 +231,22 @@ var DrawingTool = function (_Component) {
   }, {
     key: 'changeTool',
     value: function changeTool(section) {
-      if (section === 'pencil' || section === 'eraser' || section === 'sticker') {
+      if (section === 'pencil' || section === 'sticker') {
         this.setState({
           tool: section,
-          selectedSection: section
+          selectedSection: section,
+          isEraser: false
+        });
+      } else if (section === 'eraser') {
+        this.setState({
+          tool: 'pencil',
+          selectedSection: section,
+          isEraser: true
         });
       } else {
         this.setState({
-          selectedSection: section
+          selectedSection: section,
+          isEraser: false
         });
       }
     }
@@ -328,19 +327,17 @@ var DrawingTool = function (_Component) {
             },
             _react2.default.createElement(_index2.SketchField, {
               name: 'sketch',
-              className: 'canvas-area',
+              className: 'canvas-sketch-field',
               ref: function ref(c) {
                 return _this3._sketch = c;
               },
               lineColor: this.state.lineColor,
               lineWidth: this.state.lineWidth,
               eraserLineWidth: this.state.eraserLineWidth,
-              backgroundColor: 'transparent',
               height: this.state.sketchHeight,
               width: this.state.sketchWidth,
-              forceValue: true,
               onChange: this._onSketchChange,
-              tool: this.state.tool,
+              isEraser: this.state.isEraser,
               spriteNumber: this.state.spriteNumber
             })
           ),
@@ -363,7 +360,8 @@ var DrawingTool = function (_Component) {
               opacity: this.state.opacity,
               lineColor: this.state.lineColor,
               rgbColor: this.state.rgbColor,
-              colors: colors
+              colors: colors,
+              windowWidth: this.state.windowWidth
             })
           )
         )
@@ -375,7 +373,8 @@ var DrawingTool = function (_Component) {
 }(_react.Component);
 
 DrawingTool.propTypes = {
-  aspectRatio: _propTypes2.default.string,
+  aspectRatioWidth: _propTypes2.default.string,
+  aspectRatioHeight: _propTypes2.default.string,
   backgroundImage: _propTypes2.default.string,
   drawingToEdit: _propTypes2.default.string,
   colors: _propTypes2.default.array,

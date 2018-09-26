@@ -14,9 +14,9 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Icon = require('./Icon.styles');
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -57,44 +57,28 @@ var Icon = function (_Component) {
     value: function render() {
       var _props = this.props,
           name = _props.name,
-          nameTo = _props.nameTo,
           color = _props.color,
           glow = _props.glow,
           size = _props.size,
           active = _props.active,
-          children = _props.children,
           clickThrough = _props.clickThrough,
           position = _props.position,
-          props = _objectWithoutProperties(_props, ['name', 'nameTo', 'color', 'glow', 'size', 'active', 'children', 'clickThrough', 'position']);
+          flipped = _props.flipped;
+
 
       var opacity = active === false ? 0 : 1;
 
       return _react2.default.createElement(
-        'div',
-        {
-          className: this.props.className,
-          style: {
-            filter: glow ? 'drop-shadow(0 0 5px ' + color + ')' : 'none',
-            position: position || 'relative',
-            height: this.getSize(size),
-            width: this.getSize(size),
-            pointerEvents: 'none'
-          }
-        },
+        _Icon.Container,
+        { glow: glow, position: position },
         _react2.default.createElement(
-          'svg',
+          _Icon.StyledSvg,
           {
-            width: this.getSize(size),
-            height: this.getSize(size),
+            size: size,
             fill: color,
-            style: {
-              pointerEvents: clickThrough ? 'none' : '',
-              opacity: opacity,
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%) ' + (this.props.flipped ? 'scale(-1)' : '')
-            }
+            clickThrough: clickThrough,
+            opacity: opacity,
+            flipped: flipped
           },
           _react2.default.createElement('use', { xlinkHref: '#' + name })
         )
