@@ -2,6 +2,8 @@
 
 This is a free drawing tool using Fabric.js and inspired by react-sketch.
 
+View the repo on [Github](https://github.com/WonkyStar/nzk-drawing-tool).
+
 Features:
 
 - free drawing

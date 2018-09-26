@@ -88,7 +88,7 @@ export const SketchContainer = styled.div`
 `
 
 const canvasContainerProps = props => {
-  if (props.canvasBg) {
+  if (props.backgroundImage || props.drawingToEdit) {
     return css`
       border-top: 2px solid ${colors.white};
       box-shadow: 0 6px 0 ${colors.shadow};

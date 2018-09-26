@@ -77,7 +77,7 @@ var SketchContainer = exports.SketchContainer = _styledComponents2.default.div(_
 });
 
 var canvasContainerProps = function canvasContainerProps(props) {
-  if (props.canvasBg) {
+  if (props.backgroundImage || props.drawingToEdit) {
     return (0, _styledComponents.css)(_templateObject9, colors.white, colors.shadow);
   }
 };

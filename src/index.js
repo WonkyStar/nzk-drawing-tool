@@ -88,7 +88,8 @@ export default class DrawingTool extends Component {
 
   static propTypes = {
     aspectRatio: PropTypes.string,
-    canvasBg: PropTypes.string,
+    backgroundImage: PropTypes.string,
+    drawingToEdit: PropTypes.string,
     colors: PropTypes.array,
     stickers: PropTypes.array,
     headerStyle: PropTypes.string,
@@ -116,7 +117,7 @@ export default class DrawingTool extends Component {
     const imageJSON = this._sketch.toJSON()
     // imageJSON contains an 'objects' key which is an array of strokes
     if (imageJSON.objects.length >= 5) {
-      const imagePNG = this._sketch.toDataURL()
+      const imagePNG = this._sketch.toDataURL({ multiplier: 4 })
       // imagePNG is a long image string
       this.setState({ drawingSnapshot: imagePNG })
       console.log('image saved: ', imagePNG)
@@ -148,12 +149,12 @@ export default class DrawingTool extends Component {
   _clear = () => {
     this._sketch.clear()
     this.setState({
-      controlledValue: null,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
       drawingSnapshot: [],
       spriteNumber: 0
     })
+    this.props.backgroundImage && this.setBackground(this.props.backgroundImage)
   }
 
   _onSketchChange = () => {
@@ -169,16 +170,24 @@ export default class DrawingTool extends Component {
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
 
-    this.props.canvasBg && this.setBackground()
+    if (this.props.drawingToEdit && this.props.backgroundImage) {
+      this.setBackground(this.props.drawingToEdit)
+    }
+    else if (this.props.backgroundImage) {
+      this.setBackground(this.props.backgroundImage)
+    }
 
     this.setState({
       lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
-    })
+    }) 
   }
 
   componentDidUpdate (prevProps) {
-    if (!prevProps.canvasBg && this.props.canvasBg) {
-      this.setBackground()
+    if (!prevProps.backgroundImage && this.props.backgroundImage && !this.props.drawingToEdit) {
+      this.setBackground(this.props.backgroundImage)
+    }
+    else if (!prevProps.drawingToEdit && this.props.drawingToEdit) {
+      this.setBackground(this.props.drawingToEdit)
     }
   }
   
@@ -203,8 +212,8 @@ export default class DrawingTool extends Component {
     })
   }
   
-  setBackground() {
-    return this._sketch.setBackground(this.props.canvasBg)
+  setBackground(backgroundImage) {
+    return this._sketch.setBackground(backgroundImage)
   }
   
   updateSpriteNumber() {
@@ -259,7 +268,7 @@ export default class DrawingTool extends Component {
   }
 
   render() {
-    const { headerStyle, headerTitle, canvasBg, colors, layoutStyle, onBack } = this.props
+    const { headerStyle, headerTitle, backgroundImage, drawingToEdit, colors, layoutStyle, onBack } = this.props
     return (
       <Container>
         {headerStyle && <DrawingToolHeader 
@@ -278,7 +287,8 @@ export default class DrawingTool extends Component {
             />
           </PanelContainer>
           <CanvasContainer
-            canvasBg={canvasBg}
+            backgroundImage={backgroundImage}
+            drawingToEdit={drawingToEdit}
             height={this.state.sketchHeight}
             width={this.state.sketchWidth}
           >

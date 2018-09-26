@@ -88,7 +88,7 @@ var DrawingTool = function (_Component) {
       var imageJSON = _this._sketch.toJSON();
       // imageJSON contains an 'objects' key which is an array of strokes
       if (imageJSON.objects.length >= 5) {
-        var imagePNG = _this._sketch.toDataURL();
+        var imagePNG = _this._sketch.toDataURL({ multiplier: 4 });
         // imagePNG is a long image string
         _this.setState({ drawingSnapshot: imagePNG });
         console.log('image saved: ', imagePNG);
@@ -119,12 +119,12 @@ var DrawingTool = function (_Component) {
     _this._clear = function () {
       _this._sketch.clear();
       _this.setState({
-        controlledValue: null,
         canUndo: _this._sketch.canUndo(),
         canRedo: _this._sketch.canRedo(),
         drawingSnapshot: [],
         spriteNumber: 0
       });
+      _this.props.backgroundImage && _this.setBackground(_this.props.backgroundImage);
     };
 
     _this._onSketchChange = function () {
@@ -173,7 +173,11 @@ var DrawingTool = function (_Component) {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
 
-      this.props.canvasBg && this.setBackground();
+      if (this.props.drawingToEdit && this.props.backgroundImage) {
+        this.setBackground(this.props.drawingToEdit);
+      } else if (this.props.backgroundImage) {
+        this.setBackground(this.props.backgroundImage);
+      }
 
       this.setState({
         lineColor: 'rgba(' + this.state.rgbColor + ', ' + this.state.opacity + ')'
@@ -182,8 +186,10 @@ var DrawingTool = function (_Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
-      if (!prevProps.canvasBg && this.props.canvasBg) {
-        this.setBackground();
+      if (!prevProps.backgroundImage && this.props.backgroundImage && !this.props.drawingToEdit) {
+        this.setBackground(this.props.backgroundImage);
+      } else if (!prevProps.drawingToEdit && this.props.drawingToEdit) {
+        this.setBackground(this.props.drawingToEdit);
       }
     }
   }, {
@@ -214,8 +220,8 @@ var DrawingTool = function (_Component) {
     }
   }, {
     key: 'setBackground',
-    value: function setBackground() {
-      return this._sketch.setBackground(this.props.canvasBg);
+    value: function setBackground(backgroundImage) {
+      return this._sketch.setBackground(backgroundImage);
     }
   }, {
     key: 'updateSpriteNumber',
@@ -284,7 +290,8 @@ var DrawingTool = function (_Component) {
       var _props2 = this.props,
           headerStyle = _props2.headerStyle,
           headerTitle = _props2.headerTitle,
-          canvasBg = _props2.canvasBg,
+          backgroundImage = _props2.backgroundImage,
+          drawingToEdit = _props2.drawingToEdit,
           colors = _props2.colors,
           layoutStyle = _props2.layoutStyle,
           onBack = _props2.onBack;
@@ -314,7 +321,8 @@ var DrawingTool = function (_Component) {
           _react2.default.createElement(
             _index.CanvasContainer,
             {
-              canvasBg: canvasBg,
+              backgroundImage: backgroundImage,
+              drawingToEdit: drawingToEdit,
               height: this.state.sketchHeight,
               width: this.state.sketchWidth
             },
@@ -368,7 +376,8 @@ var DrawingTool = function (_Component) {
 
 DrawingTool.propTypes = {
   aspectRatio: _propTypes2.default.string,
-  canvasBg: _propTypes2.default.string,
+  backgroundImage: _propTypes2.default.string,
+  drawingToEdit: _propTypes2.default.string,
   colors: _propTypes2.default.array,
   stickers: _propTypes2.default.array,
   headerStyle: _propTypes2.default.string,
