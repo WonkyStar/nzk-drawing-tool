@@ -5,7 +5,7 @@ import WidthSlider from '../WidthSlider/WidthSlider'
 import OpacitySlider from '../OpacitySlider/OpacitySlider'
 import Button from '../Button/Button'
 import Icon from '../Icon/Icon'
-import { colors } from '../../index.styles'
+import { colors, tabletMaxWidth } from '../../index.styles'
 
 export default class RightPanel extends Component {
   constructor (props) {
@@ -181,14 +181,14 @@ export default class RightPanel extends Component {
   }
 
   render () {
-    const { selectedSection } = this.props
+    const { selectedSection, windowWidth } = this.props
     return (
       <Container>
         {selectedSection === 'pencil' ? (
           <Scrollbars
             ref={this.scrollbars}
             style={{
-              height: '390px', // this should become 310px on phoneMaxWidth
+              height: windowWidth <= tabletMaxWidth ? '310px' : '390px',
               width: '100%',
               borderRadius: '70px',
               zIndex: '0'

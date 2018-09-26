@@ -6,7 +6,7 @@ export const OpacityCircle = styled.div`
   height: 50px;
   border-radius: 50%;
   background-color: ${props => props.lineColor};
-  margin: 0 auto;
+  margin: auto;
 `
 
 export const SliderWrapper = styled.div`
@@ -20,6 +20,7 @@ export const SliderWrapper = styled.div`
   @media (max-width: ${tabletMaxWidth}px) {
     margin-top: 70px;
     left: -80px;
+    top: -7px;
   }
 `
 

@@ -1,16 +1,29 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { fonts, colors, tabletMaxWidth } from '../../index.styles'
 
 export const WidthNumber = styled.p`
   ${fonts.proxima};
   color: ${colors.indigo};
   margin: 10px auto;
+
+  @media (max-width: ${tabletMaxWidth}px) {
+    margin: 0 auto 2px;
+  }
 `
 
 export const Wrapper = styled.div`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   position: relative;
+
+  @media (max-width: ${tabletMaxWidth}px) {
+    ${props =>
+    props.opacitySlider
+      ? css`
+            height: 220px;
+          `
+      : null};
+  }
 `
 
 export const SliderWrapper = styled.div`
@@ -21,9 +34,9 @@ export const SliderWrapper = styled.div`
   left: -100px;
   height: 70px;
 
-  @media(max-width: ${tabletMaxWidth}px) {
-    margin-top: 88px;
-    left: -113px; 
+  @media (max-width: ${tabletMaxWidth}px) {
+    margin-top: 93px;
+    left: -113px;
   }
 `
 
@@ -38,7 +51,7 @@ export const SliderInput = styled.input`
   background: transparent;
   outline: none;
   margin: 0 auto;
-  
+
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -48,6 +61,11 @@ export const SliderInput = styled.input`
     background-color: ${props => props.thumbColor};
     box-shadow: -4px 0 0 ${colors.shadow};
     cursor: pointer;
+
+    @media (max-width: ${tabletMaxWidth}px) {
+      width: ${props => props.value * 0.8}px;
+      height: ${props => props.value * 0.8}px;
+    }
   }
 
   &::-webkit-slider-runnable-track {

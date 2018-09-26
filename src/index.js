@@ -60,22 +60,17 @@ export default class DrawingTool extends Component {
       lineWidth: 30,
       eraserLineWidth: 30,
       rgbColor: '255, 255, 255',
-      backgroundColor: 'transparent',
       tool: Tools.Pencil,
       drawings: [],
       canUndo: false,
       canRedo: false,
       sketchWidth: null,
       sketchHeight: null,
-      stretched: true,
-      stretchedX: false,
-      stretchedY: false,
-      originX: 'left',
-      originY: 'top',
       selectedSection: 'pencil',
       opacity: 1,
       spriteNumber: 0,
-      isEraser: false
+      isEraser: false,
+      windowWidth: null
     }
 
     this.changeTool = this.changeTool.bind(this)
@@ -88,7 +83,8 @@ export default class DrawingTool extends Component {
   }
 
   static propTypes = {
-    aspectRatio: PropTypes.string,
+    aspectRatioWidth: PropTypes.string,
+    aspectRatioHeight: PropTypes.string,
     backgroundImage: PropTypes.string,
     drawingToEdit: PropTypes.string,
     colors: PropTypes.array,
@@ -105,8 +101,7 @@ export default class DrawingTool extends Component {
     aspectRatioHeight: 3,
     colors: colors,
     onBack: () => window.history.back(),
-    layoutStyle: 'center',
-    backgroundImage: 'https://media.istockphoto.com/photos/glittery-pink-background-picture-id174959051?k=6&m=174959051&s=612x612&w=0&h=2XeW-p_0yK-kY0sVlDkT3b3zRzglZL0yfACV1HFhCMA='
+    layoutStyle: 'center'
   }
 
   _save = () => {
@@ -204,7 +199,8 @@ export default class DrawingTool extends Component {
     }
     this.setState({
       sketchWidth: maxWidth,
-      sketchHeight: maxHeight
+      sketchHeight: maxHeight,
+      windowWidth: window.innerWidth
     })
   }
   
@@ -304,10 +300,8 @@ export default class DrawingTool extends Component {
               lineColor={this.state.lineColor}
               lineWidth={this.state.lineWidth}
               eraserLineWidth={this.state.eraserLineWidth}
-              backgroundColor="transparent"
               height={this.state.sketchHeight}
               width={this.state.sketchWidth}
-              forceValue={true}
               onChange={this._onSketchChange}
               isEraser={this.state.isEraser}
               spriteNumber={this.state.spriteNumber}
@@ -331,6 +325,7 @@ export default class DrawingTool extends Component {
               lineColor={this.state.lineColor}
               rgbColor={this.state.rgbColor}
               colors={colors}
+              windowWidth={this.state.windowWidth}
             />
           </PanelContainer>
         </SketchContainer>

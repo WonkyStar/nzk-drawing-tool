@@ -17,7 +17,6 @@ class SketchField extends PureComponent {
     lineColor: PropTypes.string,
     lineWidth: PropTypes.number,
     eraserLineWidth: PropTypes.number,
-    backgroundColor: PropTypes.string,
     opacity: PropTypes.number,
     undoSteps: PropTypes.number,
     tool: PropTypes.string,
@@ -35,7 +34,6 @@ class SketchField extends PureComponent {
     lineColor: 'white',
     lineWidth: 30,
     eraserLineWidth: 30,
-    backgroundColor: 'transparent',
     opacity: 1.0,
     undoSteps: 25,
     tool: Tool.Pencil,
@@ -209,21 +207,12 @@ class SketchField extends PureComponent {
     canvas.calcOffset()
   }
 
-  /* Sets the background color for this sketch */
-  _backgroundColor = color => {
-    if (!color) return
-    let canvas = this._fc
-    canvas.setBackgroundColor(color, () => canvas.renderAll())
-  }
-
   _bringToFront = obj => {
     let canvas = this._fc
     canvas.bringToFront(obj)
   }
 
-  /* Zoom the drawing by the factor specified
-   * The zoom factor is a percentage with regards the original, for example if factor is set to 2
-   * it will double the size whereas if it is set to 0.5 it will half the size */
+  /* Zoom the drawing by the factor specified */
   zoom = factor => {
     let canvas = this._fc
     let objects = canvas.getObjects()
@@ -345,7 +334,7 @@ class SketchField extends PureComponent {
   }
 
   componentDidMount = () => {
-    let { tool, value, defaultValue, undoSteps, backgroundColor } = this.props
+    let { tool, value, defaultValue, undoSteps } = this.props
 
     let canvas = (this._fc = new fabric.Canvas(this._canvas, {
       preserveObjectStacking: true
@@ -355,8 +344,6 @@ class SketchField extends PureComponent {
     let selectedTool = this._tools[tool]
     selectedTool.configureCanvas(this.props)
     this._selectedTool = selectedTool
-
-    this._backgroundColor(backgroundColor)
 
     // Control resize
     window.addEventListener('resize', this._resize, false)
@@ -411,7 +398,6 @@ class SketchField extends PureComponent {
 
     this._fc.defaultCursor = 'default'
     this._selectedTool.configureCanvas(nextProps)
-    this._backgroundColor(nextProps.backgroundColor)
 
     if (
       this.props.value !== nextProps.value ||

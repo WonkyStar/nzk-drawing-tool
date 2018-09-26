@@ -18,7 +18,7 @@ export default class OpacitySlider extends Component {
     const { height, width, opacity, changeOpacity, thumbColor, lineColor} = this.props
     return (
       <Fragment>
-        <Wrapper height={height} width={width}>
+        <Wrapper height={height} width={width} opacitySlider>
           <SliderWrapper>
             <Shape />
             <SliderInput
