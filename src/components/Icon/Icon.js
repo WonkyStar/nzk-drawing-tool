@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Container, StyledSvg } from './Icon.styles'
 
 var files = require.context(
   '!svg-sprite-loader!../../assets/icons',
@@ -47,46 +48,29 @@ export default class Icon extends Component {
   render() {
     const {
       name,
-      nameTo,
       color,
       glow,
       size,
       active,
-      children,
       clickThrough,
       position,
-      ...props
+      flipped
     } = this.props
 
     const opacity = active === false ? 0 : 1
 
     return (
-      <div
-        className={this.props.className}
-        style={{
-          filter: glow ? `drop-shadow(0 0 5px ${color})` : 'none',
-          position: position || 'relative',
-          height: this.getSize(size),
-          width: this.getSize(size),
-          pointerEvents: 'none'
-        }}
-      >
-        <svg
-          width={this.getSize(size)}
-          height={this.getSize(size)}
+      <Container glow={glow} position={position}>
+        <StyledSvg
+          size={size}
           fill={color}
-          style={{
-            pointerEvents: clickThrough ? 'none' : '',
-            opacity: opacity,
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: `translate(-50%, -50%) ${this.props.flipped ? 'scale(-1)' : ''}`
-          }}
+          clickThrough={clickThrough}
+          opacity={opacity}
+          flipped={flipped}
         >
           <use xlinkHref={'#' + name} />
-        </svg>
-      </div>
+        </StyledSvg>
+      </Container>
     )
   }
 }

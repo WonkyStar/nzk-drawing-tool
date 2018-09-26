@@ -1,12 +1,17 @@
-'use strict'
-
 import FabricCanvasTool from './fabrictool'
+import { colors } from '../index.styles'
 
 class Pencil extends FabricCanvasTool {
   configureCanvas (props) {
     this._canvas.isDrawingMode = true
-    this._canvas.freeDrawingBrush.width = props.lineWidth
-    this._canvas.freeDrawingBrush.color = props.lineColor
+    if (props.isEraser) {
+      this._canvas.freeDrawingBrush.width = props.eraserLineWidth
+      this._canvas.freeDrawingBrush.color = colors.grey
+    }
+    else {
+      this._canvas.freeDrawingBrush.width = props.lineWidth
+      this._canvas.freeDrawingBrush.color = props.lineColor
+    }
     this._canvas.on('path:created', function (e) {
       // Source over = draw
       e.path.globalCompositeOperation = 'source-over'

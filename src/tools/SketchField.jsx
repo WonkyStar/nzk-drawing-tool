@@ -434,9 +434,6 @@ class SketchField extends PureComponent {
 
   _onMouseUp = e => {
     this._selectedTool.doMouseUp(e)
-    // Update the final state to new-generated object
-    // Ignore Path object since it would be created after mouseUp
-    // Assumed the last object in canvas.getObjects() in the newest object
     if (this.props.tool !== Tool.Pencil) {
       const canvas = this._fc
       const objects = canvas.getObjects()

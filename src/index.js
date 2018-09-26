@@ -74,7 +74,8 @@ export default class DrawingTool extends Component {
       originY: 'top',
       selectedSection: 'pencil',
       opacity: 1,
-      spriteNumber: 0
+      spriteNumber: 0,
+      isEraser: false
     }
 
     this.changeTool = this.changeTool.bind(this)
@@ -104,13 +105,8 @@ export default class DrawingTool extends Component {
     aspectRatioHeight: 3,
     colors: colors,
     onBack: () => window.history.back(),
-    layoutStyle: 'center'
-  }
-
-  _selectTool = (event, index, value) => {
-    this.setState({
-      tool: value
-    })
+    layoutStyle: 'center',
+    backgroundImage: 'https://media.istockphoto.com/photos/glittery-pink-background-picture-id174959051?k=6&m=174959051&s=612x612&w=0&h=2XeW-p_0yK-kY0sVlDkT3b3zRzglZL0yfACV1HFhCMA='
   }
 
   _save = () => {
@@ -228,14 +224,23 @@ export default class DrawingTool extends Component {
   }
   
   changeTool(section) {
-    if (section === 'pencil' || section === 'eraser' || section === 'sticker') {
+    if (section === 'pencil' || section === 'sticker') {
       this.setState({
         tool: section,
-        selectedSection: section
+        selectedSection: section,
+        isEraser: false
       })
-    } else {
+    } else if (section === 'eraser') {
       this.setState({
-        selectedSection: section
+        tool: 'pencil',
+        selectedSection: section,
+        isEraser: true
+      })
+    }
+      else {
+      this.setState({
+        selectedSection: section,
+        isEraser: false
       })
     }
   }
@@ -294,7 +299,7 @@ export default class DrawingTool extends Component {
           >
             <SketchField
               name="sketch"
-              className="canvas-area"
+              className="canvas-sketch-field"
               ref={c => (this._sketch = c)}
               lineColor={this.state.lineColor}
               lineWidth={this.state.lineWidth}
@@ -304,7 +309,7 @@ export default class DrawingTool extends Component {
               width={this.state.sketchWidth}
               forceValue={true}
               onChange={this._onSketchChange}
-              tool={this.state.tool}
+              isEraser={this.state.isEraser}
               spriteNumber={this.state.spriteNumber}
             />
           </CanvasContainer>
