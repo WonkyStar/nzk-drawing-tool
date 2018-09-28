@@ -59,7 +59,7 @@ export default class DrawingTool extends Component {
     this.state = {
       lineWidth: 30,
       eraserLineWidth: 30,
-      rgbColor: '255, 255, 255',
+      rgbColor: '174, 0, 255',
       tool: Tools.Pencil,
       drawings: [],
       canUndo: false,
@@ -106,17 +106,13 @@ export default class DrawingTool extends Component {
 
   _save = () => {
     const imageJSON = this._sketch.toJSON()
-    // imageJSON contains an 'objects' key which is an array of strokes
-    if (imageJSON.objects.length >= 5) {
-      const imagePNG = this._sketch.toDataURL({ multiplier: 4 })
-      // imagePNG is a long image string
-      this.setState({ drawingSnapshot: imagePNG })
-      console.log('image saved: ', imagePNG)
-      return imagePNG
-    } else {
-      return new Error('Drawing needs 5 lines before you can save!')
+    const dataUri = this._sketch.toDataURL({ multiplier: 4 })
+    this.setState({ drawingSnapshot: dataUri })
+    return {
+      dataUri,
+      drawingStrokes: imageJSON.objects.length
     }
-  }
+  } 
 
   _undo = () => {
     this._sketch.undo()

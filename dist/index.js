@@ -80,16 +80,12 @@ var DrawingTool = function (_Component) {
 
     _this._save = function () {
       var imageJSON = _this._sketch.toJSON();
-      // imageJSON contains an 'objects' key which is an array of strokes
-      if (imageJSON.objects.length >= 5) {
-        var imagePNG = _this._sketch.toDataURL({ multiplier: 4 });
-        // imagePNG is a long image string
-        _this.setState({ drawingSnapshot: imagePNG });
-        console.log('image saved: ', imagePNG);
-        return imagePNG;
-      } else {
-        return new Error('Drawing needs 5 lines before you can save!');
-      }
+      var dataUri = _this._sketch.toDataURL({ multiplier: 4 });
+      _this.setState({ drawingSnapshot: dataUri });
+      return {
+        dataUri: dataUri,
+        drawingStrokes: imageJSON.objects.length
+      };
     };
 
     _this._undo = function () {
@@ -133,7 +129,7 @@ var DrawingTool = function (_Component) {
     _this.state = {
       lineWidth: 30,
       eraserLineWidth: 30,
-      rgbColor: '255, 255, 255',
+      rgbColor: '174, 0, 255',
       tool: _index2.Tools.Pencil,
       drawings: [],
       canUndo: false,
