@@ -11,6 +11,8 @@ import Sticker from './sticker'
 
 const fabric = require('fabric').fabric
 
+let href = window.location.href
+
 // Sketch tool based on react-sketch
 class SketchField extends PureComponent {
   static propTypes = {
@@ -69,15 +71,6 @@ class SketchField extends PureComponent {
     }
   }
 
-  /* Add an image as object to the canvas
-   * @param dataUrl the image url or Data Url
-   * @param options object to pass and change some options when loading image, the format of the object is:
-   * {
-   *   left: <Number: distance from left of canvas>,
-   *   top: <Number: distance from top of canvas>,
-   *   scale: <Number: initial scale of image>
-   * } 
-   */
   addImg = (dataUrl, options = {}) => {
     let canvas = this._fc
     fabric.Image.fromURL(dataUrl, oImg => {
@@ -109,9 +102,12 @@ class SketchField extends PureComponent {
     let objState = obj.toJSON()
     obj.originalState = objState
     let state = JSON.stringify(objState)
-
     // object, previous state, current state
     this._history.keep([obj, state, state])
+    
+    // cache object state in session storage
+    let imageJSON = this._fc.toJSON()
+    sessionStorage.setItem(href, JSON.stringify(imageJSON))
 
     // change object to bring sprites to front
     const spritesObject = this._fc.getObjects().reduce((acc, item) => {

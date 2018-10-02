@@ -163,6 +163,11 @@ export default class DrawingTool extends Component {
     this.setState({
       lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
     })
+
+    const sessionStorageDrawing = sessionStorage.getItem(window.location.href)
+    if (sessionStorageDrawing) {
+      this._sketch.fromJSON(sessionStorageDrawing)
+    }
   }
 
   componentDidUpdate(prevProps) {
