@@ -117,7 +117,7 @@ export default class DrawingTool extends Component {
   }
   
   _quit = () => {
-    sessionStorage.clear()
+    return sessionStorage.removeItem(href)
   }
 
   _undo = () => {

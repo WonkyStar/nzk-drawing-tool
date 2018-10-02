@@ -47,6 +47,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var fabric = require('fabric').fabric;
 
+var href = window.location.href;
+
+window.addEventListener('beforeunload', function (e) {
+  // Cancel the event as stated by the standard.
+  e.preventDefault();
+  // Chrome requires returnValue to be set.
+  var message = "Are you sure you want to leave this page?"(e || window.event).returnValue = message;
+  return message;
+});
+
 // Sketch tool based on react-sketch
 
 var SketchField = function (_PureComponent) {
@@ -110,9 +120,12 @@ var SketchField = function (_PureComponent) {
       var objState = obj.toJSON();
       obj.originalState = objState;
       var state = JSON.stringify(objState);
-
       // object, previous state, current state
       _this._history.keep([obj, state, state]);
+
+      // cache object state in session storage
+      var imageJSON = _this._fc.toJSON();
+      sessionStorage.setItem(href, JSON.stringify(imageJSON));
 
       // change object to bring sprites to front
       var spritesObject = _this._fc.getObjects().reduce(function (acc, item) {
@@ -420,17 +433,6 @@ var SketchField = function (_PureComponent) {
 
 
   // Disable touch Scrolling on Canvas
-
-
-  /* Add an image as object to the canvas
-   * @param dataUrl the image url or Data Url
-   * @param options object to pass and change some options when loading image, the format of the object is:
-   * {
-   *   left: <Number: distance from left of canvas>,
-   *   top: <Number: distance from top of canvas>,
-   *   scale: <Number: initial scale of image>
-   * } 
-   */
 
 
   // Action when an object is added to the canvas
