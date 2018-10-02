@@ -38,8 +38,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var href = window.location.href;
-
 var colors = [{
   rgb: '255, 255, 255',
   isLocked: false
@@ -91,7 +89,7 @@ var DrawingTool = function (_Component) {
     };
 
     _this._quit = function () {
-      return sessionStorage.removeItem(href);
+      return sessionStorage.removeItem(_this.state.href);
     };
 
     _this._undo = function () {
@@ -166,12 +164,12 @@ var DrawingTool = function (_Component) {
       window.addEventListener('resize', this.updateWindowDimensions);
 
       this.setBackground();
-
       this.setState({
-        lineColor: 'rgba(' + this.state.rgbColor + ', ' + this.state.opacity + ')'
+        lineColor: 'rgba(' + this.state.rgbColor + ', ' + this.state.opacity + ')',
+        href: window.location.href
       });
 
-      var sessionStorageDrawing = sessionStorage.getItem(href);
+      var sessionStorageDrawing = sessionStorage.getItem(this.state.href);
       if (sessionStorageDrawing) {
         this._sketch.fromJSON(sessionStorageDrawing);
       }

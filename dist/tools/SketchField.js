@@ -47,8 +47,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var fabric = require('fabric').fabric;
 
-var href = window.location.href;
-
 window.addEventListener('beforeunload', function (e) {
   // Cancel the event as stated by the standard.
   e.preventDefault();
@@ -125,6 +123,7 @@ var SketchField = function (_PureComponent) {
 
       // cache object state in session storage
       var imageJSON = _this._fc.toJSON();
+      var href = window.location.href;
       sessionStorage.setItem(href, JSON.stringify(imageJSON));
 
       // change object to bring sprites to front

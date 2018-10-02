@@ -11,8 +11,6 @@ import LeftPanel from './components/LeftPanel/LeftPanel'
 import RightPanel from './components/RightPanel/RightPanel'
 import { SketchField, Tools } from './tools/index'
 
-const href = window.location.href
-
 const colors = [
   {
     rgb: '255, 255, 255',
@@ -117,7 +115,7 @@ export default class DrawingTool extends Component {
   }
   
   _quit = () => {
-    return sessionStorage.removeItem(href)
+    return sessionStorage.removeItem(this.state.href)
   }
 
   _undo = () => {
@@ -165,12 +163,12 @@ export default class DrawingTool extends Component {
     window.addEventListener('resize', this.updateWindowDimensions)
 
     this.setBackground()
-
     this.setState({
-      lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
+      lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`,
+      href: window.location.href
     })
 
-    const sessionStorageDrawing = sessionStorage.getItem(href)
+    const sessionStorageDrawing = sessionStorage.getItem(this.state.href)
     if (sessionStorageDrawing) {
       this._sketch.fromJSON(sessionStorageDrawing)
     }

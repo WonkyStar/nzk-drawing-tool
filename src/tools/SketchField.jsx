@@ -11,8 +11,6 @@ import Sticker from './sticker'
 
 const fabric = require('fabric').fabric
 
-let href = window.location.href
-
 window.addEventListener('beforeunload', e => {
   // Cancel the event as stated by the standard.
   e.preventDefault()
@@ -116,6 +114,7 @@ class SketchField extends PureComponent {
     
     // cache object state in session storage
     let imageJSON = this._fc.toJSON()
+    let href = window.location.href
     sessionStorage.setItem(href, JSON.stringify(imageJSON))
 
     // change object to bring sprites to front
