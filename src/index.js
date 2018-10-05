@@ -115,7 +115,7 @@ export default class DrawingTool extends Component {
   }
   
   _quit = () => {
-    return sessionStorage.removeItem(this.state.href)
+    return sessionStorage.removeItem(window.location.href)
   }
 
   _undo = () => {
@@ -164,11 +164,10 @@ export default class DrawingTool extends Component {
 
     this.setBackground()
     this.setState({
-      lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`,
-      href: window.location.href
+      lineColor: `rgba(${this.state.rgbColor}, ${this.state.opacity})`
     })
 
-    const sessionStorageDrawing = sessionStorage.getItem(this.state.href)
+    const sessionStorageDrawing = sessionStorage.getItem(window.location.href)
     if (sessionStorageDrawing) {
       this._sketch.fromJSON(sessionStorageDrawing)
     }
