@@ -86,7 +86,6 @@ export default class DrawingTool extends Component {
     aspectRatioWidth: PropTypes.number,
     aspectRatioHeight: PropTypes.number,
     backgroundImage: PropTypes.string,
-    drawingToEdit: PropTypes.string,
     colors: PropTypes.array,
     stickers: PropTypes.array,
     headerStyle: PropTypes.string,
@@ -113,7 +112,7 @@ export default class DrawingTool extends Component {
       drawingStrokes: imageJSON.objects.length
     }
   }
-  
+
   _quit = () => {
     return sessionStorage.removeItem(window.location.href)
   }
@@ -144,9 +143,7 @@ export default class DrawingTool extends Component {
       drawingSnapshot: [],
       spriteNumber: 0
     })
-    this.props.backgroundImage || this.props.drawingToEdit
-      ? this.setBackground()
-      : null
+    this.props.backgroundImage ? this.setBackground() : null
   }
 
   _onSketchChange = () => {
@@ -174,10 +171,7 @@ export default class DrawingTool extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      (!prevProps.backgroundImage && this.props.backgroundImage) ||
-      (!prevProps.drawingToEdit && this.props.drawingToEdit)
-    ) {
+    if (prevProps.backgroundImage !== this.props.backgroundImage) {
       this.setBackground()
     }
   }
@@ -206,13 +200,10 @@ export default class DrawingTool extends Component {
   }
 
   setBackground() {
-    const { drawingToEdit, backgroundImage } = this.props
-    if (drawingToEdit && backgroundImage) {
-      return this._sketch.setBackground(drawingToEdit)
-    } else if (backgroundImage) {
+    const { backgroundImage } = this.props
+    if (backgroundImage) {
       return this._sketch.setBackground(backgroundImage)
     }
-    return
   }
 
   updateSpriteNumber() {
@@ -279,7 +270,6 @@ export default class DrawingTool extends Component {
       headerStyle,
       headerTitle,
       backgroundImage,
-      drawingToEdit,
       colors,
       layoutStyle,
       onBack
@@ -305,7 +295,6 @@ export default class DrawingTool extends Component {
           </PanelContainer>
           <CanvasContainer
             backgroundImage={backgroundImage}
-            drawingToEdit={drawingToEdit}
             height={this.state.sketchHeight}
             width={this.state.sketchWidth}
           >
