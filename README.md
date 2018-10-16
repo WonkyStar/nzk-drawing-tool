@@ -1,4 +1,4 @@
-# NZK Drawing Tool :pencil:
+# NZK Drawing Tool :art:
 
 This is a free drawing tool using [Fabric.js](http://fabricjs.com/) and inspired by [react-sketch](https://www.npmjs.com/package/react-sketch).
 
