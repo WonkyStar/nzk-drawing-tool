@@ -11,15 +11,6 @@ import Sticker from './sticker'
 
 const fabric = require('fabric').fabric
 
-window.addEventListener('beforeunload', e => {
-  // Cancel the event as stated by the standard.
-  e.preventDefault()
-  // Chrome requires returnValue to be set.
-  const message = "Are you sure you want to leave this page?"
-  (e || window.event).returnValue = message
-  return message
-})
-
 // Sketch tool based on react-sketch
 class SketchField extends PureComponent {
   static propTypes = {

@@ -67,7 +67,6 @@ export const colors = {
 
 export const Container = styled.div`
   margin: auto;
-  height: 100%;
   width: 100%;
   background-size: cover;
 `

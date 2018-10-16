@@ -47,14 +47,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var fabric = require('fabric').fabric;
 
-window.addEventListener('beforeunload', function (e) {
-  // Cancel the event as stated by the standard.
-  e.preventDefault();
-  // Chrome requires returnValue to be set.
-  var message = "Are you sure you want to leave this page?"(e || window.event).returnValue = message;
-  return message;
-});
-
 // Sketch tool based on react-sketch
 
 var SketchField = function (_PureComponent) {
