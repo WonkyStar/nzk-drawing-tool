@@ -278,7 +278,7 @@ var DrawingTool = function (_Component) {
   }, {
     key: 'changeOpacity',
     value: function changeOpacity(e) {
-      var opacityValue = Number(e.target.value / 10);
+      var opacityValue = Number(e.target.value / 100);
       this.setState({
         opacity: opacityValue,
         lineColor: 'rgba(' + this.state.rgbColor + ', ' + opacityValue + ')'

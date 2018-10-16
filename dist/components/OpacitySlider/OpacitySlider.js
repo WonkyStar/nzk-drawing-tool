@@ -56,9 +56,9 @@ var OpacitySlider = function (_Component) {
             _react2.default.createElement(_OpacitySlider.Shape, null),
             _react2.default.createElement(_OpacitySlider.SliderInput, {
               type: 'range',
-              min: '5',
-              max: '10',
-              value: opacity * 10,
+              min: '10',
+              max: '100',
+              value: opacity * 100,
               className: 'slider',
               id: 'myRange',
               onChange: changeOpacity,

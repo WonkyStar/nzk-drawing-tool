@@ -258,7 +258,7 @@ export default class DrawingTool extends Component {
   }
 
   changeOpacity(e) {
-    const opacityValue = Number(e.target.value / 10)
+    const opacityValue = Number(e.target.value / 100)
     this.setState({
       opacity: opacityValue,
       lineColor: `rgba(${this.state.rgbColor}, ${opacityValue})`
