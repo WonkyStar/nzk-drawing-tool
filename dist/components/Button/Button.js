@@ -151,6 +151,7 @@ Button.propTypes = {
   round: _propTypes2.default.bool,
   onClick: _propTypes2.default.func,
   bgColor: _propTypes2.default.any,
+  rgbColor: _propTypes2.default.string,
   bgColorTo: _propTypes2.default.any,
   backgroundImage: _propTypes2.default.string,
   type: _propTypes2.default.oneOf(['button', 'reset', 'submit']),

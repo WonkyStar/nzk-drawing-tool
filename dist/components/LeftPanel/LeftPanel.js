@@ -88,6 +88,7 @@ var LeftPanel = function (_Component) {
     value: function getActiveButtonProps() {
       return {
         bgColor: _index.colors.white,
+        rgbColor: '255, 255, 255',
         columnView: true,
         shadow: true,
         round: true,
@@ -99,6 +100,7 @@ var LeftPanel = function (_Component) {
     value: function getInactiveButtonProps() {
       return {
         bgColor: _index.colors.blue,
+        rgbColor: '85, 172, 241',
         columnView: true,
         shadow: true,
         round: true,

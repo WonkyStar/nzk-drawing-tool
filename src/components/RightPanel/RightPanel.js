@@ -64,6 +64,7 @@ export default class RightPanel extends Component {
           round
           size={this.isColorActive(color.rgb) ? 'x-large' : 'large'}
           bgColor={`rgba(${color.rgb}, ${this.props.opacity})`}
+          rgbColor={color.rgb}
           onClick={
             !color.isLocked
               ? () => [
@@ -96,6 +97,7 @@ export default class RightPanel extends Component {
   getInactiveButtonProps () {
     return {
       bgColor: colors.blue,
+      rgbColor: '85, 172, 241',
       columnView: true,
       shadow: true,
       round: true,

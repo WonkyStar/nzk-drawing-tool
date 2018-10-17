@@ -57,6 +57,7 @@ export default class LeftPanel extends Component {
   getActiveButtonProps () {
     return {
       bgColor: colors.white,
+      rgbColor: '255, 255, 255',
       columnView: true,
       shadow: true,
       round: true,
@@ -67,6 +68,7 @@ export default class LeftPanel extends Component {
   getInactiveButtonProps () {
     return {
       bgColor: colors.blue,
+      rgbColor: '85, 172, 241',
       columnView: true,
       shadow: true,
       round: true,

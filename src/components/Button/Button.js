@@ -17,6 +17,7 @@ export default class Button extends Component {
     round: PropTypes.bool,
     onClick: PropTypes.func,
     bgColor: PropTypes.any,
+    rgbColor: PropTypes.string,
     bgColorTo: PropTypes.any,
     backgroundImage: PropTypes.string,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),

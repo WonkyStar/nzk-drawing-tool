@@ -111,6 +111,7 @@ var RightPanel = function (_Component) {
             round: true,
             size: _this2.isColorActive(color.rgb) ? 'x-large' : 'large',
             bgColor: 'rgba(' + color.rgb + ', ' + _this2.props.opacity + ')',
+            rgbColor: color.rgb,
             onClick: !color.isLocked ? function () {
               return [_this2.props.changeColor(color.rgb), _this2.setScrollHeight()];
             } : null
@@ -138,6 +139,7 @@ var RightPanel = function (_Component) {
     value: function getInactiveButtonProps() {
       return {
         bgColor: _index.colors.blue,
+        rgbColor: '85, 172, 241',
         columnView: true,
         shadow: true,
         round: true,

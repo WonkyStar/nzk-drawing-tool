@@ -28,19 +28,19 @@ const boxShadowStyle = props => {
     switch (props.size) {
       case 'small':
         return css`
-          box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(${props.rgbColor}, 0.6);
         `
       case 'regular':
         return css`
-          box-shadow: 0 3px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(${props.rgbColor}, 0.6);
         `
       case 'large':
         return css`
-          box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(${props.rgbColor}, 0.6);
         `
       case 'x-large':
         return css`
-          box-shadow: 0 6px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(${props.rgbColor}, 0.6);
         `
       default:
         return null

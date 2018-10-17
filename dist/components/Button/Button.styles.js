@@ -8,10 +8,10 @@ exports.StyledButtonDiv = exports.StyledButtonSpan = exports.StyledButtonLink = 
 var _templateObject = _taggedTemplateLiteral(['\n  background-color: ', ';\n'], ['\n  background-color: ', ';\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n    color: ', ';\n  '], ['\n    color: ', ';\n  ']),
     _templateObject3 = _taggedTemplateLiteral(['\n\t\tborder-radius: ', ';\n  '], ['\n\t\tborder-radius: ', ';\n  ']),
-    _templateObject4 = _taggedTemplateLiteral(['\n          box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);\n        '], ['\n          box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);\n        ']),
-    _templateObject5 = _taggedTemplateLiteral(['\n          box-shadow: 0 3px 0 rgba(0, 0, 0, 0.5);\n        '], ['\n          box-shadow: 0 3px 0 rgba(0, 0, 0, 0.5);\n        ']),
-    _templateObject6 = _taggedTemplateLiteral(['\n          box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5);\n        '], ['\n          box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5);\n        ']),
-    _templateObject7 = _taggedTemplateLiteral(['\n          box-shadow: 0 6px 0 rgba(0, 0, 0, 0.5);\n        '], ['\n          box-shadow: 0 6px 0 rgba(0, 0, 0, 0.5);\n        ']),
+    _templateObject4 = _taggedTemplateLiteral(['\n          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        ']),
+    _templateObject5 = _taggedTemplateLiteral(['\n          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        ']),
+    _templateObject6 = _taggedTemplateLiteral(['\n          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(', ', 0.6);\n        ']),
+    _templateObject7 = _taggedTemplateLiteral(['\n          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(', ', 0.6);\n        ']),
     _templateObject8 = _taggedTemplateLiteral(['\n    ', ';\n  '], ['\n    ', ';\n  ']),
     _templateObject9 = _taggedTemplateLiteral(['\n        width: ', ';\n      '], ['\n        width: ', ';\n      ']),
     _templateObject10 = _taggedTemplateLiteral(['\n        height: ', ';\n      '], ['\n        height: ', ';\n      ']),
@@ -69,13 +69,13 @@ var boxShadowStyle = function boxShadowStyle(props) {
   if (props.shadow) {
     switch (props.size) {
       case 'small':
-        return (0, _styledComponents.css)(_templateObject4);
+        return (0, _styledComponents.css)(_templateObject4, props.rgbColor);
       case 'regular':
-        return (0, _styledComponents.css)(_templateObject5);
+        return (0, _styledComponents.css)(_templateObject5, props.rgbColor);
       case 'large':
-        return (0, _styledComponents.css)(_templateObject6);
+        return (0, _styledComponents.css)(_templateObject6, props.rgbColor);
       case 'x-large':
-        return (0, _styledComponents.css)(_templateObject7);
+        return (0, _styledComponents.css)(_templateObject7, props.rgbColor);
       default:
         return null;
     }
