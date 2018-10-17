@@ -87,7 +87,7 @@ export const SketchContainer = styled.div`
 `
 
 const canvasContainerProps = props => {
-  if (props.backgroundImage || props.drawingToEdit) {
+  if (!props.backgroundImage) {
     return css`
       border-top: 2px solid ${colors.white};
       box-shadow: 0 6px 0 ${colors.shadow};
@@ -99,4 +99,13 @@ export const CanvasContainer = styled.div`
   width: ${props => props.width || null};
   height: ${props => props.height || null};
   ${canvasContainerProps};
+
+  &:after {
+    content: '';
+    background: url(${require('./assets/canvas-shadow.png')}) no-repeat;
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: ${props => props.width || null};
+  }
 `
