@@ -28,19 +28,19 @@ const boxShadowStyle = props => {
     switch (props.size) {
       case 'small':
         return css`
-          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(${props.rgbColor}, 0.6);
+          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(${props.rgbColor}, 1);
         `
       case 'regular':
         return css`
-          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(${props.rgbColor}, 0.6);
+          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(${props.rgbColor}, 1);
         `
       case 'large':
         return css`
-          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(${props.rgbColor}, 0.6);
+          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(${props.rgbColor}, 1);
         `
       case 'x-large':
         return css`
-          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(${props.rgbColor}, 0.6);
+          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(${props.rgbColor}, 1);
         `
       default:
         return null
@@ -147,8 +147,8 @@ const roundStyle = props => {
           padding: 0px;
 
           @media(max-width: ${tabletMaxWidth}px) {
-            width: 35px;
-            height: 35px;
+            width: 38px;
+            height: 38px;
           }
         `
       case 'x-large':
@@ -287,7 +287,7 @@ export const StyledButton = styled.button.attrs({
   height: ${props => props.height ? props.height : ""};
 
   .StyledButton ~ & {
-    ${props => props.columnView ? 'margin-top: 20px' : 'margin-left: 10px'}
+    ${props => props.columnView ? 'margin-top: 8px' : 'margin-left: 10px'}
   }
 
   &:active {

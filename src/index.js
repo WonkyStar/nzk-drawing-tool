@@ -7,13 +7,26 @@ import {
   CanvasContainer
 } from './index.styles'
 import DrawingToolHeader from './components/DrawingToolHeader/DrawingToolHeader'
-import LeftPanel from './components/LeftPanel/LeftPanel'
+import ToolPanel from './components/ToolPanel/ToolPanel'
 import RightPanel from './components/RightPanel/RightPanel'
+import ColourPanel from './components/ColourPanel/ColourPanel'
 import { SketchField, Tools } from './tools/index'
 
 const colors = [
   {
-    rgb: '255, 255, 255',
+    rgb: '104, 59, 17',
+    isLocked: false
+  },
+  {
+    rgb: '174, 0, 255',
+    isLocked: false
+  },
+  {
+    rgb: '255, 0, 152',
+    isLocked: false
+  },
+  {
+    rgb: '220, 6, 19',
     isLocked: false
   },
   {
@@ -33,15 +46,7 @@ const colors = [
     isLocked: false
   },
   {
-    rgb: '174, 0, 255',
-    isLocked: false
-  },
-  {
-    rgb: '255, 0, 152',
-    isLocked: false
-  },
-  {
-    rgb: '104, 59, 17',
+    rgb: '255, 255, 255',
     isLocked: false
   },
   {
@@ -288,9 +293,22 @@ export default class DrawingTool extends Component {
         )}
         <SketchContainer layoutStyle={layoutStyle}>
           <PanelContainer>
-            <LeftPanel
-              changeTool={this.changeTool}
+            <ToolPanel
               selectedSection={this.state.selectedSection}
+              changeTool={this.changeTool}
+              undo={this._undo}
+              redo={this._redo}
+              clear={this._clear}
+              eraserLineWidth={this.state.eraserLineWidth}
+              changeEraserLineWidth={this.changeEraserLineWidth}
+              lineWidth={this.state.lineWidth}
+              lineColor={this.state.lineColor}
+              changeLineWidth={this.changeLineWidth}
+              changeColor={this.changeColor}
+              opacity={this.state.opacity}
+              changeOpacity={this.changeOpacity}
+              rgbColor={this.state.rgbColor}
+              windowWidth={this.state.windowWidth}
             />
           </PanelContainer>
           <CanvasContainer
@@ -313,24 +331,11 @@ export default class DrawingTool extends Component {
             />
           </CanvasContainer>
           <PanelContainer>
-            <RightPanel
-              selectedSection={this.state.selectedSection}
-              undo={this._undo}
-              redo={this._redo}
-              clear={this._clear}
-              canUndo={this.state.canUndo}
-              canRedo={this.state.canRedo}
-              changeLineWidth={this.changeLineWidth}
-              changeEraserLineWidth={this.changeEraserLineWidth}
-              lineWidth={this.state.lineWidth}
-              eraserLineWidth={this.state.eraserLineWidth}
-              changeOpacity={this.changeOpacity}
-              changeColor={this.changeColor}
-              opacity={this.state.opacity}
-              lineColor={this.state.lineColor}
-              rgbColor={this.state.rgbColor}
+            <ColourPanel
               colors={colors}
-              windowWidth={this.state.windowWidth}
+              opacity={this.state.opacity}
+              rgbColor={this.state.rgbColor}
+              changeColor={this.changeColor}
             />
           </PanelContainer>
         </SketchContainer>

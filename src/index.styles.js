@@ -45,7 +45,7 @@ const getFontSize = fontInputs => {
     (acc, fontSize) => ({
       ...acc,
       [fontSize]: css`
-        ${fontInputs[fontSize]}px
+        font-size: ${fontInputs[fontSize]}px;
       `
     }),
     {}
