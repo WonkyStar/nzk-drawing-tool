@@ -47,7 +47,9 @@ class SliderWithState extends Component {
 
 storiesOf("DrawingTool", module)
   .add("Default", () => (
-    <DrawingTool />
+    <DrawingTool
+      backgroundImage={require('../src/assets/images/default-background.jpg')}
+    />
   ))
   .add("Slider - width", () => (
     <SliderWithState type='width' />

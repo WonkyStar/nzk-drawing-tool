@@ -91,13 +91,18 @@ const canvasContainerProps = props => {
   if (props.backgroundImage || props.drawingToEdit) {
     return css`
       border-top: 2px solid ${colors.white};
-      box-shadow: 0 6px 0 ${colors.shadow};
     `
   }
 }
 
 export const CanvasContainer = styled.div`
-  width: ${props => props.width || null};
-  height: ${props => props.height || null};
+  width: ${props => `${props.width}px` || null};
+  height: ${props => `${props.height}px` || null};
   ${canvasContainerProps};
+`
+
+export const CanvasShadow = styled.div`
+  background: url(${require('./assets/images/canvas-shadow.png')}) no-repeat;
+  background-size: 100% auto;
+  height: 15px;
 `

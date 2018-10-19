@@ -4,7 +4,8 @@ import {
   Container,
   PanelContainer,
   SketchContainer,
-  CanvasContainer
+  CanvasContainer,
+  CanvasShadow
 } from './index.styles'
 import DrawingToolHeader from './components/DrawingToolHeader/DrawingToolHeader'
 import ToolPanel from './components/ToolPanel/ToolPanel'
@@ -279,6 +280,7 @@ export default class DrawingTool extends Component {
       layoutStyle,
       onBack
     } = this.props
+
     return (
       <Container>
         {headerStyle && (
@@ -329,6 +331,7 @@ export default class DrawingTool extends Component {
               isEraser={this.state.isEraser}
               spriteNumber={this.state.spriteNumber}
             />
+            <CanvasShadow />
           </CanvasContainer>
           <PanelContainer>
             <ColourPanel
