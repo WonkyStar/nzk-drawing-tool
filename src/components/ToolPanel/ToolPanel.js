@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Button from '../Button/Button'
 import Icon from '../Icon/Icon'
-import WidthSlider from '../WidthSlider/WidthSlider'
-import OpacitySlider from '../OpacitySlider/OpacitySlider'
+import Slider from '../Slider/Slider'
 import { Tools } from '../../tools'
 import { Container, Panel } from '../ColourPanel/ColourPanel.styles'
 import { colors } from '../../index.styles'
@@ -22,6 +21,11 @@ const buttons = [
     onClick: (props) => props.clear(),
     type: 'trash',
     icon: 'trash'
+  },
+  {
+    onClick: (props) => {},
+    type: 'sticker',
+    icon: 'sticker'
   },
   {
     tool: Tools.Eraser,
@@ -128,10 +132,10 @@ export default class ToolPanel extends Component {
   renderEraserSlider () {
     const { changeEraserLineWidth, eraserLineWidth } = this.props
     return (
-      <WidthSlider
+      <Slider
+        type='width'
         changeWidth={changeEraserLineWidth}
         lineWidth={eraserLineWidth}
-        thumbColor={colors.grey}
       />
     )
   }
@@ -139,20 +143,23 @@ export default class ToolPanel extends Component {
   renderWidthSlider () {
     const { changeLineWidth, lineWidth, lineColor } = this.props
     return (
-      <WidthSlider
+      <Slider
+        type='width'
         changeWidth={changeLineWidth}
         lineWidth={lineWidth}
-        thumbColor={lineColor}
+        lineColor={lineColor}
       />
     )
   }
 
   renderOpacitySlider () {
-    const { changeOpacity, opacity, lineColor } = this.props
+    const { changeOpacity, opacity, lineWidth, lineColor } = this.props
     return (
-      <OpacitySlider
+      <Slider
+        type='opacity'
         changeOpacity={changeOpacity}
         opacity={opacity}
+        lineWidth={lineWidth}
         lineColor={lineColor}
       />
     )

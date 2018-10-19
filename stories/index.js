@@ -1,27 +1,60 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { storiesOf } from '@storybook/react'
 
 import DrawingTool from '../src/index'
-import OpacitySlider from '../src/components/OpacitySlider/OpacitySlider'
-import WidthSlider from '../src/components/WidthSlider/WidthSlider'
+import Slider from '../src/components/Slider/Slider'
 import Button from '../src/components/Button/Button'
 
-  storiesOf("DrawingTool", module)
+class SliderWithState extends Component {
+  constructor() {
+    super()
+    this.state = {
+      lineColor: 'rgba(255, 145, 0, 0.5)',
+      lineWidth: 30,
+      opacity: 0.5
+    }
+    this.changeLineWidth = this.changeLineWidth.bind(this)
+    this.changeOpacity = this.changeOpacity.bind(this)
+  }
+
+  changeLineWidth(e) {
+    this.setState({
+      lineWidth: Number(e.target.value)
+    })
+  }
+
+  changeOpacity(e) {
+    const opacityValue = Number(e.target.value / 100)
+    this.setState({
+      opacity: opacityValue,
+      lineColor: `rgba(${this.state.rgbColor}, ${opacityValue})`
+    })
+  }
+
+  render() {
+    return (
+      <Slider
+        type={this.props.type}
+        lineWidth={this.state.lineWidth}
+        changeWidth={this.changeLineWidth}
+        opacity={this.state.opacity}
+        changeOpacity={this.changeOpacity}
+        lineColor={this.state.lineColor}
+      />
+    )
+  }
+}
+
+storiesOf("DrawingTool", module)
   .add("Default", () => (
     <DrawingTool />
   ))
-
-  storiesOf('DrawingTool', module)
-  .add('OpacitySlider', () => (
-    <OpacitySlider value={1} height={300} width={30} thumbColor={'#FEFC39'} />
+  .add("Slider - width", () => (
+    <SliderWithState type='width' />
   ))
-
-  storiesOf('DrawingTool', module)
-  .add('WidthSlider', () => (
-    <WidthSlider value={20} height={300} width={30} thumbColor={'#FEFC39'} />
+  .add("Slider - opacity", () => (
+    <SliderWithState type='opacity' />
   ))
-
-  storiesOf("DrawingTool", module)
   .add("Button", () => (
     <Button>Save</Button>
   ))

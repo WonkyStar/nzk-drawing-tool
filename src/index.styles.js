@@ -57,6 +57,7 @@ export const fontSize = getFontSize(fontInputs)
 export const colors = {
   white: '#ffffff',
   grey: '#ebebeb',
+  darkGrey: '#bfbfbf',
   orange: '#F7931E',
   yellow: '#FCEE21',
   blue: '#55acf1',

@@ -71,7 +71,7 @@ export default class DrawingTool extends Component {
       canRedo: false,
       sketchWidth: null,
       sketchHeight: null,
-      selectedSection: 'pencil',
+      selectedSection: 'width',
       opacity: 1,
       spriteNumber: 0,
       isEraser: false,
