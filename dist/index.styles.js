@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CanvasContainer = exports.SketchContainer = exports.PanelContainer = exports.Container = exports.colors = exports.fontSize = exports.fontInputs = exports.fonts = exports.tabletMaxWidth = exports.phoneMaxWidth = undefined;
+exports.CanvasShadow = exports.CanvasContainer = exports.SketchContainer = exports.PanelContainer = exports.Container = exports.colors = exports.fontSize = exports.fontInputs = exports.fonts = exports.tabletMaxWidth = exports.phoneMaxWidth = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -11,12 +11,13 @@ var _templateObject = _taggedTemplateLiteral(['\n    font-family: \'Libre Basker
     _templateObject2 = _taggedTemplateLiteral(['\n    font-family: \'Open Sans\', sans-serif;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  '], ['\n    font-family: \'Open Sans\', sans-serif;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  ']),
     _templateObject3 = _taggedTemplateLiteral(['\n    font-family: \'NZK\', sans-serif;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  '], ['\n    font-family: \'NZK\', sans-serif;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  ']),
     _templateObject4 = _taggedTemplateLiteral(['\n    font-family: \'Proxima Nova\', sans-serif;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  '], ['\n    font-family: \'Proxima Nova\', sans-serif;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  ']),
-    _templateObject5 = _taggedTemplateLiteral(['\n        ', 'px\n      '], ['\n        ', 'px\n      ']),
+    _templateObject5 = _taggedTemplateLiteral(['\n        font-size: ', 'px;\n      '], ['\n        font-size: ', 'px;\n      ']),
     _templateObject6 = _taggedTemplateLiteral(['\n  margin: auto;\n  width: 100%;\n  background-size: cover;\n'], ['\n  margin: auto;\n  width: 100%;\n  background-size: cover;\n']),
     _templateObject7 = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  margin: 0 10px;\n'], ['\n  display: flex;\n  align-items: center;\n  margin: 0 10px;\n']),
     _templateObject8 = _taggedTemplateLiteral(['\n  position: relative;\n  display: flex;\n  justify-content: ', ';\n  align-items: center;\n  width: 100%;\n  height: calc(100% - 100px);\n'], ['\n  position: relative;\n  display: flex;\n  justify-content: ', ';\n  align-items: center;\n  width: 100%;\n  height: calc(100% - 100px);\n']),
-    _templateObject9 = _taggedTemplateLiteral(['\n      border-top: 2px solid ', ';\n      box-shadow: 0 6px 0 ', ';\n    '], ['\n      border-top: 2px solid ', ';\n      box-shadow: 0 6px 0 ', ';\n    ']),
-    _templateObject10 = _taggedTemplateLiteral(['\n  width: ', ';\n  height: ', ';\n  ', ';\n'], ['\n  width: ', ';\n  height: ', ';\n  ', ';\n']);
+    _templateObject9 = _taggedTemplateLiteral(['\n      border-top: 2px solid ', ';\n    '], ['\n      border-top: 2px solid ', ';\n    ']),
+    _templateObject10 = _taggedTemplateLiteral(['\n  width: ', ';\n  height: ', ';\n  ', ';\n'], ['\n  width: ', ';\n  height: ', ';\n  ', ';\n']),
+    _templateObject11 = _taggedTemplateLiteral(['\n  background: url(', ') no-repeat;\n  background-size: 100% auto;\n  height: 15px;\n'], ['\n  background: url(', ') no-repeat;\n  background-size: 100% auto;\n  height: 15px;\n']);
 
 var _styledComponents = require('styled-components');
 
@@ -60,6 +61,7 @@ var fontSize = exports.fontSize = getFontSize(fontInputs);
 var colors = exports.colors = {
   white: '#ffffff',
   grey: '#ebebeb',
+  darkGrey: '#bfbfbf',
   orange: '#F7931E',
   yellow: '#FCEE21',
   blue: '#55acf1',
@@ -78,12 +80,14 @@ var SketchContainer = exports.SketchContainer = _styledComponents2.default.div(_
 
 var canvasContainerProps = function canvasContainerProps(props) {
   if (props.backgroundImage || props.drawingToEdit) {
-    return (0, _styledComponents.css)(_templateObject9, colors.white, colors.shadow);
+    return (0, _styledComponents.css)(_templateObject9, colors.white);
   }
 };
 
 var CanvasContainer = exports.CanvasContainer = _styledComponents2.default.div(_templateObject10, function (props) {
-  return props.width || null;
+  return props.width + 'px' || null;
 }, function (props) {
-  return props.height || null;
+  return props.height + 'px' || null;
 }, canvasContainerProps);
+
+var CanvasShadow = exports.CanvasShadow = _styledComponents2.default.div(_templateObject11, require('./assets/images/canvas-shadow.png'));

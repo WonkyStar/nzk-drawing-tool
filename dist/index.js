@@ -20,13 +20,17 @@ var _DrawingToolHeader = require('./components/DrawingToolHeader/DrawingToolHead
 
 var _DrawingToolHeader2 = _interopRequireDefault(_DrawingToolHeader);
 
-var _LeftPanel = require('./components/LeftPanel/LeftPanel');
+var _ToolPanel = require('./components/ToolPanel/ToolPanel');
 
-var _LeftPanel2 = _interopRequireDefault(_LeftPanel);
+var _ToolPanel2 = _interopRequireDefault(_ToolPanel);
 
 var _RightPanel = require('./components/RightPanel/RightPanel');
 
 var _RightPanel2 = _interopRequireDefault(_RightPanel);
+
+var _ColourPanel = require('./components/ColourPanel/ColourPanel');
+
+var _ColourPanel2 = _interopRequireDefault(_ColourPanel);
 
 var _index2 = require('./tools/index');
 
@@ -39,7 +43,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var colors = [{
-  rgb: '255, 255, 255',
+  rgb: '104, 59, 17',
+  isLocked: false
+}, {
+  rgb: '174, 0, 255',
+  isLocked: false
+}, {
+  rgb: '255, 0, 152',
+  isLocked: false
+}, {
+  rgb: '220, 6, 19',
   isLocked: false
 }, {
   rgb: '255, 145, 0',
@@ -54,13 +67,7 @@ var colors = [{
   rgb: '0, 183, 255',
   isLocked: false
 }, {
-  rgb: '174, 0, 255',
-  isLocked: false
-}, {
-  rgb: '255, 0, 152',
-  isLocked: false
-}, {
-  rgb: '104, 59, 17',
+  rgb: '255, 255, 255',
   isLocked: false
 }, {
   rgb: '171, 171, 171',
@@ -140,7 +147,7 @@ var DrawingTool = function (_Component) {
       canRedo: false,
       sketchWidth: null,
       sketchHeight: null,
-      selectedSection: 'pencil',
+      selectedSection: 'width',
       opacity: 1,
       spriteNumber: 0,
       isEraser: false,
@@ -297,6 +304,7 @@ var DrawingTool = function (_Component) {
           layoutStyle = _props2.layoutStyle,
           onBack = _props2.onBack;
 
+
       return _react2.default.createElement(
         _index.Container,
         null,
@@ -314,9 +322,22 @@ var DrawingTool = function (_Component) {
           _react2.default.createElement(
             _index.PanelContainer,
             null,
-            _react2.default.createElement(_LeftPanel2.default, {
+            _react2.default.createElement(_ToolPanel2.default, {
+              selectedSection: this.state.selectedSection,
               changeTool: this.changeTool,
-              selectedSection: this.state.selectedSection
+              undo: this._undo,
+              redo: this._redo,
+              clear: this._clear,
+              eraserLineWidth: this.state.eraserLineWidth,
+              changeEraserLineWidth: this.changeEraserLineWidth,
+              lineWidth: this.state.lineWidth,
+              lineColor: this.state.lineColor,
+              changeLineWidth: this.changeLineWidth,
+              changeColor: this.changeColor,
+              opacity: this.state.opacity,
+              changeOpacity: this.changeOpacity,
+              rgbColor: this.state.rgbColor,
+              windowWidth: this.state.windowWidth
             })
           ),
           _react2.default.createElement(
@@ -340,29 +361,17 @@ var DrawingTool = function (_Component) {
               onChange: this._onSketchChange,
               isEraser: this.state.isEraser,
               spriteNumber: this.state.spriteNumber
-            })
+            }),
+            _react2.default.createElement(_index.CanvasShadow, null)
           ),
           _react2.default.createElement(
             _index.PanelContainer,
             null,
-            _react2.default.createElement(_RightPanel2.default, {
-              selectedSection: this.state.selectedSection,
-              undo: this._undo,
-              redo: this._redo,
-              clear: this._clear,
-              canUndo: this.state.canUndo,
-              canRedo: this.state.canRedo,
-              changeLineWidth: this.changeLineWidth,
-              changeEraserLineWidth: this.changeEraserLineWidth,
-              lineWidth: this.state.lineWidth,
-              eraserLineWidth: this.state.eraserLineWidth,
-              changeOpacity: this.changeOpacity,
-              changeColor: this.changeColor,
-              opacity: this.state.opacity,
-              lineColor: this.state.lineColor,
-              rgbColor: this.state.rgbColor,
+            _react2.default.createElement(_ColourPanel2.default, {
               colors: colors,
-              windowWidth: this.state.windowWidth
+              opacity: this.state.opacity,
+              rgbColor: this.state.rgbColor,
+              changeColor: this.changeColor
             })
           )
         )

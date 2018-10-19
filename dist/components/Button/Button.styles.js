@@ -8,10 +8,10 @@ exports.StyledButtonDiv = exports.StyledButtonSpan = exports.StyledButtonLink = 
 var _templateObject = _taggedTemplateLiteral(['\n  background-color: ', ';\n'], ['\n  background-color: ', ';\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n    color: ', ';\n  '], ['\n    color: ', ';\n  ']),
     _templateObject3 = _taggedTemplateLiteral(['\n\t\tborder-radius: ', ';\n  '], ['\n\t\tborder-radius: ', ';\n  ']),
-    _templateObject4 = _taggedTemplateLiteral(['\n          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        ']),
-    _templateObject5 = _taggedTemplateLiteral(['\n          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 0.6);\n        ']),
-    _templateObject6 = _taggedTemplateLiteral(['\n          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(', ', 0.6);\n        ']),
-    _templateObject7 = _taggedTemplateLiteral(['\n          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(', ', 0.6);\n        '], ['\n          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(', ', 0.6);\n        ']),
+    _templateObject4 = _taggedTemplateLiteral(['\n          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 1);\n        '], ['\n          box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 1);\n        ']),
+    _templateObject5 = _taggedTemplateLiteral(['\n          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 1);\n        '], ['\n          box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(', ', 1);\n        ']),
+    _templateObject6 = _taggedTemplateLiteral(['\n          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(', ', 1);\n        '], ['\n          box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4), 0px 2px 0px rgba(', ', 1);\n        ']),
+    _templateObject7 = _taggedTemplateLiteral(['\n          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(', ', 1);\n        '], ['\n          box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(', ', 1);\n        ']),
     _templateObject8 = _taggedTemplateLiteral(['\n    ', ';\n  '], ['\n    ', ';\n  ']),
     _templateObject9 = _taggedTemplateLiteral(['\n        width: ', ';\n      '], ['\n        width: ', ';\n      ']),
     _templateObject10 = _taggedTemplateLiteral(['\n        height: ', ';\n      '], ['\n        height: ', ';\n      ']),
@@ -23,7 +23,7 @@ var _templateObject = _taggedTemplateLiteral(['\n  background-color: ', ';\n'], 
     _templateObject16 = _taggedTemplateLiteral(['\n        transform: translateY(4px);\n        box-shadow: none !important;\n      '], ['\n        transform: translateY(4px);\n        box-shadow: none !important;\n      ']),
     _templateObject17 = _taggedTemplateLiteral(['\n          width: 21px;\n          height: 21px;\n          padding: 0px;\n          font-size: ', ';\n        '], ['\n          width: 21px;\n          height: 21px;\n          padding: 0px;\n          font-size: ', ';\n        ']),
     _templateObject18 = _taggedTemplateLiteral(['\n          width: 31px;\n          height: 31px;\n          padding: 0px;\n          font-size: ', ';\n        '], ['\n          width: 31px;\n          height: 31px;\n          padding: 0px;\n          font-size: ', ';\n        ']),
-    _templateObject19 = _taggedTemplateLiteral(['\n          width: 50px;\n          height: 50px;\n          font-size: ', ';\n          padding: 0px;\n\n          @media(max-width: ', 'px) {\n            width: 35px;\n            height: 35px;\n          }\n        '], ['\n          width: 50px;\n          height: 50px;\n          font-size: ', ';\n          padding: 0px;\n\n          @media(max-width: ', 'px) {\n            width: 35px;\n            height: 35px;\n          }\n        ']),
+    _templateObject19 = _taggedTemplateLiteral(['\n          width: 50px;\n          height: 50px;\n          font-size: ', ';\n          padding: 0px;\n\n          @media(max-width: ', 'px) {\n            width: 38px;\n            height: 38px;\n          }\n        '], ['\n          width: 50px;\n          height: 50px;\n          font-size: ', ';\n          padding: 0px;\n\n          @media(max-width: ', 'px) {\n            width: 38px;\n            height: 38px;\n          }\n        ']),
     _templateObject20 = _taggedTemplateLiteral(['\n          width: 70px;\n          height: 70px;\n          font-size: ', ';\n          padding: 0px;\n\n          @media(max-width: ', 'px) {\n            width: 50px;\n            height: 50px;\n          }\n        '], ['\n          width: 70px;\n          height: 70px;\n          font-size: ', ';\n          padding: 0px;\n\n          @media(max-width: ', 'px) {\n            width: 50px;\n            height: 50px;\n          }\n        ']),
     _templateObject21 = _taggedTemplateLiteral(['\n      width: ', ';\n      height: ', ';\n    '], ['\n      width: ', ';\n      height: ', ';\n    ']),
     _templateObject22 = _taggedTemplateLiteral(['\n        height: 21px;\n\t\t\t\tpadding: 0 9px;\n\t\t\t\t', ';\n      '], ['\n        height: 21px;\n\t\t\t\tpadding: 0 9px;\n\t\t\t\t', ';\n      ']),
@@ -188,7 +188,7 @@ var StyledButton = exports.StyledButton = _styledComponents2.default.button.attr
 }, function (props) {
   return props.height ? props.height : "";
 }, function (props) {
-  return props.columnView ? 'margin-top: 20px' : 'margin-left: 10px';
+  return props.columnView ? 'margin-top: 8px' : 'margin-left: 10px';
 }, colorStyle);
 
 var StyledButtonLink = exports.StyledButtonLink = StyledButton.withComponent('a');
