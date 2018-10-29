@@ -17,7 +17,7 @@ export const Panel = styled.div`
   min-height: 350px;
   width: 100%;
   text-align: center;
-  padding: 20px 0;
+  padding: 0;
 
   @media(max-width: ${tabletMaxWidth}px) {
     min-height: 270px;
