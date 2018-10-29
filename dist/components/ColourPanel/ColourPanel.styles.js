@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.Panel = exports.Container = undefined;
 
 var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n\n  @media(max-width: ', 'px) {\n    width: 65px;\n  }\n'], ['\n  display: flex;\n  align-items: center;\n  height: 100%;\n  width: 90px;\n  z-index: 2;\n\n  @media(max-width: ', 'px) {\n    width: 65px;\n  }\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  padding: 20px 0;\n\n  @media(max-width: ', 'px) {\n    min-height: 270px;\n  }\n'], ['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  padding: 20px 0;\n\n  @media(max-width: ', 'px) {\n    min-height: 270px;\n  }\n']);
+    _templateObject2 = _taggedTemplateLiteral(['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  padding: 0;\n\n  @media(max-width: ', 'px) {\n    min-height: 270px;\n  }\n'], ['\n  min-height: 350px;\n  width: 100%;\n  text-align: center;\n  padding: 0;\n\n  @media(max-width: ', 'px) {\n    min-height: 270px;\n  }\n']);
 
 var _styledComponents = require('styled-components');
 

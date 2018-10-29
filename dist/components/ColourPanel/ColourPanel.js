@@ -56,7 +56,7 @@ var RightPanel = function (_Component) {
             bgColor: 'rgba(' + color.rgb + ', 1)',
             rgbColor: color.rgb,
             onClick: !color.isLocked ? function () {
-              return [_this2.props.changeColor(color.rgb)];
+              return [_this2.props.changeColor(color.rgb), _this2.props.resetToPencil()];
             } : null
           },
           color.isLocked && _react2.default.createElement(_Icon2.default, { name: 'padlock', size: 'large', color: _index.colors.white })

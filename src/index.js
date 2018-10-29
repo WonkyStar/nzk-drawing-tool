@@ -9,7 +9,6 @@ import {
 } from './index.styles'
 import DrawingToolHeader from './components/DrawingToolHeader/DrawingToolHeader'
 import ToolPanel from './components/ToolPanel/ToolPanel'
-import RightPanel from './components/RightPanel/RightPanel'
 import ColourPanel from './components/ColourPanel/ColourPanel'
 import { SketchField, Tools } from './tools/index'
 
@@ -339,6 +338,7 @@ export default class DrawingTool extends Component {
               opacity={this.state.opacity}
               rgbColor={this.state.rgbColor}
               changeColor={this.changeColor}
+              resetToPencil={() => this.changeTool('width')}
             />
           </PanelContainer>
         </SketchContainer>

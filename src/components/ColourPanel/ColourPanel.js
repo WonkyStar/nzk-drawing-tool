@@ -19,7 +19,8 @@ export default class RightPanel extends Component {
           onClick={
             !color.isLocked
               ? () => [
-                this.props.changeColor(color.rgb)
+                this.props.changeColor(color.rgb),
+                this.props.resetToPencil()
               ]
               : null
           }

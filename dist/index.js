@@ -24,10 +24,6 @@ var _ToolPanel = require('./components/ToolPanel/ToolPanel');
 
 var _ToolPanel2 = _interopRequireDefault(_ToolPanel);
 
-var _RightPanel = require('./components/RightPanel/RightPanel');
-
-var _RightPanel2 = _interopRequireDefault(_RightPanel);
-
 var _ColourPanel = require('./components/ColourPanel/ColourPanel');
 
 var _ColourPanel2 = _interopRequireDefault(_ColourPanel);
@@ -371,7 +367,10 @@ var DrawingTool = function (_Component) {
               colors: colors,
               opacity: this.state.opacity,
               rgbColor: this.state.rgbColor,
-              changeColor: this.changeColor
+              changeColor: this.changeColor,
+              resetToPencil: function resetToPencil() {
+                return _this3.changeTool('width');
+              }
             })
           )
         )
