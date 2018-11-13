@@ -28,6 +28,8 @@ var _tools = require('../../tools');
 
 var _ColourPanel = require('../ColourPanel/ColourPanel.styles');
 
+var _ToolPanel = require('./ToolPanel.styles');
+
 var _index = require('../../index.styles');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -57,9 +59,7 @@ var buttons = [{
   type: 'trash',
   icon: 'trash'
 }, {
-  onClick: function onClick(props) {},
-  type: 'sticker',
-  icon: 'sticker'
+  type: 'empty'
 }, {
   tool: _tools.Tools.Eraser,
   type: 'eraser',
@@ -146,6 +146,9 @@ var ToolPanel = function (_Component) {
           rgbColor = _props.rgbColor;
 
       return buttons.map(function (button) {
+        if (button.type === 'empty') {
+          return _react2.default.createElement(_ToolPanel.EmptyButton, null);
+        }
         return _react2.default.createElement(
           _Button2.default,
           _extends({
