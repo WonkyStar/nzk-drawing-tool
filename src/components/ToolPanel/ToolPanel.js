@@ -4,6 +4,7 @@ import Icon from '../Icon/Icon'
 import Slider from '../Slider/Slider'
 import { Tools } from '../../tools'
 import { Container, Panel } from '../ColourPanel/ColourPanel.styles'
+import { EmptyButton } from './ToolPanel.styles'
 import { colors } from '../../index.styles'
 
 const buttons = [
@@ -23,9 +24,7 @@ const buttons = [
     icon: 'trash'
   },
   {
-    onClick: (props) => {},
-    type: 'sticker',
-    icon: 'sticker'
+    type: 'empty'
   },
   {
     tool: Tools.Eraser,
@@ -100,6 +99,9 @@ export default class ToolPanel extends Component {
   renderButtons () {
     const { changeTool, rgbColor } = this.props
     return buttons.map(button => {
+      if(button.type === 'empty') {
+        return <EmptyButton />
+      }
       return (
         <Button
           key={button.type}
