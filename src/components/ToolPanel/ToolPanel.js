@@ -100,7 +100,7 @@ export default class ToolPanel extends Component {
     const { changeTool, rgbColor } = this.props
     return buttons.map(button => {
       if(button.type === 'empty') {
-        return <EmptyButton />
+        return <EmptyButton key='empty' />
       }
       return (
         <Button

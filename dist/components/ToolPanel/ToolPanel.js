@@ -147,7 +147,7 @@ var ToolPanel = function (_Component) {
 
       return buttons.map(function (button) {
         if (button.type === 'empty') {
-          return _react2.default.createElement(_ToolPanel.EmptyButton, null);
+          return _react2.default.createElement(_ToolPanel.EmptyButton, { key: 'empty' });
         }
         return _react2.default.createElement(
           _Button2.default,
