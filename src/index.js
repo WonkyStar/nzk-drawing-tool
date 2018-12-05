@@ -15,46 +15,57 @@ import { SketchField, Tools } from './tools/index'
 const colors = [
   {
     rgb: '104, 59, 17',
+    alias: 'brown',
     isLocked: false
   },
   {
     rgb: '174, 0, 255',
+    alias: 'purple',
     isLocked: false
   },
   {
     rgb: '255, 0, 152',
+    alias: 'pink',
     isLocked: false
   },
   {
     rgb: '220, 6, 19',
+    alias: 'red',
     isLocked: false
   },
   {
     rgb: '255, 145, 0',
+    alias: 'orange',
     isLocked: false
   },
   {
     rgb: '255, 236, 0',
+    alias: 'yellow',
     isLocked: false
   },
   {
     rgb: '193, 255, 0',
+    alias: 'green',
     isLocked: false
   },
   {
     rgb: '0, 183, 255',
+    alias: 'blue',
     isLocked: false
   },
   {
     rgb: '255, 255, 255',
+    alias: 'white',
     isLocked: false
   },
   {
     rgb: '171, 171, 171',
+    alias: 'grey',
     isLocked: false
   },
   {
     rgb: '0, 0, 0',
+    alias: 'black',
     isLocked: false
   }
 ]
