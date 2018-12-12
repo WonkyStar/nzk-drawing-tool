@@ -60,7 +60,7 @@ const colors = [
   },
   {
     rgb: '171, 171, 171',
-    alias: 'grey',
+    alias: 'gray',
     isLocked: false
   },
   {
