@@ -30,16 +30,36 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var RightPanel = function (_Component) {
-  _inherits(RightPanel, _Component);
+var sounds = {
+  brown: new Audio(require('../../assets/sounds/brown.mp3')),
+  purple: new Audio(require('../../assets/sounds/purple.mp3')),
+  pink: new Audio(require('../../assets/sounds/pink.mp3')),
+  red: new Audio(require('../../assets/sounds/red.mp3')),
+  orange: new Audio(require('../../assets/sounds/orange.mp3')),
+  yellow: new Audio(require('../../assets/sounds/yellow.mp3')),
+  green: new Audio(require('../../assets/sounds/green.mp3')),
+  blue: new Audio(require('../../assets/sounds/blue.mp3')),
+  white: new Audio(require('../../assets/sounds/white.mp3')),
+  gray: new Audio(require('../../assets/sounds/gray.mp3')),
+  black: new Audio(require('../../assets/sounds/black.mp3'))
+};
 
-  function RightPanel() {
-    _classCallCheck(this, RightPanel);
+var ColourPanel = function (_Component) {
+  _inherits(ColourPanel, _Component);
 
-    return _possibleConstructorReturn(this, (RightPanel.__proto__ || Object.getPrototypeOf(RightPanel)).apply(this, arguments));
+  function ColourPanel() {
+    _classCallCheck(this, ColourPanel);
+
+    return _possibleConstructorReturn(this, (ColourPanel.__proto__ || Object.getPrototypeOf(ColourPanel)).apply(this, arguments));
   }
 
-  _createClass(RightPanel, [{
+  _createClass(ColourPanel, [{
+    key: 'playSound',
+    value: function playSound(colorAlias) {
+      var audio = sounds[colorAlias];
+      audio.play();
+    }
+  }, {
     key: 'renderColors',
     value: function renderColors() {
       var _this2 = this;
@@ -56,7 +76,9 @@ var RightPanel = function (_Component) {
             bgColor: 'rgba(' + color.rgb + ', 1)',
             rgbColor: color.rgb,
             onClick: !color.isLocked ? function () {
-              return [_this2.props.changeColor(color.rgb), _this2.props.resetToPencil()];
+              _this2.props.changeColor(color.rgb);
+              _this2.props.resetToPencil();
+              _this2.playSound(color.alias);
             } : null
           },
           color.isLocked && _react2.default.createElement(_Icon2.default, { name: 'padlock', size: 'large', color: _index.colors.white })
@@ -82,7 +104,7 @@ var RightPanel = function (_Component) {
     }
   }]);
 
-  return RightPanel;
+  return ColourPanel;
 }(_react.Component);
 
-exports.default = RightPanel;
+exports.default = ColourPanel;
