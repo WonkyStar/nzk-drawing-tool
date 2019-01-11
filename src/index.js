@@ -73,7 +73,7 @@ export default class DrawingTool extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      lineWidth: 30,
+      lineWidth: 10,
       eraserLineWidth: 30,
       rgbColor: '174, 0, 255',
       tool: Tools.Pencil,

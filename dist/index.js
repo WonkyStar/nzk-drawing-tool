@@ -145,7 +145,7 @@ var DrawingTool = function (_Component) {
     };
 
     _this.state = {
-      lineWidth: 30,
+      lineWidth: 10,
       eraserLineWidth: 30,
       rgbColor: '174, 0, 255',
       tool: _index2.Tools.Pencil,
